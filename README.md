@@ -14,4 +14,4 @@ money, but not until the essentials are covered. It will also give you percentag
 so you can better compare to things that say "Your housing should only be X% of your monthly income."
 
 + [User stories](docs/user-stories.md)
-+ [Wireframes](docs/Android%20budget%20app.pdf)
++ [Wireframes](docs/wireframes.md)

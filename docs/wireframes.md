@@ -9,4 +9,4 @@ You are free to examine the wireframes below in PNG or PDF format.
 [Wireframe in PDF format](Android%20budget%20app.pdf) 
 
 + [Readme](https://treypage.github.io/budget-backwards/)
-+ [User stories](https://treypage.github.io/budget-backwards/docs/user-stories.html)
++ [User stories](user-stories.md)

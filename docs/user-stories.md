@@ -11,4 +11,4 @@
 
 
 + [Readme](https://treypage.github.io/budget-backwards/)
-+ [Wireframes](https://treypage.github.io/budget-backwards/docs/wireframes.html)
++ [Wireframes](wireframes.md)
