@@ -1,0 +1,6 @@
+#User stories for Budget Backwards
+1. As a parent with multiple children I need something to help me put my money in the right places, not just track the expenses.
+
+1. I can't keep track of everything in my life and track my expenses, I need something to tell me where to put my money. 
+
+1. I don't understand how I stack up against other people in spending. I want to compare.
