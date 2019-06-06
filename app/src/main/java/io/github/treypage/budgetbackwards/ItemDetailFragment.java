@@ -1,14 +1,15 @@
 package io.github.treypage.budgetbackwards;
 
 import android.app.Activity;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import io.github.treypage.budgetbackwards.dummy.DummyContent;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import io.github.treypage.budgetbackwards.budget.BudgetContent;
+import io.github.treypage.budgetbackwards.budget.BudgetContent.BudgetItem;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either contained in a
@@ -25,7 +26,7 @@ public class ItemDetailFragment extends Fragment {
   /**
    * The dummy content this fragment is presenting.
    */
-  private DummyContent.DummyItem mItem;
+  private BudgetItem mItem;
 
   /**
    * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon
@@ -42,11 +43,10 @@ public class ItemDetailFragment extends Fragment {
       // Load the dummy content specified by the fragment
       // arguments. In a real-world scenario, use a Loader
       // to load content from a content provider.
-      mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+      mItem = BudgetContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
       Activity activity = this.getActivity();
-      CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity
-          .findViewById(R.id.toolbar_layout);
+      CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
       if (appBarLayout != null) {
         appBarLayout.setTitle(mItem.content);
       }
