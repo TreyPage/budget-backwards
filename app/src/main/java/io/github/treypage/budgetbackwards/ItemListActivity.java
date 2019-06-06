@@ -39,7 +39,7 @@ public class ItemListActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     toolbar.setTitle(getTitle());
 
-    FloatingActionButton fab = findViewById(R.id.fab);
+    FloatingActionButton fab = findViewById(R.id.money_sign);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

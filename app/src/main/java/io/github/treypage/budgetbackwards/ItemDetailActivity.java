@@ -24,7 +24,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     Toolbar toolbar = findViewById(R.id.detail_toolbar);
     setSupportActionBar(toolbar);
 
-    FloatingActionButton fab = findViewById(R.id.fab);
+    FloatingActionButton fab = findViewById(R.id.money_sign);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
