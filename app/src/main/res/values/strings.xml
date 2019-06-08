@@ -50,6 +50,7 @@
   <string name="permission_rationale">"Contacts permissions are needed for providing email
     completions."
   </string>
+  <string name="title_input_income">Input Income</string>
   <string-array name="pref_example_list_titles">
     <item>Always</item>
     <item>When possible</item>

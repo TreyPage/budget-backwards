@@ -40,11 +40,11 @@ public class ItemListActivity extends AppCompatActivity {
     toolbar.setTitle(getTitle());
 
     FloatingActionButton fab = findViewById(R.id.money_sign);
+    final Intent intent = new Intent(this, IncomeActivity.class);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
+        startActivity(intent);
       }
     });
 
