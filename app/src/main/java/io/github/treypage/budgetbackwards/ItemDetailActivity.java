@@ -23,12 +23,14 @@ public class ItemDetailActivity extends AppCompatActivity {
     setContentView(R.layout.activity_item_detail);
     Toolbar toolbar = findViewById(R.id.detail_toolbar);
     setSupportActionBar(toolbar);
+    final int userIncome = getIntent().getIntExtra("userIncome", 0);
+
 
     FloatingActionButton fab = findViewById(R.id.money_sign);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, "Your income is: " + userIncome, Snackbar.LENGTH_LONG)
             .setAction("Action", null).show();
       }
     });

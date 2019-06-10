@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.budget.BudgetContent;
 import io.github.treypage.budgetbackwards.budget.BudgetContent.BudgetItem;
 import java.util.List;
@@ -29,13 +28,14 @@ public class ItemListActivity extends AppCompatActivity {
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
    */
   private boolean mTwoPane;
+  private int userIncome;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_item_list);
-
     Toolbar toolbar = findViewById(R.id.toolbar);
+    userIncome = getIntent().getIntExtra("userIncome", 0);
     setSupportActionBar(toolbar);
     toolbar.setTitle(getTitle());
 
@@ -65,7 +65,7 @@ public class ItemListActivity extends AppCompatActivity {
     recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, BudgetContent.ITEMS, mTwoPane));
   }
 
-  public static class SimpleItemRecyclerViewAdapter
+  public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
     private final ItemListActivity mParentActivity;
@@ -84,8 +84,10 @@ public class ItemListActivity extends AppCompatActivity {
               .replace(R.id.item_detail_container, fragment)
               .commit();
         } else {
+
           Context context = view.getContext();
           Intent intent = new Intent(context, ItemDetailActivity.class);
+          intent.putExtra("userIncome", userIncome);
           intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
 
           context.startActivity(intent);

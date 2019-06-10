@@ -51,6 +51,9 @@
     completions."
   </string>
   <string name="title_input_income">Input Income</string>
+  <string name="user_income">Input your income amount.</string>
+  <string name="submit">Submit</string>
+  <string name="income_input_instruct">Input your income below. The app will complete all calculations after you click submit.</string>
   <string-array name="pref_example_list_titles">
     <item>Always</item>
     <item>When possible</item>
