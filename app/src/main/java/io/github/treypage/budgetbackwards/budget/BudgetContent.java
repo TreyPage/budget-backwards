@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class BudgetContent {
 
-  public static final List<BudgetItem> ITEMS = new ArrayList<BudgetItem>();
+  public static final List<BudgetItem> ITEMS = new ArrayList<>();
 
   public static final Map<String, BudgetItem> ITEM_MAP = new HashMap<>();
 

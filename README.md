@@ -15,3 +15,4 @@ so you can better compare to things that say "Your housing should only be X% of 
 
 + [User stories](docs/user-stories.md)
 + [Wireframes](docs/wireframes.md)
++ [ERD](ERD.md)
