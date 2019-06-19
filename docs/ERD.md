@@ -4,7 +4,7 @@
 You are free to examine the ERD below in PNG or PDF format.
 
 
-![ERD png](BudgetBackwards.png)
+![ERD png](budget_erd.png)
 
 [ERD in PDF format](BudgetBackwards.pdf) 
 
