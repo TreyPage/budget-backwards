@@ -9,8 +9,8 @@ public class Income {
   private static final long serialVersionUID = 3620476713574910644L;
 
   @PrimaryKey(autoGenerate = true)
-  long id;
-  long amount;
+  private long id;
+  private long amount;
 
   public long getId() {
     return id;

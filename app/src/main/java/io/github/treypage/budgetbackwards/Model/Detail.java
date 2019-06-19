@@ -9,11 +9,11 @@ public class Detail {
   private static final long serialVersionUID = 6079857357244107338L;
 
   @PrimaryKey()
-  long id;
-  String info;
-  double payout;
-  double percent;
-  String title;
+  private long id;
+  private String info;
+  private double payout;
+  private double percent;
+  private String title;
 
   public long getId() {
     return id;

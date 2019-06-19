@@ -18,11 +18,11 @@ public class SplitIncome implements Serializable {
   private static final long serialVersionUID = 1032617491635158879L;
 
   @PrimaryKey(autoGenerate = true)
-  long id;
+  private long id;
   @ColumnInfo(name = "income_id", index = true)
-  long incomeId;
+  private long incomeId;
   @ColumnInfo(name = "category_id", index = true)
-  long categoryId;
+  private long categoryId;
 
 
   public long getId() {

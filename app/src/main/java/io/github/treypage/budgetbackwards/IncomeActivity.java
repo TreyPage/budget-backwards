@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class IncomeActivity extends AppCompatActivity {
 
-  int userIncome;
+  private int userIncome;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

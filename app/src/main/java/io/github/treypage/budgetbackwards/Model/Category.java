@@ -9,9 +9,9 @@ public class Category {
   private static final long serialVersionUID = -7703982303849405697L;
 
   @PrimaryKey(autoGenerate = true)
-  long id;
-  double percent;
-  String title;
+  private long id;
+  private double percent;
+  private String title;
 
   public long getId() {
     return id;
