@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Entity
 public class Income implements Serializable {
 
-  private static final long serialVersionUID = 3620476713574910644L;
+  private static final long serialVersionUID = 2L;
 
   @PrimaryKey(autoGenerate = true)
   private long id;

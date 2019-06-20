@@ -11,7 +11,7 @@ import java.io.Serializable;
     })
 public class Detail implements Serializable {
 
-  private static final long serialVersionUID = 6079857357244107338L;
+  private static final long serialVersionUID = 3L;
 
   @PrimaryKey()
   private long id;

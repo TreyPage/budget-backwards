@@ -12,7 +12,7 @@ import java.io.Serializable;
     })
 public class SplitIncome implements Serializable {
 
-  private static final long serialVersionUID = 1032617491635158879L;
+  private static final long serialVersionUID = 1L;
 
   @PrimaryKey(autoGenerate = true)
   private long id;
