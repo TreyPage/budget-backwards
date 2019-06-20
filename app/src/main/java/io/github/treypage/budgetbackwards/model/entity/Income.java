@@ -1,10 +1,11 @@
-package io.github.treypage.budgetbackwards.Model;
+package io.github.treypage.budgetbackwards.model.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
 @Entity
-public class Income {
+public class Income implements Serializable {
 
   private static final long serialVersionUID = 3620476713574910644L;
 

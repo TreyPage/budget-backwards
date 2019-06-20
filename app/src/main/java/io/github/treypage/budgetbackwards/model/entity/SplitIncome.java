@@ -1,17 +1,14 @@
-package io.github.treypage.budgetbackwards.Model;
+package io.github.treypage.budgetbackwards.model.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
-@Entity(primaryKeys = {"id", "id"},
-    indices = {@Index("id"), @Index("id")},
-    foreignKeys = {
-        @ForeignKey(entity = Income.class, parentColumns = "id", childColumns = "incomeId"),
-        @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "categoryId")
+@Entity(foreignKeys = {
+        @ForeignKey(entity = Income.class, parentColumns = "id", childColumns = "income_id"),
+        @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")
     })
 public class SplitIncome implements Serializable {
 
