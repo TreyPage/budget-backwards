@@ -1,5 +1,7 @@
 package io.github.treypage.budgetbackwards;
 
+import static io.github.treypage.budgetbackwards.model.entity.Category.Title.HOUSING;
+
 import android.app.Application;
 import com.facebook.stetho.Stetho;
 import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
@@ -13,7 +15,8 @@ public class BudgetApp extends Application {
 
     new Thread(() -> {
       Category category = new Category();
-      category.setTitle("Housing");
+      category.setPercent(40);
+      category.setPayout(65);
       BudgetDatabase.getInstance(this).getCategoryDao().insert(category);
     }).start();
   }
