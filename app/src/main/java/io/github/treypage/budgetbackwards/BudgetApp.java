@@ -15,8 +15,7 @@ public class BudgetApp extends Application {
 
     new Thread(() -> {
       Category category = new Category();
-      category.setPercent(40);
-      category.setPayout(65);
+      category.setTitle(HOUSING);
       BudgetDatabase.getInstance(this).getCategoryDao().insert(category);
     }).start();
   }

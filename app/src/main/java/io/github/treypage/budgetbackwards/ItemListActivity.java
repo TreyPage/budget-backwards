@@ -12,8 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import io.github.treypage.budgetbackwards.budget.BudgetContent;
-import io.github.treypage.budgetbackwards.budget.BudgetContent.BudgetItem;
+import io.github.treypage.budgetbackwards.viewModel.CategoryViewModel;
+import io.github.treypage.budgetbackwards.viewModel.CategoryViewModel.CategoryItem;
+import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public class ItemListActivity extends AppCompatActivity {
     toolbar.setTitle(getTitle());
 
     FloatingActionButton fab = findViewById(R.id.money_sign);
-    final Intent intent = new Intent(this, IncomeActivity.class);
+    final Intent intent = new Intent(this, IncomeFragment.class);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -62,23 +63,23 @@ public class ItemListActivity extends AppCompatActivity {
   }
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, BudgetContent.ITEMS, mTwoPane));
+    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, CategoryViewModel.ITEMS, mTwoPane));
   }
 
   public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
     private final ItemListActivity mParentActivity;
-    private final List<BudgetItem> mValues;
+    private final List<CategoryItem> mValues;
     private final boolean mTwoPane;
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        BudgetItem item = (BudgetItem) view.getTag();
+        CategoryItem item = (CategoryItem) view.getTag();
         if (mTwoPane) {
           Bundle arguments = new Bundle();
-          arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
-          ItemDetailFragment fragment = new ItemDetailFragment();
+          arguments.putString(io.github.treypage.budgetbackwards.fragment.CategoryFragment.ARG_ITEM_ID, item.id);
+          io.github.treypage.budgetbackwards.fragment.CategoryFragment fragment = new io.github.treypage.budgetbackwards.fragment.CategoryFragment();
           fragment.setArguments(arguments);
           mParentActivity.getSupportFragmentManager().beginTransaction()
               .replace(R.id.item_detail_container, fragment)
@@ -88,7 +89,7 @@ public class ItemListActivity extends AppCompatActivity {
           Context context = view.getContext();
           Intent intent = new Intent(context, ItemDetailActivity.class);
           intent.putExtra("userIncome", userIncome);
-          intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+          intent.putExtra(io.github.treypage.budgetbackwards.fragment.CategoryFragment.ARG_ITEM_ID, item.id);
 
           context.startActivity(intent);
         }
@@ -96,7 +97,7 @@ public class ItemListActivity extends AppCompatActivity {
     };
 
     SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-        List<BudgetItem> items,
+        List<CategoryItem> items,
         boolean twoPane) {
       mValues = items;
       mParentActivity = parent;

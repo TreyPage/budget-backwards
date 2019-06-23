@@ -12,7 +12,7 @@
     android:theme="@style/AppTheme">
     <activity
       android:label="@string/title_input_income"
-      android:name=".IncomeActivity"
+      android:name=".fragment.IncomeFragment"
       android:parentActivityName=".ItemListActivity"
       android:theme="@style/AppTheme.NoActionBar">
       <meta-data

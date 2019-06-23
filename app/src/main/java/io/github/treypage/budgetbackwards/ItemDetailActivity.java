@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import io.github.treypage.budgetbackwards.fragment.CategoryFragment;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -34,9 +35,9 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
     if (savedInstanceState == null) {
       Bundle arguments = new Bundle();
-      arguments.putString(ItemDetailFragment.ARG_ITEM_ID,
-          getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
-      ItemDetailFragment fragment = new ItemDetailFragment();
+      arguments.putString(CategoryFragment.ARG_ITEM_ID,
+          getIntent().getStringExtra(CategoryFragment.ARG_ITEM_ID));
+      CategoryFragment fragment = new CategoryFragment();
       fragment.setArguments(arguments);
       getSupportFragmentManager().beginTransaction()
           .add(R.id.item_detail_container, fragment)

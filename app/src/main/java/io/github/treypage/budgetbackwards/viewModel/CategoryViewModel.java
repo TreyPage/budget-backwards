@@ -1,4 +1,4 @@
-package io.github.treypage.budgetbackwards.budget;
+package io.github.treypage.budgetbackwards.viewModel;
 
 import androidx.annotation.NonNull;
 import java.util.ArrayList;
@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BudgetContent {
+public class CategoryViewModel {
 
-  public static final List<BudgetItem> ITEMS = new ArrayList<>();
+  public static final List<CategoryItem> ITEMS = new ArrayList<>();
 
-  public static final Map<String, BudgetItem> ITEM_MAP = new HashMap<>();
+  public static final Map<String, CategoryItem> ITEM_MAP = new HashMap<>();
 
   static {
     addItem(createBudgetItem(1, "Housing",
@@ -59,22 +59,22 @@ public class BudgetContent {
             + "field will calculate."));
   }
 
-  private static void addItem(BudgetItem item) {
+  private static void addItem(CategoryItem item) {
     ITEMS.add(item);
     ITEM_MAP.put(item.id, item);
   }
 
-  private static BudgetItem createBudgetItem(int position, String content, String details) {
-    return new BudgetItem(String.valueOf(position), content, details);
+  private static CategoryItem createBudgetItem(int position, String content, String details) {
+    return new CategoryItem(String.valueOf(position), content, details);
   }
 
-  public static class BudgetItem {
+  public static class CategoryItem {
 
     public final String id;
     public final String content;
     public final String details;
 
-    public BudgetItem(String id, String content, String details) {
+    public CategoryItem(String id, String content, String details) {
       this.id = id;
       this.content = content;
       this.details = details;

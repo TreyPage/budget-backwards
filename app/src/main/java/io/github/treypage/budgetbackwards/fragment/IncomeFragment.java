@@ -1,4 +1,4 @@
-package io.github.treypage.budgetbackwards;
+package io.github.treypage.budgetbackwards.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import io.github.treypage.budgetbackwards.ItemListActivity;
+import io.github.treypage.budgetbackwards.R;
 
-public class IncomeActivity extends AppCompatActivity {
+public class IncomeFragment extends AppCompatActivity {
 
   private int userIncome;
 
