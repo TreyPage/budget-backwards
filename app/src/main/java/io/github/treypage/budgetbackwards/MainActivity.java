@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import edu.cnm.deepdive.atthemovies.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
+import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    Fragment fragment = CategoryChartFragment.newInstance();
+    FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+    assert fragment != null;
+    transaction1.replace(R.id.frame_layout, fragment);
+    transaction1.commit();
     BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(item -> {
       Fragment selectedFragment = null;

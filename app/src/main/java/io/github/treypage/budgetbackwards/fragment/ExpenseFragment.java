@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.atthemovies.fragment;
+package io.github.treypage.budgetbackwards.fragment;
 
 
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import io.github.treypage.budgetbackwards.R;
 
 public class ExpenseFragment extends Fragment {
+
   public static ExpenseFragment newInstance() {
     ExpenseFragment fragment = new ExpenseFragment();
     return fragment;
