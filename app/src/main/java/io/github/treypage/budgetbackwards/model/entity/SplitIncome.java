@@ -4,15 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import java.io.Serializable;
 
 @Entity(foreignKeys = {
-        @ForeignKey(entity = Income.class, parentColumns = "id", childColumns = "income_id"),
-        @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")
-    })
-public class SplitIncome implements Serializable {
-
-  private static final long serialVersionUID = 1L;
+    @ForeignKey(entity = Income.class, parentColumns = "id", childColumns = "income_id"),
+    @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")
+})
+public class SplitIncome {
 
   @PrimaryKey(autoGenerate = true)
   private long id;

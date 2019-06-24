@@ -4,12 +4,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
-import java.io.Serializable;
 
 @Entity
-public class Category implements Serializable {
-
-  private static final long serialVersionUID = 4L;
+public class Category {
 
   @PrimaryKey(autoGenerate = true)
   private long id;

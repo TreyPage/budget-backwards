@@ -1,14 +1,16 @@
 package io.github.treypage.budgetbackwards.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Income {
+public class Expense {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
   private long amount;
+  private String title;
 
   public long getId() {
     return id;
@@ -24,5 +26,19 @@ public class Income {
 
   public void setAmount(long amount) {
     this.amount = amount;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return title;
   }
 }
