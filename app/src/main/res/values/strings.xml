@@ -63,6 +63,7 @@
   <string name="chart">Chart</string>
   <string name="list">List</string>
   <string name="expenses">Expenses</string>
+  <string name="date_of_income">Date of income</string>
   <string-array name="pref_example_list_titles">
     <item>Always</item>
     <item>When possible</item>

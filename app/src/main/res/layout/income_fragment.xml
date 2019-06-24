@@ -9,15 +9,40 @@
   tools:context=".fragment.IncomeFragment"
   tools:ignore="MergeRootFrame">
 
+  <ImageView
+    android:id="@+id/random_meme"
+    android:layout_width="match_parent"
+    android:layout_height="100sp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/income_instructions"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+  <EditText
+    android:id="@+id/date_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/date_of_income"
+    android:imeActionId="6"
+    android:imeOptions="actionUnspecified"
+    android:importantForAutofill="no"
+    android:inputType="date"
+    android:maxLines="1"
+    android:singleLine="true"
+    app:layout_constraintTop_toBottomOf="@id/user_income"
+    app:layout_constraintBottom_toTopOf="@id/submit_income"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
   <Button
     android:id="@+id/submit_income"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/submit"
+    app:layout_constraintTop_toBottomOf="@id/date_input"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
-
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
 
   <EditText
     android:id="@+id/user_income"
@@ -26,24 +51,26 @@
     android:hint="@string/user_income"
     android:imeActionId="6"
     android:imeOptions="actionUnspecified"
-    android:importantForAutofill="no"
     android:inputType="numberDecimal"
     android:maxLines="1"
     android:singleLine="true"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toBottomOf="@id/income_instructions"
+    app:layout_constraintBottom_toTopOf="@id/date_input"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
 
   <TextView
+    android:id="@+id/income_instructions"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
     android:text="@string/income_input_instruct"
     android:textSize="22sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.24"
-    tools:layout_editor_absoluteX="16dp"/>
+    android:textAlignment="center"
+    app:layout_constraintTop_toBottomOf="@id/random_meme"
+    app:layout_constraintBottom_toTopOf="@id/user_income"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
