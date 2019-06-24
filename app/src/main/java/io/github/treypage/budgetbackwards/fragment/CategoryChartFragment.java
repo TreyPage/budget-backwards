@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import io.github.treypage.budgetbackwards.R;
 
-public class CategoryFragment extends Fragment {
+public class CategoryChartFragment extends Fragment {
 
-  public static CategoryFragment newInstance() {
-    CategoryFragment fragment = new CategoryFragment();
+  public static CategoryChartFragment newInstance() {
+    CategoryChartFragment fragment = new CategoryChartFragment();
     return fragment;
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.category_fragment, container, false);
+    return inflater.inflate(R.layout.category_chart, container, false);
   }
 
   @Override

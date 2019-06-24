@@ -1,16 +1,13 @@
 package io.github.treypage.budgetbackwards;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 import edu.cnm.deepdive.atthemovies.fragment.ExpenseFragment;
-import io.github.treypage.budgetbackwards.fragment.CategoryFragment;
+import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
+import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
 
 
@@ -25,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
       Fragment selectedFragment = null;
       switch (item.getItemId()) {
         case R.id.navigation_list:
-          selectedFragment = CategoryFragment.newInstance();
+          selectedFragment = CategoryListFragment.newInstance();
           break;
         case R.id.navigation_chart:
-          selectedFragment = CategoryFragment.newInstance();
+          selectedFragment = CategoryChartFragment.newInstance();
           break;
         case R.id.money_sign:
           selectedFragment = IncomeFragment.newInstance();
