@@ -3,9 +3,12 @@ package io.github.treypage.budgetbackwards.model.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
 @Entity
-public class Expense {
+public class Expense implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   @PrimaryKey(autoGenerate = true)
   private long id;
@@ -39,6 +42,6 @@ public class Expense {
   @NonNull
   @Override
   public String toString() {
-    return title;
+    return String.format("%-100s$%-10s", title, amount);
   }
 }

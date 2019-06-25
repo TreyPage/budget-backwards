@@ -13,36 +13,25 @@ public class CategoryViewModel extends AndroidViewModel {
 
   private LiveData<List<Category>> category;
 
-
   public CategoryViewModel(@NonNull Application application) {
     super(application);
     BudgetDatabase db = BudgetDatabase.getInstance(application);
-      category = db.getCategoryDao().getAll();
+    category = db.getCategoryDao().getAll();
   }
 
-  public LiveData<List<Category>> getCategoryLiveData() {
+  public LiveData<List<Category>> getCategory() {
     return category;
   }
 
+  public void setCategory(
+      LiveData<List<Category>> category) {
+    this.category = category;
+  }
 
-  public void addCategory(final Category category){
+  public void addCategory(final Category category) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
       db.getCategoryDao().insert(category);
-    }).start();
-  }
-
-  public LiveData<Category> getCategory(Long id){
-    BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
-    return db.getCategoryDao().findById(id);
-  }
-
-  public void addCategory(final Long categoryId, final Category newCategory) {
-    new Thread(() -> {
-      long category2 = BudgetDatabase.getInstance(getApplication()).getCategoryDao().insert(newCategory);
-      Category category1 = new Category();
-      category1.setId(category2);
-      BudgetDatabase.getInstance(getApplication()).getCategoryDao().insert(category1);
     }).start();
   }
 }
@@ -50,7 +39,7 @@ public class CategoryViewModel extends AndroidViewModel {
 
 //  static {
 //    addItem(createBudgetItem(1, "Housing",
-//        "Housing is typically a large percentage of a person's expenses. Avoid exceeding "
+//        "Housing is typically a large percentage of a person's category. Avoid exceeding "
 //            + "35% of your income while including all necessary fees related to housing such as "
 //            + "HOA, Insurance, and upkeep."));
 //    addItem(createBudgetItem(2, "Groceries",
@@ -72,8 +61,8 @@ public class CategoryViewModel extends AndroidViewModel {
 //        "This obviously depends a lot on the type and amount of pets but most estimates are"
 //            + "around $30 a month per pet."));
 //    addItem(createBudgetItem(9, "Transportation",
-//        "Transportation expenses include car payments, car insurance, gas and car "
-//            + "maintenance. These expenses should be limited to 15 percent of your income."));
+//        "Transportation category include car payments, car insurance, gas and car "
+//            + "maintenance. These category should be limited to 15 percent of your income."));
 //    addItem(createBudgetItem(10, "Personal Care",
 //        "Personal care can be considered personal hygiene, clothes, and "
 //            + "anything else that is essential; depending on the reason for the purchase and the "

@@ -17,17 +17,15 @@ public class ExpenseViewModel extends AndroidViewModel {
     super(application);
   }
 
-  public LiveData<List<Expense>> getExpenses(long expensesId) {
+  public LiveData<List<Expense>> getExpenses() {
     expenses = BudgetDatabase.getInstance(getApplication()).getExpenseDao().getAll();
     return expenses;
   }
 
-  public void addNewExpense(final Long expenseId, final Expense newExpense) {
+  public void addExpense(final Expense expense) {
     new Thread(() -> {
-      long actorId = BudgetDatabase.getInstance(getApplication()).getExpenseDao().insert(newExpense);
-      Expense expense = new Expense();
-      expense.setId(expenseId);
-      BudgetDatabase.getInstance(getApplication()).getExpenseDao().insert(expense);
+     BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
+     db.getExpenseDao().insert(expense);
     }).start();
   }
 }

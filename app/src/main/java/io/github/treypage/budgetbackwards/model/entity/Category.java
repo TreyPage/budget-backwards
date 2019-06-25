@@ -11,23 +11,23 @@ public class Category {
   @PrimaryKey(autoGenerate = true)
   private long id;
   private double percent;
-  @TypeConverters(TitleConverter.class)
-  private Title title;
   private String info;
-
-  public Title getTitle() {
-    return title;
-  }
-
-  public void setTitle(Title title) {
-    this.title = title;
-  }
-
+//  private String title;
   private double payout;
-
+  @TypeConverters(TitleConverter.class)
   public enum Title {
     HOUSING, PHONE, UTILITIES, FOOD, TRANSPORTATION, OTHER, SAVINGS, GROCERIES, DEBT, INSURANCE, CHILDCARE, PETS, TUITION
   }
+
+//
+//  public String getTitle() {
+//    return title;
+//  }
+//
+//  public void setTitle(String title) {
+//    this.title = title;
+//  }
+
 
   public String getInfo() {
     return info;
@@ -61,6 +61,14 @@ public class Category {
     this.percent = percent;
   }
 
+//  private static final String[] ABBREVIATIONS = {
+//      "HOUSING", "PHONE", "UTILITIES", "FOOD", "TRANSPORTATION", "OTHER", "SAVINGS", "GROCERIES", "DEBT", "INSURANCE", "CHILDCARE", "PETS", "TUITION"
+//  };
+//
+//  public String abbreviation() {
+//    return ABBREVIATIONS[ordinal()];
+//  }
+//
   public static class TitleConverter {
 
     @TypeConverter

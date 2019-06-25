@@ -10,8 +10,6 @@ import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
 
-
-
 public class MainActivity extends AppCompatActivity {
 
   @Override

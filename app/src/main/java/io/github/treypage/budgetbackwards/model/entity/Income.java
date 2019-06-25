@@ -9,6 +9,15 @@ public class Income {
   @PrimaryKey(autoGenerate = true)
   private long id;
   private long amount;
+  private long date;
+
+  public long getDate() {
+    return date;
+  }
+
+  public void setDate(long date) {
+    this.date = date;
+  }
 
   public long getId() {
     return id;
