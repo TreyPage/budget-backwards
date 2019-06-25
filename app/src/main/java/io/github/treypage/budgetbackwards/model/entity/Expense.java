@@ -20,6 +20,7 @@ public class Expense implements Serializable {
   @ColumnInfo(name = "category_id", index = true)
   private long categoryId;
 
+
   public long getCategoryId() {
     return categoryId;
   }
@@ -55,6 +56,6 @@ public class Expense implements Serializable {
   @NonNull
   @Override
   public String toString() {
-    return String.format("%-100s$%-10s", title, amount);
+    return String.format("%-100s$%-10s%-10s", title, amount, (categoryId));
   }
 }

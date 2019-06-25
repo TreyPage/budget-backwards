@@ -43,12 +43,8 @@ public abstract class BudgetDatabase extends RoomDatabase {
                   for (Category.Title title : Category.Title.values()) {
                     Category category = new Category();
                     category.setId(title.ordinal());
-                    Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
-                      @Override
-                      public void run() {
-                        getInstance(context).getCategoryDao().insert(category);
-                      }
-                    });
+                    Executors.newSingleThreadScheduledExecutor().execute(
+                        () -> getInstance(context).getCategoryDao().insert(category));
                   }
                 }
               })
