@@ -1,11 +1,14 @@
 package io.github.treypage.budgetbackwards.model.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
-@Entity
+@Entity(foreignKeys = {
+    @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")})
 public class Expense implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -14,6 +17,16 @@ public class Expense implements Serializable {
   private long id;
   private long amount;
   private String title;
+  @ColumnInfo(name = "category_id", index = true)
+  private long categoryId;
+
+  public long getCategoryId() {
+    return categoryId;
+  }
+
+  public void setCategoryId(long categoryId) {
+    this.categoryId = categoryId;
+  }
 
   public long getId() {
     return id;

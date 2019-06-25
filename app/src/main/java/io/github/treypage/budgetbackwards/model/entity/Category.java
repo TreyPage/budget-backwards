@@ -8,7 +8,7 @@ import androidx.room.TypeConverters;
 @Entity
 public class Category {
 
-  @PrimaryKey(autoGenerate = true)
+  @PrimaryKey(autoGenerate = false)
   private long id;
   private double percent;
   private String info;

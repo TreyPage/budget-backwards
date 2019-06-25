@@ -10,10 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
-import io.github.treypage.budgetbackwards.viewModel.CategoryViewModel;
 
 public class CategoryListFragment extends Fragment {
 
@@ -37,15 +35,11 @@ public class CategoryListFragment extends Fragment {
 
     final View view = inflater.inflate(R.layout.category_list, container, false);
 
-    final CategoryViewModel viewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
-
-    viewModel.getCategory().observe(this, categories -> {
-      final ArrayAdapter<Category> adapter = new ArrayAdapter<>(context,
-          android.R.layout.simple_list_item_1, categories);
+      final ArrayAdapter<Category.Title> adapter = new ArrayAdapter<>(context,
+          android.R.layout.simple_list_item_1, Category.Title.values());
 
       ListView categoryListView = view.findViewById(R.id.category_list);
       categoryListView.setAdapter(adapter);
-    });
 //
 //      Button newExpenseButton = view.findViewById(R.id.new_expense_button);
 //      final EditText newExpenseAmount = view.findViewById(R.id.new_expense_value);
