@@ -46,7 +46,7 @@ public class CategoryListFragment extends Fragment {
 //      final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
 //      newExpenseButton.setOnClickListener(v -> {
 //        Category newExpense = new Category();
-//        newExpense.setTitle(newExpenseName.getText().toString());
+//        newExpense.setCategoryString(newExpenseName.getText().toString());
 //        newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
 //        viewModel.addExpense(newExpense);
 //        newExpenseAmount.setText("");

@@ -36,7 +36,7 @@ public class IncomeFragment extends Fragment {
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
     newIncomeButton.setOnClickListener(v -> {
       Income newIncome = new Income();
-      newIncome.setDate(Long.parseLong(newIncomeDate.getText().toString()));
+      newIncome.setDate((newIncomeDate.getText().toString()));
       newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
       viewModel.addIncome(newIncome);
       newIncomeAmount.setText("");
