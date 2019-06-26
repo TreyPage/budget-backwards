@@ -4,19 +4,23 @@ package io.github.treypage.budgetbackwards.viewModel;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
+import io.github.treypage.budgetbackwards.model.entity.Category;
+import java.util.List;
 
 public class CategoryViewModel extends AndroidViewModel {
+
+  private LiveData<List<Category>> category;
 
   public CategoryViewModel(@NonNull Application application) {
     super(application);
   }
 
-//  public void addCategory(final Category category) {
-//    new Thread(() -> {
-//      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
-//      db.getCategoryDao().insert(category);
-//    }).start();
-//  }
+  public LiveData<List<Category>> getCategory() {
+    category = BudgetDatabase.getInstance(getApplication()).getCategoryDao().getAll();
+    return category;
+  }
 }
 
 

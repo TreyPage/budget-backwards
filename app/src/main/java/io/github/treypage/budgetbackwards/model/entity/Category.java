@@ -16,7 +16,6 @@ public class Category {
   private double payout;
   private String name;
 
-
   public String getName() {
     return name;
   }
@@ -119,6 +118,5 @@ public class Category {
     }
 
   }
-
 
 }
