@@ -104,7 +104,7 @@ public class Category {
 
     @TypeConverter
     public static String titleToString(Title title) {
-      return title.name();
+      return title.abbreviation();
     }
 
   }
