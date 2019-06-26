@@ -49,6 +49,8 @@ public class ExpenseFragment extends Fragment {
       final ArrayAdapter<Expense> adapter = new ArrayAdapter<>(context,
           android.R.layout.simple_list_item_1, expenses);
 
+//TODO user needs to be able to edit list
+
       ListView incomeListView = view.findViewById(R.id.expense_list);
       incomeListView.setAdapter(adapter);
     });
