@@ -18,8 +18,7 @@ public class CategoryListFragment extends Fragment {
   private Context context;
 
   public static CategoryListFragment newInstance() {
-    CategoryListFragment fragment = new CategoryListFragment();
-    return fragment;
+    return new CategoryListFragment();
   }
 
   @Override
@@ -28,46 +27,23 @@ public class CategoryListFragment extends Fragment {
     this.context = context;
   }
 
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
     final View view = inflater.inflate(R.layout.category_list, container, false);
 
-      final ArrayAdapter<Category.Title> adapter = new ArrayAdapter<>(context,
-          android.R.layout.simple_list_item_1, Category.Title.values());
+    final ArrayAdapter<Category.Title> adapter = new ArrayAdapter<>(context,
+        android.R.layout.simple_list_item_1, Category.Title.values());
 
-      ListView categoryListView = view.findViewById(R.id.category_list);
-      categoryListView.setAdapter(adapter);
-//
-//      Button newExpenseButton = view.findViewById(R.id.new_expense_button);
-//      final EditText newExpenseAmount = view.findViewById(R.id.new_expense_value);
-//      final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
-//      newExpenseButton.setOnClickListener(v -> {
-//        Category newExpense = new Category();
-//        newExpense.setCategoryString(newExpenseName.getText().toString());
-//        newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
-//        viewModel.addExpense(newExpense);
-//        newExpenseAmount.setText("");
-//        newExpenseName.setText("");
-//      });
-//
-//      final CategoryViewModel categoryViewModel = ViewModelProviders.of(getActivity())
-//          .get(CategoryViewModel.class);
-//      categoryViewModel.getCategory().observe(this, categories -> {
-//        final Spinner expenseSpinner = view.findViewById(R.id.category_spinner);
-//        SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
-//            android.R.layout.simple_spinner_item, categories);
-//        expenseSpinner.setAdapter(spinnerAdapter);
-//      });
+    ListView categoryListView = view.findViewById(R.id.category_list);
+    categoryListView.setAdapter(adapter);
+//TODO user clicks on category and opens to details about category
     return view;
   }
-
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
 }
-

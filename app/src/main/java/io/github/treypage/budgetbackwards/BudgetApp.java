@@ -9,6 +9,5 @@ public class BudgetApp extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
-
   }
 }

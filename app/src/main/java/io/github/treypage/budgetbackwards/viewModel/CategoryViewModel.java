@@ -4,8 +4,6 @@ package io.github.treypage.budgetbackwards.viewModel;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
-import io.github.treypage.budgetbackwards.model.entity.Category;
 
 public class CategoryViewModel extends AndroidViewModel {
 
@@ -13,12 +11,12 @@ public class CategoryViewModel extends AndroidViewModel {
     super(application);
   }
 
-  public void addCategory(final Category category) {
-    new Thread(() -> {
-      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
-      db.getCategoryDao().insert(category);
-    }).start();
-  }
+//  public void addCategory(final Category category) {
+//    new Thread(() -> {
+//      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
+//      db.getCategoryDao().insert(category);
+//    }).start();
+//  }
 }
 
 

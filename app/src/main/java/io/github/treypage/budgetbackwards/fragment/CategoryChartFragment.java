@@ -14,7 +14,7 @@ public class CategoryChartFragment extends Fragment {
     CategoryChartFragment fragment = new CategoryChartFragment();
     return fragment;
   }
-
+//TODO display pie chart of categories
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

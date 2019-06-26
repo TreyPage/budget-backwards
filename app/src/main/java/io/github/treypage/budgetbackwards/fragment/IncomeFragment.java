@@ -3,11 +3,13 @@ package io.github.treypage.budgetbackwards.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
@@ -18,6 +20,7 @@ public class IncomeFragment extends Fragment {
 
   private Context context;
 
+  //TODO display random quote API at top of fragment
   public static IncomeFragment newInstance() {
     IncomeFragment fragment = new IncomeFragment();
     return fragment;
@@ -37,10 +40,16 @@ public class IncomeFragment extends Fragment {
     newIncomeButton.setOnClickListener(v -> {
       Income newIncome = new Income();
       newIncome.setDate((newIncomeDate.getText().toString()));
-      newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
-      viewModel.addIncome(newIncome);
-      newIncomeAmount.setText("");
-      newIncomeDate.setText("");
+      try {
+        newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
+        viewModel.addIncome(newIncome);
+        newIncomeAmount.setText("");
+        newIncomeDate.setText("");
+      } catch (NumberFormatException noNumber){
+        Toast toast = Toast.makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+      }
     });
     return view;
   }

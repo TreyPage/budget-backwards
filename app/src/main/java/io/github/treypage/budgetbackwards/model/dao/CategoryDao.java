@@ -15,7 +15,4 @@ public interface CategoryDao {
 
   @Query("SELECT * FROM category")
   LiveData<List<Category>> getAll();
-
-  @Query("SELECT * FROM category WHERE id = :id")
-  LiveData<Category> findById(Long id);
 }

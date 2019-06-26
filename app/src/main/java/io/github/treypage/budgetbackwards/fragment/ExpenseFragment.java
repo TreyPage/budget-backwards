@@ -3,6 +3,7 @@ package io.github.treypage.budgetbackwards.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -66,10 +68,17 @@ public class ExpenseFragment extends Fragment {
       Expense newExpense = new Expense();
       newExpense.setCategoryId(((Category.Title)expenseSpinner.getSelectedItem()).ordinal());
       newExpense.setTitle(newExpenseName.getText().toString());
-      newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
-      viewModel.addExpense(newExpense);
-      newExpenseAmount.setText("");
-      newExpenseName.setText("");
+      try {
+        newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
+        viewModel.addExpense(newExpense);
+        newExpenseAmount.setText("");
+        newExpenseName.setText("");
+      } catch (NumberFormatException noNumber){
+        Toast toast = Toast.makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+      }
+
     });
     return view;
   }

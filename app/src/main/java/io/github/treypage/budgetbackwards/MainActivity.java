@@ -16,9 +16,8 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Fragment fragment = CategoryChartFragment.newInstance();
+    Fragment fragment = CategoryListFragment.newInstance();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-    assert fragment != null;
     transaction1.replace(R.id.frame_layout, fragment);
     transaction1.commit();
     BottomNavigationView navigation = findViewById(R.id.navigation);
