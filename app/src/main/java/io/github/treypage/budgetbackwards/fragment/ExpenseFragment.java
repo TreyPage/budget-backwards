@@ -33,8 +33,7 @@ public class ExpenseFragment extends Fragment {
   }
 
   public static ExpenseFragment newInstance() {
-    ExpenseFragment fragment = new ExpenseFragment();
-    return fragment;
+    return new ExpenseFragment();
   }
 
   @Override

@@ -23,9 +23,11 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 public class CategoryChartFragment extends Fragment {
 
+  CategoryViewModel categoryViewModel;
   private Context context;
   private PieChartView chart;
   private PieChartData data;
+  long decimalPercent;
 
   public static CategoryChartFragment newInstance() {
     CategoryChartFragment fragment = new CategoryChartFragment();
@@ -36,23 +38,35 @@ public class CategoryChartFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
-    CategoryViewModel categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+    categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
     categoryViewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);
     chart.setOnValueTouchListener(new ValueTouchListener());
     return rootView;
   }
 
+  public void percent() {
+    try {
+      categoryViewModel.getAllExpenses().observe(this,
+          allExpenses -> categoryViewModel.getSumExpenses().observe(CategoryChartFragment.this,
+              sumExpense -> {
+                decimalPercent = categoryViewModel.getAllExpenses() / sumExpense;
+              }));
+
+    } catch (NullPointerException nul) {
+      decimalPercent = 0;
+    }
+  }
 
   private void generateData(List<Category> categories) {
-
+    percent();
+    long percent = decimalPercent * 100;
     List<SliceValue> values = new ArrayList<>();
     for (Category category : categories) {
-      double percent = category.getPercent();
       if (percent == 0) {
         category.setPercent(8);
-        percent = category.getPercent();
       }
+      category.setPercent(percent);
       SliceValue sliceValue = new SliceValue((float) percent,
           ChartUtils.nextColor());
       values.add(sliceValue);

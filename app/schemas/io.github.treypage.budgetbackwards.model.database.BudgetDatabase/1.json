@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a7361c5ce6124a6e2830870cf5e15ce5",
+    "identityHash": "61cff64916837deb94138977ecfd25ff",
     "entities": [
       {
         "tableName": "Income",
@@ -166,7 +166,7 @@
       },
       {
         "tableName": "Expense",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` INTEGER NOT NULL, `title` TEXT, `category_id` INTEGER NOT NULL, `totalAmount` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `Category`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` INTEGER NOT NULL, `title` TEXT, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `Category`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -189,12 +189,6 @@
           {
             "fieldPath": "categoryId",
             "columnName": "category_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "totalAmount",
-            "columnName": "totalAmount",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -233,7 +227,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a7361c5ce6124a6e2830870cf5e15ce5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '61cff64916837deb94138977ecfd25ff')"
     ]
   }
 }

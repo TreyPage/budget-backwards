@@ -20,8 +20,22 @@ public class CategoryViewModel extends AndroidViewModel {
         .getCategoryDao().getAll();
   }
 
-}
+  public LiveData<Long> getAllIncome() {
+    return BudgetDatabase.getInstance(getApplication())
+        .getCategoryDao().getAllIncome();
+  }
 
+  public LiveData<Long> getAllExpenses() {
+    return BudgetDatabase.getInstance(getApplication())
+        .getCategoryDao().getAllExpenses();
+  }
+
+  public LiveData<Long> getSumExpenses() {
+    return BudgetDatabase.getInstance(getApplication())
+        .getCategoryDao().getSumExpenses();
+  }
+
+}
 
 //  static {
 //    addItem(createBudgetItem(1, "Housing",
