@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
+import io.github.treypage.budgetbackwards.model.entity.Category;
+import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.viewModel.IncomeViewModel;
 
@@ -39,12 +41,16 @@ public class IncomeFragment extends Fragment {
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
     newIncomeButton.setOnClickListener(v -> {
       Income newIncome = new Income();
+      Expense newExpense = new Expense();
+      Category newCategory = new Category();
       newIncome.setDate((newIncomeDate.getText().toString()));
       try {
         newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
         viewModel.addIncome(newIncome);
         newIncomeAmount.setText("");
         newIncomeDate.setText("");
+        double percent = newExpense.getTotalAmount() / Long.parseLong(newIncomeAmount.getText().toString());
+        newCategory.setPercent(percent);
       } catch (NumberFormatException noNumber){
         Toast toast = Toast.makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER,0,0);

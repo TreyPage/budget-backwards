@@ -54,6 +54,7 @@ public class ExpenseFragment extends Fragment {
       ListView incomeListView = view.findViewById(R.id.expense_list);
       incomeListView.setAdapter(adapter);
     });
+
     final Spinner expenseSpinner = view.findViewById(R.id.category_spinner);
     SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
         android.R.layout.simple_spinner_item, Category.Title.values());

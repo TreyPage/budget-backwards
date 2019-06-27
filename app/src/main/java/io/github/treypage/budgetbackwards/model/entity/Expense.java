@@ -21,7 +21,6 @@ public class Expense implements Serializable {
   private long categoryId;
 
 
-
   public long getCategoryId() {
     return categoryId;
   }
@@ -58,6 +57,7 @@ public class Expense implements Serializable {
   @NonNull
   @Override
   public String toString() {
-    return String.format("%-100s$%-100s%-10s", title, amount, Category.Title.values()[(int)categoryId]);
+    return String
+        .format("%-100s$%-100s%-10s", title, amount, Category.Title.values()[(int) categoryId]);
   }
 }

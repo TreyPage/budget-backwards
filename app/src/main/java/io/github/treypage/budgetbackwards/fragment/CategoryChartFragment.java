@@ -36,19 +36,25 @@ public class CategoryChartFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
-    CategoryViewModel viewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
-    viewModel.getCategory().observe(this, this::generateData);
+    CategoryViewModel categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+    categoryViewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);
     chart.setOnValueTouchListener(new ValueTouchListener());
     return rootView;
   }
 
+
   private void generateData(List<Category> categories) {
 
     List<SliceValue> values = new ArrayList<>();
-    for (int i = 0; i < categories.size(); ++i) {
-      SliceValue sliceValue = new SliceValue((float)categories.get(i).getPercent(),
-          ChartUtils.pickColor());
+    for (Category category : categories) {
+      double percent = category.getPercent();
+      if (percent == 0) {
+        category.setPercent(8);
+        percent = category.getPercent();
+      }
+      SliceValue sliceValue = new SliceValue((float) percent,
+          ChartUtils.nextColor());
       values.add(sliceValue);
     }
 
@@ -58,7 +64,7 @@ public class CategoryChartFragment extends Fragment {
     data.setHasLabelsOutside(true);
     data.setHasCenterCircle(true);
 
-    data.setSlicesSpacing(24);
+    data.setSlicesSpacing(10);
     data.setCenterText1("Pie Chart of");
     data.setCenterText1Typeface(Typeface.SANS_SERIF);
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
@@ -71,6 +77,7 @@ public class CategoryChartFragment extends Fragment {
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
     chart.setPieChartData(data);
+
   }
 
   private class ValueTouchListener implements PieChartOnValueSelectListener {

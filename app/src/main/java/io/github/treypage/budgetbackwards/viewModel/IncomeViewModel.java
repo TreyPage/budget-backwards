@@ -14,12 +14,6 @@ public class IncomeViewModel extends AndroidViewModel {
 
   public IncomeViewModel(@NonNull Application application) {
     super(application);
-    BudgetDatabase db = BudgetDatabase.getInstance(application);
-    income = db.getIncomeDao().getAll();
-  }
-
-  public LiveData<List<Income>> getIncome() {
-    return income;
   }
 
   public void setIncome(
@@ -27,6 +21,10 @@ public class IncomeViewModel extends AndroidViewModel {
     this.income = income;
   }
 
+  public LiveData<List<Income>> getIncome() {
+    income = BudgetDatabase.getInstance(getApplication()).getIncomeDao().getAll();
+    return income;
+  }
   public void addIncome(final Income income) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());

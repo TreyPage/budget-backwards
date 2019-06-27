@@ -11,16 +11,15 @@ import java.util.List;
 
 public class CategoryViewModel extends AndroidViewModel {
 
-  private LiveData<List<Category>> category;
-
   public CategoryViewModel(@NonNull Application application) {
     super(application);
   }
 
   public LiveData<List<Category>> getCategory() {
-    category = BudgetDatabase.getInstance(getApplication()).getCategoryDao().getAll();
-    return category;
+    return BudgetDatabase.getInstance(getApplication())
+        .getCategoryDao().getAll();
   }
+
 }
 
 
