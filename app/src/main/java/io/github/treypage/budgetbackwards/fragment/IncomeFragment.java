@@ -19,8 +19,7 @@ public class IncomeFragment extends Fragment {
   //TODO display random quote API at top of fragment
 
   public static IncomeFragment newInstance() {
-    IncomeFragment fragment = new IncomeFragment();
-    return fragment;
+    return new IncomeFragment();
   }
 
   @Override

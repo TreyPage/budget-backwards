@@ -20,13 +20,4 @@ public interface CategoryDao {
   @Query("SELECT * FROM category")
   LiveData<List<Category>> getAll();
 
-  @Query("SELECT amount FROM expense")
-  LiveData<Long> getAllExpenses();
-
-  @Query("SELECT sum(`amount`) FROM expense")
-  LiveData<Long> getSumExpenses();
-
-  @Query("SELECT amount FROM income ORDER BY id LIMIT 1")
-  LiveData<Long> getAllIncome();
-
 }

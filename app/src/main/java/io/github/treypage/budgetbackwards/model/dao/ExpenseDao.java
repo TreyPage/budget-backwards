@@ -16,7 +16,10 @@ public interface ExpenseDao {
   @Query("SELECT * FROM expense")
   LiveData<List<Expense>> getAll();
 
+  @Query("SELECT amount FROM expense")
+  LiveData<Long> getAllExpenses();
+
   @Query("SELECT sum(`amount`) FROM expense")
-  LiveData<Long> getExpenseTotal();
+  LiveData<Long> getSumExpenses();
 
 }

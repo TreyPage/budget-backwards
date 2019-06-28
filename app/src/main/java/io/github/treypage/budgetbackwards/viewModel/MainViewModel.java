@@ -23,19 +23,19 @@ public class MainViewModel extends AndroidViewModel {
         .getCategoryDao().getAll();
   }
 
-  public LiveData<Long> getAllIncome() {
+  public LiveData<Long> getOneIncome() {
     return BudgetDatabase.getInstance(getApplication())
-        .getCategoryDao().getAllIncome();
+        .getIncomeDao().getOneIncome();
   }
 
   public LiveData<Long> getAllExpenses() {
     return BudgetDatabase.getInstance(getApplication())
-        .getCategoryDao().getAllExpenses();
+        .getExpenseDao().getAllExpenses();
   }
 
   public LiveData<Long> getSumExpenses() {
     return BudgetDatabase.getInstance(getApplication())
-        .getCategoryDao().getSumExpenses();
+        .getExpenseDao().getSumExpenses();
   }
 
   public LiveData<List<Income>> getIncome() {

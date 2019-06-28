@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "61cff64916837deb94138977ecfd25ff",
+    "identityHash": "4de10ae257e7959f494f726ce32d77fd",
     "entities": [
       {
         "tableName": "Income",
@@ -81,90 +81,6 @@
         "foreignKeys": []
       },
       {
-        "tableName": "SplitIncome",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `income_id` INTEGER NOT NULL, `category_id` INTEGER NOT NULL, `income` INTEGER NOT NULL, `expense` INTEGER NOT NULL, FOREIGN KEY(`income_id`) REFERENCES `Income`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`category_id`) REFERENCES `Category`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "incomeId",
-            "columnName": "income_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "categoryId",
-            "columnName": "category_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "income",
-            "columnName": "income",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "expense",
-            "columnName": "expense",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": true
-        },
-        "indices": [
-          {
-            "name": "index_SplitIncome_income_id",
-            "unique": false,
-            "columnNames": [
-              "income_id"
-            ],
-            "createSql": "CREATE  INDEX `index_SplitIncome_income_id` ON `${TABLE_NAME}` (`income_id`)"
-          },
-          {
-            "name": "index_SplitIncome_category_id",
-            "unique": false,
-            "columnNames": [
-              "category_id"
-            ],
-            "createSql": "CREATE  INDEX `index_SplitIncome_category_id` ON `${TABLE_NAME}` (`category_id`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "Income",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "income_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          },
-          {
-            "table": "Category",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "category_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
-      },
-      {
         "tableName": "Expense",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` INTEGER NOT NULL, `title` TEXT, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `Category`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
@@ -227,7 +143,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '61cff64916837deb94138977ecfd25ff')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4de10ae257e7959f494f726ce32d77fd')"
     ]
   }
 }
