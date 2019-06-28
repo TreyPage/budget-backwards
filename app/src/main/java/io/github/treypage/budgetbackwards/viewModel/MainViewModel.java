@@ -82,7 +82,22 @@ public class MainViewModel extends AndroidViewModel {
         updateCategory(category);
       }
     }).start();
+  }
 
+  public void incomeMath(double newIncome) {
+    new Thread(() -> {
+      List<Double> list = getPercent();
+      for (int i = 0; i < list.size(); i++) {
+        Category category = new Category();
+        double percent = getPercent().get(i);
+        double payout = newIncome * (percent / 100);
+        category.setPercent(percent);
+        category.setPayout((long)payout);
+        category.setName(Category.Title.values()[i].toString());
+        category.setId(i);
+        updateCategory(category);
+      }
+    }).start();
   }
 }
 

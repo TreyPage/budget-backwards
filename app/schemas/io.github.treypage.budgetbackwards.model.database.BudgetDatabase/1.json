@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4de10ae257e7959f494f726ce32d77fd",
+    "identityHash": "6ca2077b541c04252ec5d9cdcc0ca95d",
     "entities": [
       {
         "tableName": "Income",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` INTEGER NOT NULL, `date` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` REAL NOT NULL, `date` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -17,7 +17,7 @@
           {
             "fieldPath": "amount",
             "columnName": "amount",
-            "affinity": "INTEGER",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -38,7 +38,7 @@
       },
       {
         "tableName": "Category",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `percent` REAL NOT NULL, `info` TEXT, `payout` REAL NOT NULL, `name` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `percent` REAL NOT NULL, `info` TEXT, `payout` INTEGER NOT NULL, `name` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -61,7 +61,7 @@
           {
             "fieldPath": "payout",
             "columnName": "payout",
-            "affinity": "REAL",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -143,7 +143,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4de10ae257e7959f494f726ce32d77fd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6ca2077b541c04252ec5d9cdcc0ca95d')"
     ]
   }
 }

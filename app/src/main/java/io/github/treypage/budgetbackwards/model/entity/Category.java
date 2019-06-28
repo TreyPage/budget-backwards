@@ -1,10 +1,12 @@
 package io.github.treypage.budgetbackwards.model.entity;
 
+import org.apache.commons.lang3.StringUtils;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import androidx.room.util.StringUtil;
 
 @Entity
 public class Category {
@@ -13,7 +15,7 @@ public class Category {
   private long id;
   private double percent;
   private String info;
-  private double payout;
+  private long payout;
   private String name;
 
   public String getName() {
@@ -32,11 +34,11 @@ public class Category {
     this.info = info;
   }
 
-  public double getPayout() {
+  public long getPayout() {
     return payout;
   }
 
-  public void setPayout(double payout) {
+  public void setPayout(long payout) {
     this.payout = payout;
   }
 
@@ -59,8 +61,10 @@ public class Category {
   @NonNull
   @Override
   public String toString() {
-    return String
-        .format("%-20s%%%-20s$%-20s", name, Math.round(percent), payout);
+    String catPerc = String.format(" is %s%% of your income.", Math.round(percent));
+    String catPayout = String.format("You should put $%s in this envelope.", payout);
+
+    return String.format("%s%s%s", name, catPerc, catPayout);
   }
 
   @TypeConverters(TitleConverter.class)

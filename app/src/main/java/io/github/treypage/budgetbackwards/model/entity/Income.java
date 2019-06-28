@@ -8,7 +8,7 @@ public class Income {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-  private long amount;
+  private double amount;
   private String date;
 
   public String getDate() {
@@ -27,11 +27,11 @@ public class Income {
     this.id = id;
   }
 
-  public long getAmount() {
+  public double getAmount() {
     return amount;
   }
 
-  public void setAmount(long amount) {
+  public void setAmount(double amount) {
     this.amount = amount;
   }
 }

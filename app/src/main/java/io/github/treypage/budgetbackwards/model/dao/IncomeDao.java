@@ -17,5 +17,5 @@ public interface IncomeDao {
   LiveData<List<Income>> getAll();
 
   @Query("SELECT amount FROM income ORDER BY id LIMIT 1")
-  LiveData<Long> getOneIncome();
+  LiveData<Double> getOneIncome();
 }

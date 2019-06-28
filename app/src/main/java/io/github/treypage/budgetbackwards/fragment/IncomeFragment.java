@@ -39,14 +39,15 @@ public class IncomeFragment extends Fragment {
       try {
         newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
         viewModel.addIncome(newIncome);
-
+        viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
         //TODO do math on income amount
 
         newIncomeAmount.setText("");
         newIncomeDate.setText("");
-      } catch (NumberFormatException noNumber){
-        Toast toast = Toast.makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER,0,0);
+      } catch (NumberFormatException noNumber) {
+        Toast toast = Toast
+            .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
       }
     });
