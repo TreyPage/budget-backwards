@@ -12,3 +12,4 @@ You are free to examine the wireframes below in PNG or PDF format.
 + [Readme](https://treypage.github.io/budget-backwards/)
 + [User stories](user-stories.md)
 + [ERD](ERD.md)
++ [Milestone 2](milestone-2.md)
