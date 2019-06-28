@@ -59,7 +59,8 @@ public class Category {
   @NonNull
   @Override
   public String toString() {
-    return name;
+    return String
+        .format("%-10s%-10s$%-10s", name, percent, payout);
   }
 
   @TypeConverters(TitleConverter.class)

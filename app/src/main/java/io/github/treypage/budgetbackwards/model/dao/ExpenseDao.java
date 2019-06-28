@@ -19,7 +19,9 @@ public interface ExpenseDao {
   @Query("SELECT amount FROM expense")
   LiveData<Long> getAllExpenses();
 
-  @Query("SELECT sum(`amount`) FROM expense")
+  @Query("SELECT SUM(amount) FROM expense")
   LiveData<Long> getSumExpenses();
 
+  @Query("SELECT 100.0 * SUM(IFNULL(ex.amount, 0))/t.total FROM category c left join expense ex ON ex.category_id = c.id CROSS JOIN (SELECT SUM(amount) AS total FROM Expense) t GROUP BY c.id")
+  List<Double> getPercent();
 }

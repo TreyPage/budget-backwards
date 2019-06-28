@@ -73,7 +73,6 @@ public class ExpenseFragment extends Fragment {
       try {
         newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
         viewModel.addExpense(newExpense);
-        viewModel.categoryPercent(((Category.Title)expenseSpinner.getSelectedItem()),Long.parseLong(newExpenseAmount.getText().toString()));
         newExpenseAmount.setText("");
         newExpenseName.setText("");
       } catch (NumberFormatException noNumber){

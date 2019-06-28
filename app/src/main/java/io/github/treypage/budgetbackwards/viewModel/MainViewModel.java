@@ -14,6 +14,7 @@ public class MainViewModel extends AndroidViewModel {
 
   private LiveData<List<Income>> income;
 
+
   public MainViewModel(@NonNull Application application) {
     super(application);
   }
@@ -21,16 +22,6 @@ public class MainViewModel extends AndroidViewModel {
   public LiveData<List<Category>> getCategory() {
     return BudgetDatabase.getInstance(getApplication())
         .getCategoryDao().getAll();
-  }
-
-  public LiveData<Long> getOneIncome() {
-    return BudgetDatabase.getInstance(getApplication())
-        .getIncomeDao().getOneIncome();
-  }
-
-  public LiveData<Long> getAllExpenses() {
-    return BudgetDatabase.getInstance(getApplication())
-        .getExpenseDao().getAllExpenses();
   }
 
   public LiveData<Long> getSumExpenses() {
@@ -60,10 +51,16 @@ public class MainViewModel extends AndroidViewModel {
         .getAll();
   }
 
+  public List<Double> getPercent() {
+    return BudgetDatabase.getInstance(getApplication()).getExpenseDao()
+        .getPercent();
+  }
+
   public void addExpense(final Expense expense) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
       db.getExpenseDao().insert(expense);
+      categoryPercentAll();
     }).start();
   }
 
@@ -74,21 +71,18 @@ public class MainViewModel extends AndroidViewModel {
     }).start();
   }
 
-  public void categoryPercent(Category.Title title, long expense) {
-    Category category = new Category();
-    long sumExpenses;
-    long percent;
-    try {
-      sumExpenses = getSumExpenses().getValue();
-      percent = (expense / sumExpenses) * 100;
-    } catch (NullPointerException e) {
-      // TODO this should be ignored after the nullException is fixed
-      percent = 100;
-    }
-    category.setPercent((double) percent);
-    category.setId(title.ordinal());
-    category.setName(title.toString());
-    updateCategory(category);
-  }
+  public void categoryPercentAll() {
+    new Thread(() -> {
+      Category category = new Category();
+      List<Double> percent = getPercent();
+      for (int i = 0; i < percent.size(); i++) {
+        category.setId(i);
+        category.setName(Category.Title.values()[i].toString());
+        category.setPercent(percent.get(i));
+        updateCategory(category);
+      }
+    }).start();
 
+  }
 }
+
