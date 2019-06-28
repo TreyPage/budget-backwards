@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import java.util.List;
 
@@ -13,13 +14,16 @@ public interface CategoryDao {
   @Insert
   long insert(Category category);
 
+  @Update
+  void update(Category category);
+
   @Query("SELECT * FROM category")
   LiveData<List<Category>> getAll();
 
   @Query("SELECT amount FROM expense")
   LiveData<Long> getAllExpenses();
 
-  @Query("SELECT sum(amount) FROM expense")
+  @Query("SELECT sum(`amount`) FROM expense")
   LiveData<Long> getSumExpenses();
 
   @Query("SELECT amount FROM income ORDER BY id LIMIT 1")

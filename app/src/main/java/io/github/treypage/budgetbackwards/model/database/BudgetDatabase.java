@@ -46,6 +46,9 @@ public abstract class BudgetDatabase extends RoomDatabase {
                     category.setName(title.abbreviation());
                     Executors.newSingleThreadScheduledExecutor().execute(
                         () -> getInstance(context).getCategoryDao().insert(category));
+
+                    //TODO Auto populating categories may not be a good idea. more info needed
+
                   }
                 }
               })

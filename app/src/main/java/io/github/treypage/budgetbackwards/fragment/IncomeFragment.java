@@ -1,7 +1,5 @@
 package io.github.treypage.budgetbackwards.fragment;
 
-
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,13 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.viewModel.IncomeViewModel;
+import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class IncomeFragment extends Fragment {
 
-  private Context context;
-
   //TODO display random quote API at top of fragment
+
   public static IncomeFragment newInstance() {
     IncomeFragment fragment = new IncomeFragment();
     return fragment;
@@ -32,7 +29,7 @@ public class IncomeFragment extends Fragment {
 
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
 
-    final IncomeViewModel viewModel = ViewModelProviders.of(this).get(IncomeViewModel.class);
+    final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
     Button newIncomeButton = view.findViewById(R.id.submit_income);
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
@@ -43,6 +40,9 @@ public class IncomeFragment extends Fragment {
       try {
         newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
         viewModel.addIncome(newIncome);
+
+        //TODO do math on income amount
+
         newIncomeAmount.setText("");
         newIncomeDate.setText("");
       } catch (NumberFormatException noNumber){

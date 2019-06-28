@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
-import io.github.treypage.budgetbackwards.viewModel.ExpenseViewModel;
+import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class ExpenseFragment extends Fragment {
 
@@ -42,7 +42,7 @@ public class ExpenseFragment extends Fragment {
 
     final View view = inflater.inflate(R.layout.expense_fragment, container, false);
 
-    final ExpenseViewModel viewModel = ViewModelProviders.of(this).get(ExpenseViewModel.class);
+    final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
     viewModel.getExpenses().observe(this, expenses -> {
       final ArrayAdapter<Expense> adapter = new ArrayAdapter<>(context,
@@ -73,6 +73,7 @@ public class ExpenseFragment extends Fragment {
       try {
         newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
         viewModel.addExpense(newExpense);
+        viewModel.categoryPercent(((Category.Title)expenseSpinner.getSelectedItem()),Long.parseLong(newExpenseAmount.getText().toString()));
         newExpenseAmount.setText("");
         newExpenseName.setText("");
       } catch (NumberFormatException noNumber){

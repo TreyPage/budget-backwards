@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Fragment fragment = CategoryListFragment.newInstance();
+    Fragment fragment = ExpenseFragment.newInstance();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
     transaction1.replace(R.id.frame_layout, fragment);
     transaction1.commit();
