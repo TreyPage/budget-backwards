@@ -73,9 +73,9 @@ public class MainViewModel extends AndroidViewModel {
 
   public void categoryPercentAll() {
     new Thread(() -> {
-      Category category = new Category();
       List<Double> percent = getPercent();
       for (int i = 0; i < percent.size(); i++) {
+        Category category = new Category();
         category.setId(i);
         category.setName(Category.Title.values()[i].toString());
         category.setPercent(percent.get(i));

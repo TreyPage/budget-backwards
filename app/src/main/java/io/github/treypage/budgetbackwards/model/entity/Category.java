@@ -60,7 +60,7 @@ public class Category {
   @Override
   public String toString() {
     return String
-        .format("%-10s%-10s$%-10s", name, percent, payout);
+        .format("%-20s%%%-20s$%-20s", name, Math.round(percent), payout);
   }
 
   @TypeConverters(TitleConverter.class)

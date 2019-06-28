@@ -42,7 +42,6 @@ public class CategoryListFragment extends Fragment {
       ListView categoryListView = view.findViewById(R.id.category_list);
       categoryListView.setAdapter(adapter);
     });
-    //TODO list displays percentages and $ amount
 //TODO user clicks on category and opens to details about category
     return view;
   }

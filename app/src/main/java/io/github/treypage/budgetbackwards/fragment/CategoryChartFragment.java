@@ -47,6 +47,7 @@ public class CategoryChartFragment extends Fragment {
       double percent = category.getPercent();
       SliceValue sliceValue = new SliceValue((float) percent,
           ChartUtils.nextColor());
+      sliceValue.setLabel(category.getName());
       values.add(sliceValue);
     }
 
@@ -77,8 +78,9 @@ public class CategoryChartFragment extends Fragment {
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
       //TODO On click should show title of category and amount of money/percentages necessary for category
-      Toast toast = Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT);
-      toast.setGravity(Gravity.CENTER, 0, 0);
+
+      Toast toast = Toast.makeText(getActivity(), new String(value.getLabelAsChars()) + ": " + Math.round(value.getValue()) + "%", Toast.LENGTH_SHORT);
+      toast.setGravity(Gravity.CENTER,0,0);
       toast.show();
     }
 
