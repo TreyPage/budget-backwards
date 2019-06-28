@@ -4,6 +4,7 @@
 You are free to examine the ERD below in PNG or PDF format.
 
 Second iteration of the ERD
+
 ![ERD png](budget_erd_2.png)
 
 [ERD #2 in PDF format](budget_erd_2.pdf) 
