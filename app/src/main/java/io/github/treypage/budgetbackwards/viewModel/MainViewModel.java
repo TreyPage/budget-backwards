@@ -85,15 +85,9 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     }).start();
   }
 
-  public void newQuote() {
-    pending.add(
-        QuotesService.getInstance().starWarsQuote()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(aQuote -> this.quotes.setSwQuote(aQuote))
-
-    );
-  }
+//  public void newQuote() {
+//    QuotesService.newQuote.newQuote();
+//  }
 
   public void categoryPercentAll() {
     new Thread(() -> {
