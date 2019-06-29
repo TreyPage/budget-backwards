@@ -7,16 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
+import io.github.treypage.budgetbackwards.model.entity.Quotes;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class IncomeFragment extends Fragment {
 
   //TODO display random quote API at top of fragment
+  private Quotes quotes = new Quotes();
 
   public static IncomeFragment newInstance() {
     return new IncomeFragment();
@@ -26,11 +29,16 @@ public class IncomeFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
+
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
 
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    TextView swQuote = view.findViewById(R.id.sw_quote);
+    new Thread(viewModel::newQuote).start();
 
     Button newIncomeButton = view.findViewById(R.id.submit_income);
+
+    swQuote.setText(quotes.getSwQuote());
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
     newIncomeButton.setOnClickListener(v -> {

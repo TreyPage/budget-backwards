@@ -2,6 +2,7 @@ package io.github.treypage.budgetbackwards.model.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class Income {
@@ -10,6 +11,7 @@ public class Income {
   private long id;
   private double amount;
   private String date;
+
 
   public String getDate() {
     return date;

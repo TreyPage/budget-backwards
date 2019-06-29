@@ -3,17 +3,31 @@ package io.github.treypage.budgetbackwards.viewModel;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Lifecycle.Event;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
+import io.github.treypage.budgetbackwards.model.entity.Quotes;
+import io.github.treypage.budgetbackwards.model.service.QuotesService;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
-public class MainViewModel extends AndroidViewModel {
+public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private LiveData<List<Income>> income;
+  Quotes quotes = new Quotes();
+  private CompositeDisposable pending = new CompositeDisposable();
 
+  @OnLifecycleEvent(Event.ON_STOP)
+  public void disposePending() {
+    pending.clear();
+  }
 
   public MainViewModel(@NonNull Application application) {
     super(application);
@@ -71,6 +85,16 @@ public class MainViewModel extends AndroidViewModel {
     }).start();
   }
 
+  public void newQuote() {
+    pending.add(
+        QuotesService.getInstance().starWarsQuote()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(aQuote -> this.quotes.setSwQuote(aQuote))
+
+    );
+  }
+
   public void categoryPercentAll() {
     new Thread(() -> {
       List<Double> percent = getPercent();
@@ -92,7 +116,7 @@ public class MainViewModel extends AndroidViewModel {
         double percent = getPercent().get(i);
         double payout = newIncome * (percent / 100);
         category.setPercent(percent);
-        category.setPayout((long)payout);
+        category.setPayout((long) payout);
         category.setName(Category.Title.values()[i].toString());
         category.setId(i);
         updateCategory(category);
