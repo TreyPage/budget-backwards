@@ -61,10 +61,10 @@ public class Category {
   @NonNull
   @Override
   public String toString() {
-    String catPerc = String.format(" is %s%% of your income.", Math.round(percent));
+    String catPercent = String.format(" is %s%% of your income.", Math.round(percent));
     String catPayout = String.format("You should put $%s in this envelope.", payout);
 
-    return String.format("%s%s%s", name, catPerc, catPayout);
+    return String.format("%s%s%s", name, catPercent, catPayout);
   }
 
   @TypeConverters(TitleConverter.class)
