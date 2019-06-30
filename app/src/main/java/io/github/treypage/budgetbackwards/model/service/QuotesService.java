@@ -22,13 +22,8 @@ public interface QuotesService {
 
   class newQuote {
 
-public static void newQuote() {
+public static void newSwQuote() {
 
-      HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-      interceptor.setLevel(Level.BODY);
-      OkHttpClient client = new OkHttpClient.Builder()
-          .addInterceptor(interceptor)
-          .build();
       Retrofit retrofit = new Retrofit.Builder()
           .addConverterFactory(ScalarsConverterFactory.create()).baseUrl(BuildConfig.BASE_URL)
           .build();
@@ -40,7 +35,7 @@ public static void newQuote() {
         public void onResponse(Call<String> call, Response<String> response) {
           if (response.isSuccessful()) {
             String responseString = response.body();
-            quotes.setSwQuote(responseString);
+            quotes.SwQuote(responseString);
           }
         }
 

@@ -7,12 +7,12 @@ public class Quotes {
   @SerializedName("starWarsQuote")
   private String swQuote;
 
-  public String getSwQuote() {
-    return swQuote;
+  public void SwQuote(String swQuote) {
+    this.swQuote = swQuote;
   }
 
-  public void setSwQuote(String swQuote) {
-    this.swQuote = swQuote;
+  public String getSwQuote() {
+    return String.format("%s", swQuote);
   }
 
 }

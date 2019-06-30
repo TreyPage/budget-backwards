@@ -35,7 +35,7 @@ public class IncomeFragment extends Fragment {
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     TextView swQuote = view.findViewById(R.id.sw_quote);
     Button newIncomeButton = view.findViewById(R.id.submit_income);
-    QuotesService.newQuote.newQuote();
+    QuotesService.newQuote.newSwQuote();
     String pleaseWork = quotes.getSwQuote();
     swQuote.setText(pleaseWork);
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
