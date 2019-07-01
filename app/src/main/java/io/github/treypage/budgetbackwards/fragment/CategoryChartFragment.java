@@ -2,13 +2,12 @@ package io.github.treypage.budgetbackwards.fragment;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
@@ -53,8 +52,8 @@ public class CategoryChartFragment extends Fragment {
 
     PieChartData data = new PieChartData(values);
     data.setHasLabels(true);
-    data.setHasLabelsOnlyForSelected(true);
-    data.setHasLabelsOutside(true);
+    data.setHasLabelsOnlyForSelected(false);
+    data.setHasLabelsOutside(false);
     data.setHasCenterCircle(true);
 
     data.setSlicesSpacing(10);
@@ -78,10 +77,10 @@ public class CategoryChartFragment extends Fragment {
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
       //TODO On click should show title of category and amount of money/percentages necessary for category
-
-      Toast toast = Toast.makeText(getActivity(), new String(value.getLabelAsChars()) + ": " + Math.round(value.getValue()) + "%", Toast.LENGTH_SHORT);
-      toast.setGravity(Gravity.CENTER,0,0);
-      toast.show();
+      Snackbar snackbar = Snackbar.make(getView(),Category.Title.values()[arcIndex].toString(),
+          Snackbar.LENGTH_INDEFINITE);
+      snackbar.setAction("DISMISS", v -> snackbar.dismiss());
+      snackbar.show();
     }
 
     @Override

@@ -11,9 +11,10 @@
 
   <TextView
     android:id="@+id/sw_quote"
-    android:layout_width="match_parent"
-    android:layout_height="100sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:textAlignment="center"
+    android:textSize="20sp"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toTopOf="@id/income_instructions"
     app:layout_constraintStart_toStartOf="parent"

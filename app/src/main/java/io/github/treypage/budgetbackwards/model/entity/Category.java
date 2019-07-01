@@ -1,12 +1,10 @@
 package io.github.treypage.budgetbackwards.model.entity;
 
-import org.apache.commons.lang3.StringUtils;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
-import androidx.room.util.StringUtil;
 
 @Entity
 public class Category {
