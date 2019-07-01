@@ -1,5 +1,7 @@
 package io.github.treypage.budgetbackwards.model.service;
 
+import android.os.AsyncTask;
+import edu.cnm.deepdive.android.FluentAsyncTask;
 import io.github.treypage.budgetbackwards.BuildConfig;
 import io.github.treypage.budgetbackwards.model.entity.Quotes;
 import okhttp3.OkHttpClient;
@@ -20,7 +22,7 @@ public interface QuotesService {
 
   Quotes quotes = new Quotes();
 
-  class newQuote {
+  class newQuote extends FluentAsyncTask {
 
 public static void newSwQuote() {
 
