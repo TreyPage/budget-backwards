@@ -11,11 +11,7 @@ import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.model.entity.Quotes;
-import io.github.treypage.budgetbackwards.model.service.QuotesService;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {

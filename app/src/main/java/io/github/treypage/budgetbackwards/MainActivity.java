@@ -1,21 +1,19 @@
 package io.github.treypage.budgetbackwards;
 
 import android.os.Bundle;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
-import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.model.entity.Quotes;
-import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
+import io.github.treypage.budgetbackwards.model.service.QuotesService;
 
 public class MainActivity extends AppCompatActivity {
+
+  private QuotesService service;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,4 +48,5 @@ public class MainActivity extends AppCompatActivity {
       return true;
     });
   }
+
 }

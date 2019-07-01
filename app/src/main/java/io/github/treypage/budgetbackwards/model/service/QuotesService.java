@@ -1,59 +1,44 @@
 package io.github.treypage.budgetbackwards.model.service;
 
-import android.os.AsyncTask;
+import androidx.annotation.Nullable;
 import edu.cnm.deepdive.android.FluentAsyncTask;
 import io.github.treypage.budgetbackwards.BuildConfig;
-import io.github.treypage.budgetbackwards.model.entity.Quotes;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
+import io.github.treypage.budgetbackwards.model.entity.Quote;
+import java.io.IOException;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Url;
 
 public interface QuotesService {
 
-  @GET()
-  Call<String> starWarsQuote(@Url String url);
+  @GET("RandomStarWarsQuote")
+  Call<Quote> starWarsQuote();
 
-  Quotes quotes = new Quotes();
+  class InstanceHolder {
 
-  class newQuote extends FluentAsyncTask {
+    private static final QuotesService INSTANCE;
 
-public static void newSwQuote() {
-
+    static {
       Retrofit retrofit = new Retrofit.Builder()
-          .addConverterFactory(ScalarsConverterFactory.create()).baseUrl(BuildConfig.BASE_URL)
+          .baseUrl(BuildConfig.BASE_URL)
+          .addConverterFactory(GsonConverterFactory.create())
           .build();
-      QuotesService scalarService = retrofit.create(QuotesService.class);
-      Call<String> stringCall = scalarService
-          .starWarsQuote("http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote");
-      stringCall.enqueue(new Callback<String>() {
-        @Override
-        public void onResponse(Call<String> call, Response<String> response) {
-          if (response.isSuccessful()) {
-            String responseString = response.body();
-            quotes.SwQuote(responseString);
-          }
-        }
+      INSTANCE = retrofit.create(QuotesService.class);
+    }
+  }
 
-        @Override
-        public void onFailure(Call<String> call, Throwable t) {
+  class NewQuote extends FluentAsyncTask<Void, Void, Quote> {
 
-        }
-      });
-
-//          .baseUrl(BuildConfig.BASE_URL)
-//          .client(client)
-//          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//          .addConverterFactory(GsonConverterFactory.create())
-//          .build();
+    @Nullable
+    @Override
+    protected Quote perform(Void... nothing) {
+      try {
+        return InstanceHolder.INSTANCE.starWarsQuote().execute().body();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
     }
 
   }
-
 }

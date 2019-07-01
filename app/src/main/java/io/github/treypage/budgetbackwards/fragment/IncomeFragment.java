@@ -13,14 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.model.entity.Quotes;
-import io.github.treypage.budgetbackwards.model.service.QuotesService;
+import io.github.treypage.budgetbackwards.model.entity.Quote;
+import io.github.treypage.budgetbackwards.model.service.QuotesService.NewQuote;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class IncomeFragment extends Fragment {
 
   //TODO display random quote API at top of fragment
-  private Quotes quotes = new Quotes();
+  private Quote quote = new Quote();
 
   public static IncomeFragment newInstance() {
     return new IncomeFragment();
@@ -35,9 +35,9 @@ public class IncomeFragment extends Fragment {
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     TextView swQuote = view.findViewById(R.id.sw_quote);
     Button newIncomeButton = view.findViewById(R.id.submit_income);
-    QuotesService.newQuote.newSwQuote();
-    String pleaseWork = quotes.getSwQuote();
-    swQuote.setText(pleaseWork);
+    new NewQuote()
+        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
+        .execute();
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
     newIncomeButton.setOnClickListener(v -> {

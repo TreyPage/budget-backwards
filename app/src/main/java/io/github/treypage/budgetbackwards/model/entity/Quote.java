@@ -2,7 +2,7 @@ package io.github.treypage.budgetbackwards.model.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Quotes {
+public class Quote {
 
   @SerializedName("starWarsQuote")
   private String swQuote;
