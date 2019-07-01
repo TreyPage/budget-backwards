@@ -61,7 +61,6 @@ public class Category {
   public String toString() {
     String catPercent = String.format(" is %s%% of your income.", Math.round(percent));
     String catPayout = String.format("You should put $%s in this envelope.", payout);
-
     return String.format("%s%s%s", name, catPercent, catPayout);
   }
 

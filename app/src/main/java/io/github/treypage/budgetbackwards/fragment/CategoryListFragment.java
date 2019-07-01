@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
+import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class CategoryListFragment extends Fragment {
@@ -35,23 +36,23 @@ public class CategoryListFragment extends Fragment {
     setHasOptionsMenu(true);
     final View view = inflater.inflate(R.layout.category_list, container, false);
 
-    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    viewModel.getCategory().observe(this, categoryList -> {
-      final ArrayAdapter<Category> adapter = new ArrayAdapter<>(context,
-          android.R.layout.simple_list_item_1, categoryList);
+    final ArrayAdapter<Title> adapter = new ArrayAdapter<>(context,
+        android.R.layout.simple_list_item_1, Category.Title.values());
 
-      ListView categoryListView = view.findViewById(R.id.category_list);
-      categoryListView.setDividerHeight(20);
-      categoryListView.setClickable(true);
-      categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
-        Object o = categoryListView.getItemAtPosition(position);
-        Snackbar snackbar = Snackbar.make(getView(), (o.toString()), Snackbar.LENGTH_INDEFINITE);
+    ListView categoryListView = view.findViewById(R.id.category_list);
+    categoryListView.setDividerHeight(20);
+    categoryListView.setClickable(true);
+    categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
+      MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+      viewModel.getCategory().observe(this, categories -> {
+        Category thisCategory = categories.get(position);
+        Snackbar snackbar = Snackbar
+            .make(getView(), thisCategory.toString(), Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("DISMISS", v -> snackbar.dismiss());
         snackbar.show();
       });
-      categoryListView.setAdapter(adapter);
     });
-//TODO user clicks on category and opens to details about category
+    categoryListView.setAdapter(adapter);
     return view;
   }
 

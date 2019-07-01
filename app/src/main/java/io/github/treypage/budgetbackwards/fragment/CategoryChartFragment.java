@@ -76,11 +76,14 @@ public class CategoryChartFragment extends Fragment {
 
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
-      //TODO On click should show title of category and amount of money/percentages necessary for category
-      Snackbar snackbar = Snackbar.make(getView(),Category.Title.values()[arcIndex].toString(),
-          Snackbar.LENGTH_INDEFINITE);
-      snackbar.setAction("DISMISS", v -> snackbar.dismiss());
-      snackbar.show();
+      MainViewModel viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+      viewModel.getCategory().observe(getActivity(), categories -> {
+        Category thisCategory = categories.get((int)value.getValue());
+        Snackbar snackbar = Snackbar.make(getView(), thisCategory.toString(),
+            Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("DISMISS", v -> snackbar.dismiss());
+        snackbar.show();
+      });
     }
 
     @Override
