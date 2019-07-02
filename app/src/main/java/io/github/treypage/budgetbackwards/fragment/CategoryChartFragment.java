@@ -78,7 +78,7 @@ public class CategoryChartFragment extends Fragment {
     public void onValueSelected(int arcIndex, SliceValue value) {
       MainViewModel viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
       viewModel.getCategory().observe(getActivity(), categories -> {
-        Category thisCategory = categories.get((int)value.getValue());
+        Category thisCategory = categories.get(arcIndex);
         Snackbar snackbar = Snackbar.make(getView(), thisCategory.toString(),
             Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("DISMISS", v -> snackbar.dismiss());
