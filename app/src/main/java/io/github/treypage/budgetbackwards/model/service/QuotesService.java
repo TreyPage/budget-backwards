@@ -39,6 +39,5 @@ public interface QuotesService {
         throw new RuntimeException(e);
       }
     }
-
   }
 }
