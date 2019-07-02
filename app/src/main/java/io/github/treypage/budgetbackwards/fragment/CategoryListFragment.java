@@ -9,12 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
+import java.util.Objects;
 
 public class CategoryListFragment extends Fragment {
 
@@ -45,11 +46,16 @@ public class CategoryListFragment extends Fragment {
     categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
       MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
       viewModel.getCategory().observe(this, categories -> {
-        Category thisCategory = categories.get(position);
-        Snackbar snackbar = Snackbar
-            .make(getView(), thisCategory.toString(), Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("DISMISS", v -> snackbar.dismiss());
-        snackbar.show();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("category_id", position);
+        Fragment fragment = CategoryFragment.newInstance();
+        FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
+            .getSupportFragmentManager().beginTransaction();
+        fragment.setArguments(bundle);
+        transaction1.replace(R.id.frame_layout, fragment);
+        transaction1.commit();
+
       });
     });
     categoryListView.setAdapter(adapter);

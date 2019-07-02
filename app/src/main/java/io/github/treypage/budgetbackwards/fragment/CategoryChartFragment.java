@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
@@ -59,7 +59,7 @@ public class CategoryChartFragment extends Fragment {
 
     data.setSlicesSpacing(10);
     data.setCenterText1("Pie Chart of");
-    Typeface newFont = Typeface.createFromAsset(getResources().getAssets(),"res/font/cutive.ttf");
+    Typeface newFont = Typeface.createFromAsset(getResources().getAssets(), "res/font/cutive.ttf");
     data.setCenterText1Typeface(newFont);
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
@@ -77,13 +77,22 @@ public class CategoryChartFragment extends Fragment {
 
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
-      MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
+      MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()))
+          .get(MainViewModel.class);
       viewModel.getCategory().observe(getActivity(), categories -> {
-        Category thisCategory = categories.get(arcIndex);
-        Snackbar snackbar = Snackbar.make(Objects.requireNonNull(getView()), thisCategory.toString(),
-            Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("DISMISS", v -> snackbar.dismiss());
-        snackbar.show();
+        Bundle bundle = new Bundle();
+        bundle.putInt("category_id", arcIndex);
+        try {
+          Fragment fragment = CategoryFragment.newInstance();
+          FragmentTransaction transaction1 = getActivity()
+              .getSupportFragmentManager().beginTransaction();
+          fragment.setArguments(bundle);
+          transaction1.replace(R.id.frame_layout, fragment);
+          transaction1.commit();
+        } catch (NullPointerException w) {
+          //DO NOTHING
+        }
+
       });
     }
 

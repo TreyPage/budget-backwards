@@ -116,7 +116,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         double percent = getPercent().get(i);
         double payout = newIncome * (percent / 100);
         category.setPercent(percent);
-        category.setPayout((long) payout);
+        category.setPayout(payout);
         category.setName(Category.Title.values()[i].toString());
         category.setId(i);
         updateCategory(category);

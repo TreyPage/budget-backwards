@@ -13,7 +13,7 @@ public class Category {
   private long id;
   private double percent;
   private String info;
-  private long payout;
+  private double payout;
   private String name;
 
   public String getName() {
@@ -32,11 +32,11 @@ public class Category {
     this.info = info;
   }
 
-  public long getPayout() {
+  public double getPayout() {
     return payout;
   }
 
-  public void setPayout(long payout) {
+  public void setPayout(double payout) {
     this.payout = payout;
   }
 
@@ -59,9 +59,9 @@ public class Category {
   @NonNull
   @Override
   public String toString() {
-    String catPercent = String.format(" is %s%% of your income.", Math.round(percent));
-    String catPayout = String.format("You should put $%s in this envelope.", payout);
-    return String.format("%s%s%s", name, catPercent, catPayout);
+    String catPercent = String.format("%s%% of your income goes to ", Math.round(percent));
+    String catPayout = String.format(". You should put $%.2f in this envelope.", payout);
+    return String.format("%s%s%s", catPercent, name, catPayout);
   }
 
   @TypeConverters(TitleConverter.class)

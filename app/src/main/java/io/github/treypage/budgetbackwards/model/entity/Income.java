@@ -40,7 +40,6 @@ public class Income {
   @NonNull
   @Override
   public String toString() {
-    return String
-        .format("%s%-30s", date, amount);
+    return String.format("%.2f    %s", amount, date);
   }
 }
