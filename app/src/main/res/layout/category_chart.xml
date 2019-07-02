@@ -3,27 +3,29 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/expense_fragment"
+  android:fontFamily="@font/cutive"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-<!--  <TextView-->
-<!--    android:id="@+id/category_chart_title"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_marginTop="16dp"-->
-<!--    android:fontFamily="casual"-->
-<!--    android:text="Pie Chart of Categories"-->
-<!--    android:textSize="25dp"-->
-<!--    android:textAlignment="center"-->
-<!--    app:layout_constraintBottom_toTopOf="@id/pie_chart"-->
-<!--    app:layout_constraintEnd_toEndOf="parent"-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintTop_toTopOf="parent"/>-->
+  <!--  <TextView-->
+  <!--    android:id="@+id/category_chart_title"-->
+  <!--    android:layout_width="wrap_content"-->
+  <!--    android:layout_height="wrap_content"-->
+  <!--    android:layout_marginTop="16dp"-->
+  <!--    android:fontFamily="casual"-->
+  <!--    android:text="Pie Chart of Categories"-->
+  <!--    android:textSize="25dp"-->
+  <!--    android:textAlignment="center"-->
+  <!--    app:layout_constraintBottom_toTopOf="@id/pie_chart"-->
+  <!--    app:layout_constraintEnd_toEndOf="parent"-->
+  <!--    app:layout_constraintStart_toStartOf="parent"-->
+  <!--    app:layout_constraintTop_toTopOf="parent"/>-->
 
   <lecho.lib.hellocharts.view.PieChartView
     android:id="@+id/pie_chart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fontFamily="@font/cutive"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
 

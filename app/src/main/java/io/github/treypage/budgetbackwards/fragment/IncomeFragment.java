@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
@@ -30,8 +31,17 @@ public class IncomeFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
+
+
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
 
+    Button listIncome = view.findViewById(R.id.list_all_income);
+    listIncome.setOnClickListener(v -> {
+      Fragment fragment = IncomeListFragment.newInstance();
+      FragmentTransaction transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+      transaction1.replace(R.id.frame_layout, fragment);
+      transaction1.commit();
+    });
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     TextView swQuote = view.findViewById(R.id.sw_quote);
     Button newIncomeButton = view.findViewById(R.id.submit_income);

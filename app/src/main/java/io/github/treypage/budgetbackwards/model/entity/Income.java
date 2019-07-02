@@ -1,8 +1,8 @@
 package io.github.treypage.budgetbackwards.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class Income {
@@ -35,5 +35,12 @@ public class Income {
 
   public void setAmount(double amount) {
     this.amount = amount;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return String
+        .format("%s%-30s", date, amount);
   }
 }

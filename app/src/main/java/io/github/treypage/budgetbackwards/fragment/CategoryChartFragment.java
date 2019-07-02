@@ -13,6 +13,7 @@ import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
@@ -58,13 +59,13 @@ public class CategoryChartFragment extends Fragment {
 
     data.setSlicesSpacing(10);
     data.setCenterText1("Pie Chart of");
-    data.setCenterText1Typeface(Typeface.SANS_SERIF);
+    Typeface newFont = Typeface.createFromAsset(getResources().getAssets(),"res/font/cutive.ttf");
+    data.setCenterText1Typeface(newFont);
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
     data.setCenterText2("Categories");
-    data.setCenterText2Typeface(Typeface.SANS_SERIF);
-
+    data.setCenterText2Typeface(newFont);
     data.setCenterText2FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
@@ -76,10 +77,10 @@ public class CategoryChartFragment extends Fragment {
 
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
-      MainViewModel viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+      MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MainViewModel.class);
       viewModel.getCategory().observe(getActivity(), categories -> {
         Category thisCategory = categories.get(arcIndex);
-        Snackbar snackbar = Snackbar.make(getView(), thisCategory.toString(),
+        Snackbar snackbar = Snackbar.make(Objects.requireNonNull(getView()), thisCategory.toString(),
             Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("DISMISS", v -> snackbar.dismiss());
         snackbar.show();
@@ -92,5 +93,3 @@ public class CategoryChartFragment extends Fragment {
     }
   }
 }
-
-

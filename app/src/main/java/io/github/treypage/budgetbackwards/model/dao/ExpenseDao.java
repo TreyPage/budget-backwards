@@ -2,6 +2,7 @@ package io.github.treypage.budgetbackwards.model.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
@@ -12,6 +13,12 @@ public interface ExpenseDao {
 
   @Insert
   long insert(Expense expense);
+
+  @Delete
+  int delete(Expense title);
+
+  @Delete
+  int delete(Expense... expenses);
 
   @Query("SELECT * FROM expense")
   LiveData<List<Expense>> getAll();

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="io.github.treypage.budgetbackwards">
+  package="io.github.treypage.budgetbackwards"
+  >
 
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+  <uses-permission android:name="android.permission.READ_PROFILE"/>
+  <uses-permission android:name="android.permission.READ_CONTACTS"/>
   <uses-permission android:name="android.permission.INTERNET"/>
-
 
   <application
     android:allowBackup="true"
@@ -25,9 +28,6 @@
 
 
   </application>
-  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-  <uses-permission android:name="android.permission.READ_PROFILE"/>
 
-  <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
 </manifest>

@@ -33,15 +33,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getCategoryDao().getAll();
   }
 
+
+
   public LiveData<Long> getSumExpenses() {
     return BudgetDatabase.getInstance(getApplication())
         .getExpenseDao().getSumExpenses();
   }
 
-  public LiveData<List<Income>> getIncome() {
-    income = BudgetDatabase.getInstance(getApplication()).getIncomeDao().getAll();
-    return income;
-  }
+
 
   public void setIncome(
       LiveData<List<Income>> income) {
@@ -56,8 +55,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   }
 
   public LiveData<List<Expense>> getExpenses() {
-    return BudgetDatabase.getInstance(getApplication()).getExpenseDao()
-        .getAll();
+    return BudgetDatabase.getInstance(getApplication()).getExpenseDao().getAll();
+  }
+
+  public LiveData<List<Income>> getIncome() {
+    return BudgetDatabase.getInstance(getApplication()).getIncomeDao().getAll();
   }
 
   public List<Double> getPercent() {
@@ -69,6 +71,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
       db.getExpenseDao().insert(expense);
+      categoryPercentAll();
+    }).start();
+  }
+
+  public void deleteExpense(final Expense expense) {
+    new Thread(() -> {
+      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
+      db.getExpenseDao().delete(expense);
       categoryPercentAll();
     }).start();
   }
@@ -88,7 +98,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         Category category = new Category();
         category.setId(i);
         category.setName(Category.Title.values()[i].toString());
-        category.setPercent(percent.get(i));
+        if (percent.get(i) == null) {
+          category.setPercent(0);
+        } else {
+          category.setPercent(percent.get(i));
+        }
         updateCategory(category);
       }
     }).start();
