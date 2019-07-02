@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_main);
-    Fragment fragment = ExpenseFragment.newInstance();
+    Fragment fragment = CategoryListFragment.newInstance();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
     transaction1.replace(R.id.frame_layout, fragment);
     transaction1.commit();
