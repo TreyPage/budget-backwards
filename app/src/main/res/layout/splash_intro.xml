@@ -16,20 +16,20 @@
     android:text="Submit"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/savings_box"/>
+    app:layout_constraintTop_toBottomOf="@+id/rent_box"/>
 
-  <EditText
-    android:id="@+id/savings_box"
-    android:layout_width="100sp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40sp"
-    android:fontFamily="@font/cutive"
-    android:hint="Savings"
-    android:textAlignment="center"
-    app:layout_constraintLeft_toRightOf="@id/rent_box"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/intro_instructions"
-    />
+<!--  <EditText-->
+<!--    android:id="@+id/savings_box"-->
+<!--    android:layout_width="100sp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="40sp"-->
+<!--    android:fontFamily="@font/cutive"-->
+<!--    android:hint="Savings"-->
+<!--    android:textAlignment="center"-->
+<!--    app:layout_constraintLeft_toRightOf="@id/rent_box"-->
+<!--    app:layout_constraintRight_toRightOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/intro_instructions"-->
+<!--    />-->
 
   <EditText
     android:id="@+id/rent_box"
@@ -40,7 +40,7 @@
     android:hint="Rent"
     android:textAlignment="center"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toLeftOf="@id/savings_box"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@id/intro_instructions"/>
 
   <TextView
@@ -49,7 +49,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="150sp"
     android:fontFamily="@font/cutive"
-    android:text="Let's start by adding in your first two expenses."
+    android:text="Let's start by adding in your rent/mortgage expense."
     android:textAlignment="center"
     android:textSize="40sp"
     app:layout_constraintEnd_toEndOf="parent"
