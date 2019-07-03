@@ -18,13 +18,16 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_main);
+
+    BottomNavigationView navigation = findViewById(R.id.navigation);
+
     Fragment fragment = Information.newInstance();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
     transaction1.replace(R.id.frame_layout, fragment);
     transaction1.commit();
-    BottomNavigationView navigation = findViewById(R.id.navigation);
+
     navigation.setOnNavigationItemSelectedListener(item -> {
-      Fragment selectedFragment = null;
+      Fragment selectedFragment;
       switch (item.getItemId()) {
         case R.id.navigation_list:
           selectedFragment = CategoryListFragment.newInstance();
@@ -32,22 +35,23 @@ public class MainActivity extends AppCompatActivity {
         case R.id.navigation_chart:
           selectedFragment = CategoryChartFragment.newInstance();
           break;
-        case R.id.menu_info:
-          selectedFragment = Information.newInstance();
-          break;
         case R.id.money_sign:
           selectedFragment = IncomeFragment.newInstance();
           break;
         case R.id.navigation_settings:
           selectedFragment = ExpenseFragment.newInstance();
           break;
+        case R.id.menu_info:
+        default:
+          selectedFragment = Information.newInstance();
+          break;
       }
       FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-      assert selectedFragment != null;
       transaction.replace(R.id.frame_layout, selectedFragment);
       transaction.commit();
       return true;
     });
+    navigation.setSelectedItemId(R.id.menu_info);
   }
 
 }

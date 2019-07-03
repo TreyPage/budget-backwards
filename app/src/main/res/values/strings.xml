@@ -7,6 +7,7 @@
 
   <!-- Example General settings -->
   <string name="pref_header_general">General</string>
+  <string name="pref_previously_started">done</string>
 
   <string name="pref_title_social_recommendations">Enable social recommendations</string>
   <string name="pref_description_social_recommendations">Recommendations for people to contact based
@@ -64,6 +65,13 @@
   <string name="list">List</string>
   <string name="category">Expenses</string>
   <string name="date_of_income">Date of income</string>
+  <string name="rent_mortgage">Rent/Mortgage</string>
+  <string name="submit">Submit</string>
+  <string name="adding_first_expense">Let\'s start by adding in your first expense.</string>
+  <string name="adding_rent">Add your monthly reoccurring rent/mortgage expense. All expenses should be an estimated monthly amount.</string>
+  <string name="list_of_income">List of Income</string>
+  <string name="see_all_income">See All Income</string>
+  <string name="list_of_categories">List of Categories</string>
   <string-array name="pref_example_list_titles">
     <item>Always</item>
     <item>When possible</item>
