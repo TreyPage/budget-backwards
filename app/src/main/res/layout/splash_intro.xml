@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/splash_intro"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  >
+
+  <Button
+    android:id="@+id/splash_submit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20sp"
+    android:fontFamily="@font/cutive"
+    android:text="Submit"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/savings_box"/>
+
+  <EditText
+    android:id="@+id/savings_box"
+    android:layout_width="100sp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40sp"
+    android:fontFamily="@font/cutive"
+    android:hint="Savings"
+    android:textAlignment="center"
+    app:layout_constraintLeft_toRightOf="@id/rent_box"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/intro_instructions"
+    />
+
+  <EditText
+    android:id="@+id/rent_box"
+    android:layout_width="100sp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40sp"
+    android:fontFamily="@font/cutive"
+    android:hint="Rent"
+    android:textAlignment="center"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/savings_box"
+    app:layout_constraintTop_toBottomOf="@id/intro_instructions"/>
+
+  <TextView
+    android:id="@+id/intro_instructions"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150sp"
+    android:fontFamily="@font/cutive"
+    android:text="Let's start by adding in your first two expenses."
+    android:textAlignment="center"
+    android:textSize="40sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,8 @@ import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
-import io.github.treypage.budgetbackwards.model.service.QuotesService;
 
 public class MainActivity extends AppCompatActivity {
-
-  private QuotesService service;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

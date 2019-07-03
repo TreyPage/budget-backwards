@@ -7,6 +7,8 @@
   android:layout_height="match_parent"
   android:fitsSystemWindows="true"
   android:fontFamily="@font/cutive"
+  android:orientation="vertical"
+
   tools:context=".fragment.IncomeFragment"
   tools:ignore="MergeRootFrame">
 

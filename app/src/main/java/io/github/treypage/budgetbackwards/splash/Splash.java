@@ -1,10 +1,11 @@
-package io.github.treypage.budgetbackwards;
+package io.github.treypage.budgetbackwards.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.treypage.budgetbackwards.R;
 
 public class Splash extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class Splash extends AppCompatActivity {
     next.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        Intent intent = new Intent(getBaseContext(), SplashIntro.class);
         startActivity(intent);
       }
     });

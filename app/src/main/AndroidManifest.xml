@@ -21,7 +21,7 @@
       android:name=".MainActivity">
 
     </activity>
-    <activity android:name=".Splash"
+    <activity android:name=".splash.Splash"
       android:theme="@style/Theme.AppCompat.NoActionBar"
       >
       <intent-filter>
@@ -30,6 +30,7 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity android:name=".splash.SplashIntro"/>
 
 
   </application>
