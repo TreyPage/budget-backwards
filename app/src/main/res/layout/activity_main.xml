@@ -8,7 +8,6 @@
   android:layout_height="match_parent"
   android:fontFamily="@font/cutive"
   android:orientation="vertical"
-
   tools:context=".MainActivity"
   >
 
@@ -26,7 +25,6 @@
     android:id="@+id/navigation"
     android:layout_width="0dp"
     android:fontFamily="@font/cutive"
-
     android:layout_height="wrap_content"
     android:layout_marginStart="0dp"
     android:layout_marginEnd="0dp"

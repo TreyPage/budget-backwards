@@ -23,22 +23,9 @@ public class SplashIntro extends AppCompatActivity {
 
     Button submit = findViewById(R.id.splash_submit);
     EditText rentText = findViewById(R.id.rent_box);
-    EditText savingsText = findViewById(R.id.savings_box);
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
     submit.setOnClickListener(view -> {
-//      try {
-//        Expense newSavings = new Expense();
-//        newSavings.setCategoryId(6);
-//        newSavings.setTitle("Savings");
-//        newSavings.setAmount(Long.parseLong(savingsText.getText().toString()));
-//        viewModel.addExpense(newSavings);
-//      } catch (NumberFormatException noNumber) {
-//        Toast toast = Toast
-//            .makeText(getApplication(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-//        toast.setGravity(Gravity.CENTER, 0, 0);
-//        toast.show();
-//      }
 
       try {
         Expense newRent = new Expense();

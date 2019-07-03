@@ -9,6 +9,7 @@ import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
+import io.github.treypage.budgetbackwards.fragment.Information;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_main);
-    Fragment fragment = CategoryListFragment.newInstance();
+    Fragment fragment = Information.newInstance();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
     transaction1.replace(R.id.frame_layout, fragment);
     transaction1.commit();
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
           break;
         case R.id.navigation_chart:
           selectedFragment = CategoryChartFragment.newInstance();
+          break;
+        case R.id.menu_info:
+          selectedFragment = Information.newInstance();
           break;
         case R.id.money_sign:
           selectedFragment = IncomeFragment.newInstance();

@@ -14,14 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.model.entity.Quote;
 import io.github.treypage.budgetbackwards.model.service.QuotesService.NewQuote;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
+import java.util.Calendar;
 
 public class IncomeFragment extends Fragment {
 
-  //TODO display random quote API at top of fragment
-  private Quote quote = new Quote();
 
   public static IncomeFragment newInstance() {
     return new IncomeFragment();
@@ -30,6 +28,7 @@ public class IncomeFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
+    Calendar rightNow = Calendar.getInstance();
 
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
 
@@ -48,6 +47,7 @@ public class IncomeFragment extends Fragment {
         .execute();
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
+    newIncomeDate.setText((rightNow.getTime().toString()));
     newIncomeButton.setOnClickListener(v -> {
       Income newIncome = new Income();
       newIncome.setDate((newIncomeDate.getText().toString()));
@@ -55,10 +55,7 @@ public class IncomeFragment extends Fragment {
         newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
         viewModel.addIncome(newIncome);
         viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
-        //TODO do math on income amount
-
         newIncomeAmount.setText("");
-        newIncomeDate.setText("");
       } catch (NumberFormatException noNumber) {
         Toast toast = Toast
             .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);

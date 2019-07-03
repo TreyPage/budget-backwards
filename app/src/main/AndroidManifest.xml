@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="io.github.treypage.budgetbackwards"
+  android:theme="@style/Theme.AppCompat.NoActionBar"
   >
 
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -15,14 +16,14 @@
     android:name=".BudgetApp"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme.NoActionBar"
+    >
     <activity
       android:label="@string/app_name"
       android:name=".MainActivity">
 
     </activity>
     <activity android:name=".splash.Splash"
-      android:theme="@style/Theme.AppCompat.NoActionBar"
       >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
