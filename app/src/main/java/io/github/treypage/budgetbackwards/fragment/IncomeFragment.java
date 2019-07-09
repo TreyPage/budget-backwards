@@ -39,6 +39,7 @@ public class IncomeFragment extends Fragment {
       transaction1.replace(R.id.frame_layout, fragment);
       transaction1.commit();
     });
+
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     TextView swQuote = view.findViewById(R.id.sw_quote);
     Button newIncomeButton = view.findViewById(R.id.submit_income);

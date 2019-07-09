@@ -17,9 +17,7 @@
     android:layout_height="match_parent"
     android:layout_above="@+id/navigation"
     android:fontFamily="@font/cutive"
-    android:animateLayoutChanges="true">
-
-  </FrameLayout>
+    android:animateLayoutChanges="true"/>
 
   <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/navigation"

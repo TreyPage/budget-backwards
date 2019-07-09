@@ -33,14 +33,10 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getCategoryDao().getAll();
   }
 
-
-
   public LiveData<Long> getSumExpenses() {
     return BudgetDatabase.getInstance(getApplication())
         .getExpenseDao().getSumExpenses();
   }
-
-
 
   public void setIncome(
       LiveData<List<Income>> income) {

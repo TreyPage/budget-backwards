@@ -40,7 +40,6 @@ public class IncomeListFragment extends Fragment {
 
       ListView incomeListView = view.findViewById(R.id.income_list);
       incomeListView.setDividerHeight(20);
-
       incomeListView.setAdapter(adapter);
     });
     return view;
