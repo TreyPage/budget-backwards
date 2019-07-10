@@ -18,12 +18,15 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme.NoActionBar"
     >
+
     <activity
       android:label="@string/app_name"
       android:name=".MainActivity">
-
     </activity>
-    <activity android:name=".splash.Splash"
+
+    <activity
+      android:label="@string/app_name"
+      android:name=".splash.Splash"
       >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -32,9 +35,5 @@
       </intent-filter>
     </activity>
     <activity android:name=".splash.SplashIntro"/>
-
-
   </application>
-
-
 </manifest>

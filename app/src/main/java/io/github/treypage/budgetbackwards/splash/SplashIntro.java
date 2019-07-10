@@ -18,33 +18,54 @@ public class SplashIntro extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    setContentView(R.layout.splash_intro);
-
-    Button submit = findViewById(R.id.splash_submit);
-    EditText rentText = findViewById(R.id.rent_box);
-    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-    submit.setOnClickListener(view -> {
-
-      try {
-        Expense newRent = new Expense();
-        newRent.setCategoryId(0);
-        newRent.setTitle("Rent/Mortgage");
-        newRent.setAmount(Long.parseLong(rentText.getText().toString()));
-        viewModel.addExpense(newRent);
-
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
-        startActivity(intent);
-      } catch (NumberFormatException noNumber) {
-        Toast toast = Toast
-            .makeText(getApplication(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-      }
-
-    });
-
+    checkExpense();
   }
 
+  private void submitExpense() {
+    Button submit = findViewById(R.id.splash_submit);
+    submit.setOnClickListener(view -> {
+      try {
+        newExpense();
+      } catch (NumberFormatException noNumber) {
+        notANumber();
+      }
+    });
+  }
+
+  private void checkExpense() {
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    long expenses = 0;
+    try {
+      expenses = viewModel.getSumExpenses().getValue();
+    } catch (Exception e) {
+      //Do Nothing
+    }
+    if (expenses == 0) {
+      setContentView(R.layout.splash_intro);
+      submitExpense();
+    } else {
+      startActivity(new Intent(getBaseContext(), MainActivity.class));
+    }
+  }
+
+
+  private void notANumber() {
+    Toast toast = Toast
+        .makeText(getApplication(), getString(R.string.invalid_number), Toast.LENGTH_SHORT);
+    toast.setGravity(Gravity.CENTER, 0, 0);
+    toast.show();
+  }
+
+  private void newExpense() {
+    EditText rentText = findViewById(R.id.rent_box);
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    Expense newSavings = new Expense();
+    newSavings.setCategoryId(6);
+    newSavings.setTitle(getString(R.string.savings));
+    newSavings.setAmount(Long.parseLong(rentText.getText().toString()));
+    viewModel.addExpense(newSavings);
+    Intent intent = new Intent(getBaseContext(), MainActivity.class)
+        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+  }
 }

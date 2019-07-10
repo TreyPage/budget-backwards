@@ -3,6 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical"
   android:id="@+id/info_frag"
   >
@@ -16,6 +17,17 @@
     android:clickable="false"
     android:cropToPadding="false"
     android:src="@drawable/splash_instructions"/>
+
+  <Button
+    android:id="@+id/sign_out"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="60dp"
+    android:text="Sign Out"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

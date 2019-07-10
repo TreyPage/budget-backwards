@@ -16,16 +16,13 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     setContentView(R.layout.activity_main);
+    initialFragment();
+    navigatingFragments();
+  }
 
+  private void navigatingFragments() {
     BottomNavigationView navigation = findViewById(R.id.navigation);
-
-    Fragment fragment = Information.newInstance();
-    FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-    transaction1.replace(R.id.frame_layout, fragment);
-    transaction1.commit();
-
     navigation.setOnNavigationItemSelectedListener(item -> {
       Fragment selectedFragment;
       switch (item.getItemId()) {
@@ -52,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
       return true;
     });
     navigation.setSelectedItemId(R.id.menu_info);
+  }
+
+  private void initialFragment() {
+    Fragment fragment = Information.newInstance();
+    FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+    transaction1.replace(R.id.frame_layout, fragment);
+    transaction1.commit();
   }
 
 }

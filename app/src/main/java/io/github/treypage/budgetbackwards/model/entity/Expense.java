@@ -58,6 +58,6 @@ public class Expense implements Serializable {
   @Override
   public String toString() {
     return String
-        .format("%-100s$%-100s%-10s", title, amount, Category.Title.values()[(int) categoryId]);
+        .format("%-15s$%-15s%-15s", title, amount, Category.Title.values()[(int) categoryId]);
   }
 }

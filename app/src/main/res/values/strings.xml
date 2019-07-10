@@ -71,6 +71,8 @@
   <string name="list_of_income">List of Income</string>
   <string name="see_all_income">See All Income</string>
   <string name="list_of_categories">List of Categories</string>
+  <string name="invalid_number">Please input a valid amount.</string>
+  <string name="savings">Savings</string>
   <string-array name="pref_example_list_titles">
     <item>Always</item>
     <item>When possible</item>

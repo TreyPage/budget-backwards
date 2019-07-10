@@ -2,6 +2,7 @@ package io.github.treypage.budgetbackwards.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
+import io.github.treypage.budgetbackwards.splash.SplashIntro;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class ExpenseFragment extends Fragment {
@@ -49,7 +51,10 @@ public class ExpenseFragment extends Fragment {
       incomeListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
         Expense thisExpense = expenses.get(position);
         Snackbar snackbar = Snackbar.make(getView(), thisExpense.toString(), Snackbar.LENGTH_LONG);
-        snackbar.setAction("Delete", v -> viewModel.deleteExpense(thisExpense));
+        snackbar.setAction("Delete", v -> {
+          viewModel.deleteExpense(thisExpense);
+          checkExpense();
+        });
         snackbar.show();
 
       });
@@ -85,8 +90,21 @@ public class ExpenseFragment extends Fragment {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
       }
-
     });
     return view;
   }
+
+  private void checkExpense() {
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    long expenses = 0;
+    try {
+      expenses = viewModel.getSumExpenses().getValue();
+    } catch (Exception e) {
+      //Do Nothing
+    }
+    if (expenses == 0) {
+      startActivity(new Intent(getContext(), SplashIntro.class));
+    }
+  }
+
 }

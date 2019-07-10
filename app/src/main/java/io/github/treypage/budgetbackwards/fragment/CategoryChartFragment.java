@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -59,7 +60,7 @@ public class CategoryChartFragment extends Fragment {
 
     data.setSlicesSpacing(10);
     data.setCenterText1("Pie Chart of");
-    Typeface newFont = Typeface.createFromAsset(getResources().getAssets(), "res/font/cutive.ttf");
+    Typeface newFont = ResourcesCompat.getFont(getContext(),R.font.cutive);
     data.setCenterText1Typeface(newFont);
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
