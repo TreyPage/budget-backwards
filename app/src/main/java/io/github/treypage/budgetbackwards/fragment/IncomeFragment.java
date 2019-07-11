@@ -29,8 +29,13 @@ public class IncomeFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
+
+    TextView swQuote = view.findViewById(R.id.sw_quote);
+    new NewQuote()
+        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
+        .execute();
+
     listedIncome(view);
-    randomSWQuote(view);
     submitNewIncome(view);
     return view;
   }
@@ -57,13 +62,6 @@ public class IncomeFragment extends Fragment {
         toast.show();
       }
     });
-  }
-
-  private void randomSWQuote(View view) {
-    TextView swQuote = view.findViewById(R.id.sw_quote);
-    new NewQuote()
-        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
-        .execute();
   }
 
   private void listedIncome(View view) {

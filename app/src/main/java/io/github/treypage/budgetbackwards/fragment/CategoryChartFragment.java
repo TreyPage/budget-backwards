@@ -24,7 +24,6 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 public class CategoryChartFragment extends Fragment {
 
-  private MainViewModel mainViewModel;
   private PieChartView chart;
 
   public static CategoryChartFragment newInstance() {
@@ -35,7 +34,7 @@ public class CategoryChartFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
-    mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     mainViewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);
     chart.setOnValueTouchListener(new ValueTouchListener());
