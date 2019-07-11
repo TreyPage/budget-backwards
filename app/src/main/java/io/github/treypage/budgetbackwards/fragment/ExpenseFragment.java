@@ -46,12 +46,15 @@ public class ExpenseFragment extends Fragment {
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     generateListView(viewModel, view);
     Button newExpenseButton = view.findViewById(R.id.new_expense_button);
-    newExpenseButton.setOnClickListener(v -> submitExpense(viewModel, view));
+    final Spinner categorySpinner = view.findViewById(R.id.category_spinner);
+    SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
+        android.R.layout.simple_spinner_item, Category.Title.values());
+    categorySpinner.setAdapter(spinnerAdapter);
+    newExpenseButton.setOnClickListener(v -> submitExpense(viewModel, view, categorySpinner));
     return view;
   }
 
-  private void submitExpense(MainViewModel viewModel, View view) {
-    final Spinner categorySpinner = generateCategorySpinner(view);
+  private void submitExpense(MainViewModel viewModel, View view, Spinner categorySpinner) {
     final EditText newExpenseAmount = view.findViewById(R.id.new_expense_value);
     final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
     Expense newExpense = new Expense();
@@ -68,15 +71,6 @@ public class ExpenseFragment extends Fragment {
       toast.setGravity(Gravity.CENTER, 0, 0);
       toast.show();
     }
-  }
-
-  private Spinner generateCategorySpinner(View view) {
-    final Spinner expenseSpinner = view.findViewById(R.id.category_spinner);
-    SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
-        android.R.layout.simple_spinner_item, Category.Title.values());
-
-    expenseSpinner.setAdapter(spinnerAdapter);
-    return expenseSpinner;
   }
 
   private void generateListView(MainViewModel viewModel, View view) {
