@@ -67,7 +67,7 @@
   <string name="date_of_income">Date of income</string>
   <string name="rent_mortgage">Rent/Mortgage</string>
   <string name="adding_first_expense">Let\'s start by adding in your first expense.</string>
-  <string name="adding_rent">Add your monthly reoccurring rent/mortgage expense. All expenses should be an estimated monthly amount.</string>
+  <string name="adding_rent">Add your monthly Savings goal. All expenses should be an estimated monthly amount.</string>
   <string name="list_of_income">List of Income</string>
   <string name="see_all_income">See All Income</string>
   <string name="list_of_categories">List of Categories</string>
