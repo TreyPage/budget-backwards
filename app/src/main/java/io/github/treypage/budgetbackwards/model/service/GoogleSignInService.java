@@ -41,6 +41,7 @@ public class GoogleSignInService {
   }
 
   private static class instanceHolder {
+
     private static final GoogleSignInService INSTANCE = new GoogleSignInService();
   }
 }

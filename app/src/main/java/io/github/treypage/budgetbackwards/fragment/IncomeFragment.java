@@ -35,7 +35,8 @@ public class IncomeFragment extends Fragment {
     Button listIncome = view.findViewById(R.id.list_all_income);
     listIncome.setOnClickListener(v -> {
       Fragment fragment = IncomeListFragment.newInstance();
-      FragmentTransaction transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+      FragmentTransaction transaction1 = getActivity().getSupportFragmentManager()
+          .beginTransaction();
       transaction1.replace(R.id.frame_layout, fragment);
       transaction1.commit();
     });

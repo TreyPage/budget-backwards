@@ -14,15 +14,10 @@ import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Income.class, Category.class, Expense.class}, version = 1, exportSchema = true)
+@Database(entities = {Income.class, Category.class,
+    Expense.class}, version = 1, exportSchema = true)
 
 public abstract class BudgetDatabase extends RoomDatabase {
-
-  public abstract CategoryDao getCategoryDao();
-
-  public abstract IncomeDao getIncomeDao();
-
-  public abstract ExpenseDao getExpenseDao();
 
   private static BudgetDatabase INSTANCE;
 
@@ -50,4 +45,10 @@ public abstract class BudgetDatabase extends RoomDatabase {
     }
     return INSTANCE;
   }
+
+  public abstract CategoryDao getCategoryDao();
+
+  public abstract IncomeDao getIncomeDao();
+
+  public abstract ExpenseDao getExpenseDao();
 }

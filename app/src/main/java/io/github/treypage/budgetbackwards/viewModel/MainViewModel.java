@@ -19,13 +19,13 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   private LiveData<List<Income>> income;
   private CompositeDisposable pending = new CompositeDisposable();
 
+  public MainViewModel(@NonNull Application application) {
+    super(application);
+  }
+
   @OnLifecycleEvent(Event.ON_STOP)
   public void disposePending() {
     pending.clear();
-  }
-
-  public MainViewModel(@NonNull Application application) {
-    super(application);
   }
 
   public LiveData<List<Category>> getCategory() {
@@ -36,11 +36,6 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   public LiveData<Long> getSumExpenses() {
     return BudgetDatabase.getInstance(getApplication())
         .getExpenseDao().getSumExpenses();
-  }
-
-  public void setIncome(
-      LiveData<List<Income>> income) {
-    this.income = income;
   }
 
   public void addIncome(final Income income) {
@@ -56,6 +51,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
 
   public LiveData<List<Income>> getIncome() {
     return BudgetDatabase.getInstance(getApplication()).getIncomeDao().getAll();
+  }
+
+  public void setIncome(
+      LiveData<List<Income>> income) {
+    this.income = income;
   }
 
   public List<Double> getPercent() {

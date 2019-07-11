@@ -9,7 +9,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import io.github.treypage.budgetbackwards.MainActivity;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
 import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
@@ -22,16 +21,12 @@ public class Splash extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.splash_instructions);
-    new Thread(() -> {
-      BudgetDatabase.getInstance(this).getExpenseDao().delete();
-    }).start();
-    findViewById(R.id.sign_in).setOnClickListener((view) -> signIn());
+    new Thread(() -> BudgetDatabase.getInstance(this).getExpenseDao().delete()).start();
+    findViewById(R.id.sign_in).setOnClickListener(
+        (view) -> signIn());
     findViewById(R.id.next_button).setOnClickListener(
-        (view) -> {
-          switchToMain();
-        });
+        (view) -> switchToNext());
   }
-
 
 
   @Override
@@ -42,15 +37,15 @@ public class Splash extends AppCompatActivity {
         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
         GoogleSignInAccount account = task.getResult(ApiException.class);
         GoogleSignInService.getInstance().setAccount(account);
-        switchToMain();
+        switchToNext();
       } catch (ApiException e) {
         Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
       }
     }
   }
 
-  private void switchToMain() {
-    Intent intent = new Intent(this, MainActivity.class);
+  private void switchToNext() {
+    Intent intent = new Intent(this, SplashIntro.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
   }
@@ -66,7 +61,7 @@ public class Splash extends AppCompatActivity {
     GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
     if (account != null) {
       GoogleSignInService.getInstance().setAccount(account);
-      switchToMain();
+      switchToNext();
     }
   }
 

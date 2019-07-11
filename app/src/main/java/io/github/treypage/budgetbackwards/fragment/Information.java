@@ -13,6 +13,7 @@ import io.github.treypage.budgetbackwards.splash.Splash;
 
 
 public class Information extends Fragment {
+
   private Context context;
 
   public static Information newInstance() {

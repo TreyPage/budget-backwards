@@ -99,6 +99,7 @@ public class Category {
       }
       return null;
     }
+
     @NonNull
     @Override
     public String toString() {

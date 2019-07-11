@@ -29,14 +29,14 @@ public class ExpenseFragment extends Fragment {
 
   private Context context;
 
+  public static ExpenseFragment newInstance() {
+    return new ExpenseFragment();
+  }
+
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
     this.context = context;
-  }
-
-  public static ExpenseFragment newInstance() {
-    return new ExpenseFragment();
   }
 
   @Override

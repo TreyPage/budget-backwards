@@ -60,7 +60,7 @@ public class CategoryChartFragment extends Fragment {
 
     data.setSlicesSpacing(10);
     data.setCenterText1("Pie Chart of");
-    Typeface newFont = ResourcesCompat.getFont(getContext(),R.font.cutive);
+    Typeface newFont = ResourcesCompat.getFont(getContext(), R.font.cutive);
     data.setCenterText1Typeface(newFont);
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));

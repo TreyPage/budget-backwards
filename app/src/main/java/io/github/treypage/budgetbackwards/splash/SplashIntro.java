@@ -34,18 +34,20 @@ public class SplashIntro extends AppCompatActivity {
 
   private void checkExpense() {
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    long expenses = 0;
-    try {
-      expenses = viewModel.getSumExpenses().getValue();
-    } catch (Exception e) {
-      //Do Nothing
-    }
-    if (expenses == 0) {
-      setContentView(R.layout.splash_intro);
-      submitExpense();
-    } else {
-      startActivity(new Intent(getBaseContext(), MainActivity.class));
-    }
+    viewModel.getSumExpenses().observe(this, shazam -> {
+      long expenses = 0;
+      try {
+        expenses = shazam;
+      } catch (Exception e) {
+        //Do Nothing
+      }
+      if (expenses == 0) {
+        setContentView(R.layout.splash_intro);
+        submitExpense();
+      } else {
+        startActivity(new Intent(getBaseContext(), MainActivity.class));
+      }
+    });
   }
 
 
