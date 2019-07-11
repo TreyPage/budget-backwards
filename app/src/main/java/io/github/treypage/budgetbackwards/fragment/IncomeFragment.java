@@ -28,27 +28,19 @@ public class IncomeFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    Calendar rightNow = Calendar.getInstance();
-
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
+    listedIncome(view);
+    randomSWQuote(view);
+    submitNewIncome(view);
+    return view;
+  }
 
-    Button listIncome = view.findViewById(R.id.list_all_income);
-    listIncome.setOnClickListener(v -> {
-      Fragment fragment = IncomeListFragment.newInstance();
-      FragmentTransaction transaction1 = getActivity().getSupportFragmentManager()
-          .beginTransaction();
-      transaction1.replace(R.id.frame_layout, fragment);
-      transaction1.commit();
-    });
-
+  private void submitNewIncome(View view) {
     final MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    TextView swQuote = view.findViewById(R.id.sw_quote);
-    Button newIncomeButton = view.findViewById(R.id.submit_income);
-    new NewQuote()
-        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
-        .execute();
     final EditText newIncomeAmount = view.findViewById(R.id.user_income);
     final EditText newIncomeDate = view.findViewById(R.id.date_input);
+    Button newIncomeButton = view.findViewById(R.id.submit_income);
+    Calendar rightNow = Calendar.getInstance();
     newIncomeDate.setText((rightNow.getTime().toString()));
     newIncomeButton.setOnClickListener(v -> {
       Income newIncome = new Income();
@@ -65,7 +57,24 @@ public class IncomeFragment extends Fragment {
         toast.show();
       }
     });
-    return view;
+  }
+
+  private void randomSWQuote(View view) {
+    TextView swQuote = view.findViewById(R.id.sw_quote);
+    new NewQuote()
+        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
+        .execute();
+  }
+
+  private void listedIncome(View view) {
+    Button listIncome = view.findViewById(R.id.list_all_income);
+    listIncome.setOnClickListener(v -> {
+      Fragment fragment = IncomeListFragment.newInstance();
+      FragmentTransaction transaction1 = getActivity().getSupportFragmentManager()
+          .beginTransaction();
+      transaction1.replace(R.id.frame_layout, fragment);
+      transaction1.commit();
+    });
   }
 
 }

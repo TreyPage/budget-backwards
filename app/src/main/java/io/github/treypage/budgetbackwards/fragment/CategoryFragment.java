@@ -16,8 +16,6 @@ import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class CategoryFragment extends Fragment {
 
-  private Context context;
-
   public static CategoryFragment newInstance() {
     return new CategoryFragment();
   }
@@ -25,7 +23,6 @@ public class CategoryFragment extends Fragment {
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    this.context = context;
   }
 
   @Override

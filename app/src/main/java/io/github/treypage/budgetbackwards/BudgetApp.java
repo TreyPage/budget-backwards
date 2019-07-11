@@ -12,8 +12,6 @@ public class BudgetApp extends Application {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
     GoogleSignInService.setContext(this);
-    new Thread(() -> {
-      BudgetDatabase.getInstance(this).getExpenseDao().delete();
-    }).start();
+    new Thread(() -> BudgetDatabase.getInstance(this).getExpenseDao().delete()).start();
   }
 }

@@ -37,7 +37,6 @@ public class IncomeListFragment extends Fragment {
     viewModel.getIncome().observe(this, incomes -> {
       ArrayAdapter<Income> adapter = new ArrayAdapter<>(context,
           android.R.layout.simple_list_item_1, incomes);
-
       ListView incomeListView = view.findViewById(R.id.income_list);
       incomeListView.setDividerHeight(20);
       incomeListView.setAdapter(adapter);

@@ -43,8 +43,45 @@ public class ExpenseFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.expense_fragment, container, false);
-    ListView incomeListView = view.findViewById(R.id.expense_list);
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    generateListView(viewModel, view);
+    Button newExpenseButton = view.findViewById(R.id.new_expense_button);
+    newExpenseButton.setOnClickListener(v -> submitExpense(viewModel, view));
+    return view;
+  }
+
+  private void submitExpense(MainViewModel viewModel, View view) {
+    final Spinner categorySpinner = generateCategorySpinner(view);
+    final EditText newExpenseAmount = view.findViewById(R.id.new_expense_value);
+    final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
+    Expense newExpense = new Expense();
+    newExpense.setCategoryId(((Category.Title) categorySpinner.getSelectedItem()).ordinal());
+    newExpense.setTitle(newExpenseName.getText().toString());
+    try {
+      newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
+      viewModel.addExpense(newExpense);
+      newExpenseAmount.setText("");
+      newExpenseName.setText("");
+    } catch (NumberFormatException noNumber) {
+      Toast toast = Toast
+          .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+      toast.setGravity(Gravity.CENTER, 0, 0);
+      toast.show();
+    }
+  }
+
+  private Spinner generateCategorySpinner(View view) {
+    final Spinner expenseSpinner = view.findViewById(R.id.category_spinner);
+    SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
+        android.R.layout.simple_spinner_item, Category.Title.values());
+
+    expenseSpinner.setAdapter(spinnerAdapter);
+    return expenseSpinner;
+  }
+
+  private void generateListView(MainViewModel viewModel, View view) {
+    ListView incomeListView = view.findViewById(R.id.expense_list);
+
     viewModel.getExpenses().observe(this, expenses -> {
       final ArrayAdapter<Expense> adapter = new ArrayAdapter<>(context,
           android.R.layout.simple_list_item_1, expenses);
@@ -56,42 +93,9 @@ public class ExpenseFragment extends Fragment {
           checkExpense();
         });
         snackbar.show();
-
       });
-
       incomeListView.setAdapter(adapter);
-
     });
-
-    final Spinner expenseSpinner = view.findViewById(R.id.category_spinner);
-    SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
-        android.R.layout.simple_spinner_item, Category.Title.values());
-
-    expenseSpinner.setAdapter(spinnerAdapter);
-
-    Button newExpenseButton = view.findViewById(R.id.new_expense_button);
-
-    final EditText newExpenseAmount = view.findViewById(R.id.new_expense_value);
-
-    final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
-
-    newExpenseButton.setOnClickListener(v -> {
-      Expense newExpense = new Expense();
-      newExpense.setCategoryId(((Category.Title) expenseSpinner.getSelectedItem()).ordinal());
-      newExpense.setTitle(newExpenseName.getText().toString());
-      try {
-        newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
-        viewModel.addExpense(newExpense);
-        newExpenseAmount.setText("");
-        newExpenseName.setText("");
-      } catch (NumberFormatException noNumber) {
-        Toast toast = Toast
-            .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-      }
-    });
-    return view;
   }
 
   private void checkExpense() {

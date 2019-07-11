@@ -40,6 +40,12 @@ public class CategoryListFragment extends Fragment {
     final ArrayAdapter<Title> adapter = new ArrayAdapter<>(context,
         android.R.layout.simple_list_item_1, Category.Title.values());
 
+    ListView categoryListView = generateListView(view);
+    categoryListView.setAdapter(adapter);
+    return view;
+  }
+
+  private ListView generateListView(View view) {
     ListView categoryListView = view.findViewById(R.id.category_list);
     categoryListView.setDividerHeight(20);
     categoryListView.setClickable(true);
@@ -58,8 +64,7 @@ public class CategoryListFragment extends Fragment {
 
       });
     });
-    categoryListView.setAdapter(adapter);
-    return view;
+    return categoryListView;
   }
 
   @Override

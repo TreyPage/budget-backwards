@@ -34,10 +34,10 @@ public class SplashIntro extends AppCompatActivity {
 
   private void checkExpense() {
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    viewModel.getSumExpenses().observe(this, shazam -> {
+    viewModel.getSumExpenses().observe(this, sumExpenses -> {
       long expenses = 0;
       try {
-        expenses = shazam;
+        expenses = sumExpenses;
       } catch (Exception e) {
         //Do Nothing
       }

@@ -26,7 +26,6 @@ public class Information extends Fragment {
     setHasOptionsMenu(true);
     final View view = inflater.inflate(R.layout.instructions, container, false);
     view.findViewById(R.id.sign_out).setOnClickListener((button) -> signOut());
-
     return view;
   }
 

@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
-  private LiveData<List<Income>> income;
   private CompositeDisposable pending = new CompositeDisposable();
 
   public MainViewModel(@NonNull Application application) {
@@ -55,7 +54,6 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
 
   public void setIncome(
       LiveData<List<Income>> income) {
-    this.income = income;
   }
 
   public List<Double> getPercent() {

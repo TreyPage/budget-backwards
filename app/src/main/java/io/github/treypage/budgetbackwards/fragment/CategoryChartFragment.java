@@ -57,16 +57,17 @@ public class CategoryChartFragment extends Fragment {
     data.setHasLabelsOnlyForSelected(false);
     data.setHasLabelsOutside(false);
     data.setHasCenterCircle(true);
-
     data.setSlicesSpacing(10);
-    data.setCenterText1("Pie Chart of");
+
     Typeface newFont = ResourcesCompat.getFont(getContext(), R.font.cutive);
+    data.setCenterText1("Pie Chart of");
+    data.setCenterText2("Categories");
+
     data.setCenterText1Typeface(newFont);
+    data.setCenterText2Typeface(newFont);
+
     data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
-
-    data.setCenterText2("Categories");
-    data.setCenterText2Typeface(newFont);
     data.setCenterText2FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
         (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
