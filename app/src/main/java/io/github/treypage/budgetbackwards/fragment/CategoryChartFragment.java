@@ -34,6 +34,8 @@ public class CategoryChartFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel.getOneIncome().observe(this, viewModel::incomeMath);
     MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     mainViewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);

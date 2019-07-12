@@ -51,4 +51,13 @@ public class MainActivity extends AppCompatActivity {
     navigation.setSelectedItemId(R.id.menu_info);
   }
 
+  @Override
+  public void onBackPressed() {
+    if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+      getSupportFragmentManager().popBackStack();
+    } else {
+      FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+      transaction.replace(R.id.frame_layout, Information.newInstance());
+      transaction.commit();    }
+  }
 }

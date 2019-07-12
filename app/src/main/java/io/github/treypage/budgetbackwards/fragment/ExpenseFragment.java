@@ -1,6 +1,5 @@
 package io.github.treypage.budgetbackwards.fragment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,5 +104,4 @@ public class ExpenseFragment extends Fragment {
           .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
     }
   }
-
 }

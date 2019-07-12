@@ -1,6 +1,7 @@
 package io.github.treypage.budgetbackwards.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import io.github.treypage.budgetbackwards.MainActivity;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Category.Title;
@@ -36,7 +38,8 @@ public class CategoryListFragment extends Fragment {
       Bundle savedInstanceState) {
     setHasOptionsMenu(true);
     final View view = inflater.inflate(R.layout.category_list, container, false);
-
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel.getOneIncome().observe(this, viewModel::incomeMath);
     final ArrayAdapter<Title> adapter = new ArrayAdapter<>(context,
         android.R.layout.simple_list_item_1, Category.Title.values());
 

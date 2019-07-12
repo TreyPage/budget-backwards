@@ -37,6 +37,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getExpenseDao().getSumExpenses();
   }
 
+  public LiveData<Double> getOneIncome() {
+    return BudgetDatabase.getInstance(getApplication())
+        .getIncomeDao().getOneIncome();
+  }
+
   public void addIncome(final Income income) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());

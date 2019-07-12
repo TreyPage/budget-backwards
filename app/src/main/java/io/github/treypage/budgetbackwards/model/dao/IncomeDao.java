@@ -16,4 +16,7 @@ public interface IncomeDao {
   @Query("SELECT * FROM income")
   LiveData<List<Income>> getAll();
 
+  @Query("SELECT amount FROM income ORDER BY id DESC")
+  LiveData<Double> getOneIncome();
+
 }
