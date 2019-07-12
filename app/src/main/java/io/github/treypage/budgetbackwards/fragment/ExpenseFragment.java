@@ -101,7 +101,8 @@ public class ExpenseFragment extends Fragment {
       //Do Nothing
     }
     if (expenses == 0) {
-      startActivity(new Intent(getContext(), SplashIntro.class));
+      startActivity(new Intent(getContext(), SplashIntro.class)
+          .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
     }
   }
 

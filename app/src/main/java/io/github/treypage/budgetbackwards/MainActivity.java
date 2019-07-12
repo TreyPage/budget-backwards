@@ -1,5 +1,6 @@
 package io.github.treypage.budgetbackwards;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,11 +18,10 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    initialFragment();
-    navigatingFragments();
-  }
-
-  private void navigatingFragments() {
+    Fragment fragment = Information.newInstance();
+    FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+    transaction1.replace(R.id.frame_layout, fragment);
+    transaction1.commit();
     BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(item -> {
       Fragment selectedFragment;
@@ -49,13 +49,6 @@ public class MainActivity extends AppCompatActivity {
       return true;
     });
     navigation.setSelectedItemId(R.id.menu_info);
-  }
-
-  private void initialFragment() {
-    Fragment fragment = Information.newInstance();
-    FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-    transaction1.replace(R.id.frame_layout, fragment);
-    transaction1.commit();
   }
 
 }
