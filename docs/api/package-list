@@ -1,0 +1,8 @@
+io.github.treypage.budgetbackwards
+io.github.treypage.budgetbackwards.fragment
+io.github.treypage.budgetbackwards.model.dao
+io.github.treypage.budgetbackwards.model.database
+io.github.treypage.budgetbackwards.model.entity
+io.github.treypage.budgetbackwards.model.service
+io.github.treypage.budgetbackwards.splash
+io.github.treypage.budgetbackwards.viewModel
