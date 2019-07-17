@@ -13,3 +13,4 @@ You are free to examine the wireframes below in PNG or PDF format.
 + [User stories](user-stories.md)
 + [ERD](ERD.md)
 + [Milestone 2](milestone-2.md)
++ [Data Model](docs/data-model.md)
