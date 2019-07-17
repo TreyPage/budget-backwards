@@ -17,3 +17,4 @@ so you can better compare to things that say "Your housing should only be X% of 
 + [Wireframes](docs/wireframes.md)
 + [ERD](ERD.md)
 + [Milestone-2](docs/milestone-2.md)
++ [Data Model](docs/data-model.md)
