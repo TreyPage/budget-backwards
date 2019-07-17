@@ -55,6 +55,10 @@ public class IncomeFragment extends Fragment {
         viewModel.addIncome(newIncome);
         viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
         newIncomeAmount.setText("");
+        Toast toast = Toast
+            .makeText(getContext(), "Input created. \n\n Happy Budgeting!", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
       } catch (NumberFormatException noNumber) {
         Toast toast = Toast
             .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
