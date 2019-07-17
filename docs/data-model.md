@@ -29,3 +29,7 @@ CREATE TABLE IF NOT EXISTS `Expense`
 
 CREATE INDEX `index_Expense_category_id` ON `Category` (`id`);
 ```
++ [Readme](https://treypage.github.io/budget-backwards/)
++ [User stories](user-stories.md)
++ [ERD](ERD.md)
++ [Milestone 2](milestone-2.md)
