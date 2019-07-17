@@ -1,5 +1,5 @@
 # User stories for Budget Backwards
-+ updated June 5, 2019
++ updated July 17, 2019
 
 1. As a parent with multiple children I need something to help me put my money in the right places, not just track the category.
 

@@ -1,6 +1,6 @@
 ## by Trey Page
 ## This is a personal android project
-+ updated June 5, 2019
++ updated July 17, 2019
 
 This is a budgeting application that allows user to input their category and income and receive a 
 break down on where their money should go and what percentages their category are.

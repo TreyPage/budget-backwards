@@ -1,13 +1,13 @@
 # Wireframes for Budget Backwards
-+ updated June 5, 2019
++ updated July 17, 2019
 
 You are free to examine the wireframes below in PNG or PDF format.
 
 
 
-![Wireframe png](Android%20budget%20app.png)
+![Wireframe png](budget_wireframe.png)
 
-[Wireframe in PDF format](Android%20budget%20app.pdf) 
+[Wireframe in PDF format](budget_wireframe.pdf) 
 
 + [Readme](https://treypage.github.io/budget-backwards/)
 + [User stories](user-stories.md)

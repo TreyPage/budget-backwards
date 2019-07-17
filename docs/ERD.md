@@ -1,22 +1,22 @@
 # ERD for Budget Backwards
-+ updated June 28, 2019
++ updated July 17, 2019
 
 You are free to examine the ERD below in PNG or PDF format.
 
 Second iteration of the ERD
 
-![ERD png](budget_erd_2.png)
+![ERD png](budget_erd_1.png)
 
-[ERD #2 in PDF format](budget_erd_2.pdf) 
+[ERD #2 in PDF format](budget_erd_1.pdf) 
 
 
 
 
 First iteration of the ERD
 
-![ERD png](budget_erd.png)
+![ERD png](budget_erd_2.png)
 
-[ERD in PDF format](budget_erd.pdf) 
+[ERD in PDF format](budget_erd_2.pdf) 
 
 + [Readme](https://treypage.github.io/budget-backwards/)
 + [User stories](user-stories.md)
