@@ -9,4 +9,4 @@
 + [User stories](user-stories.md)
 + [ERD](ERD.md)
 + [Wireframes](wireframes.md)
-+ [Data Model](docs/data-model.md)
++ [Data Model](data-model.md)
