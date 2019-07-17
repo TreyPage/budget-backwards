@@ -14,3 +14,4 @@
 + [Wireframes](wireframes.md)
 + [ERD](ERD.md)
 + [Milestone 2](milestone-2.md)
++ [Data Model](docs/data-model.md)
