@@ -19,7 +19,7 @@
 //    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //    SOFTWARE.
-package io.github.treypage.budgetbackwards.fragment;
+package io.github.treypage.budgetbackwards.intro;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,20 +37,22 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
+import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
-import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
-public class ExpenseFragment extends Fragment {
+public class IntroExpenseFragment extends Fragment {
 
   private Context context;
 
-  public static ExpenseFragment newInstance() {
-    return new ExpenseFragment();
+  public static IntroExpenseFragment newInstance() {
+    return new IntroExpenseFragment();
   }
 
   @Override
@@ -62,7 +64,7 @@ public class ExpenseFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.expense_fragment, container, false);
+    final View view = inflater.inflate(R.layout.intro_expense_fragment, container, false);
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     generateListView(viewModel, view);
     Button newExpenseButton = view.findViewById(R.id.new_expense_button);
@@ -85,12 +87,21 @@ public class ExpenseFragment extends Fragment {
       viewModel.addExpense(newExpense);
       newExpenseAmount.setText("");
       newExpenseName.setText("");
+      nextSnackbar(view);
     } catch (NumberFormatException noNumber) {
-      Toast toast = Toast
-          .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-      toast.setGravity(Gravity.CENTER, 0, 0);
-      toast.show();
+      nextSnackbar(view);
     }
+  }
+
+  private void nextSnackbar(View view) {
+    Snackbar snackbar = Snackbar.make(view, "Done with Expenses", Snackbar.LENGTH_LONG);
+    snackbar.setAction("Yes", v -> {
+      IntroIncomeFragment introIncomeFragment = new IntroIncomeFragment();
+      FragmentManager manager = getActivity().getSupportFragmentManager();
+      FragmentTransaction transaction = manager.beginTransaction();
+      transaction.replace(R.id.intro_frame, introIncomeFragment).commit();
+    });
+    snackbar.show();
   }
 
   private void generateListView(MainViewModel viewModel, View view) {
@@ -104,7 +115,6 @@ public class ExpenseFragment extends Fragment {
         Snackbar snackbar = Snackbar.make(getView(), thisExpense.toString(), Snackbar.LENGTH_LONG);
         snackbar.setAction("Delete", v -> {
           viewModel.deleteExpense(thisExpense);
-          checkExpense();
         });
         snackbar.show();
       });
@@ -112,17 +122,4 @@ public class ExpenseFragment extends Fragment {
     });
   }
 
-  private void checkExpense() {
-    final long[] expenses = {0};
-    try {
-      MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-      viewModel.getSumExpenses().observe(this, ex -> expenses[0] = ex);
-    } catch (Exception e) {
-      //Do Nothing
-    }
-    if (expenses[0] == 0) {
-      startActivity(new Intent(getContext(), SplashIntro.class)
-          .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-    }
-  }
 }

@@ -30,7 +30,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
-import io.github.treypage.budgetbackwards.splash.Splash;
+import io.github.treypage.budgetbackwards.Splash;
 
 
 public class Information extends Fragment {

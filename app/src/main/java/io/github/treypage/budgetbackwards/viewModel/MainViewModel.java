@@ -63,13 +63,6 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getIncomeDao().getOneIncome();
   }
 
-  public void addIncome(final Income income) {
-    new Thread(() -> {
-      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
-      db.getIncomeDao().insert(income);
-    }).start();
-  }
-
   public LiveData<List<Expense>> getExpenses() {
     return BudgetDatabase.getInstance(getApplication()).getExpenseDao().getAll();
   }
@@ -78,13 +71,19 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     return BudgetDatabase.getInstance(getApplication()).getIncomeDao().getAll();
   }
 
-  public void setIncome(
-      LiveData<List<Income>> income) {
-  }
-
-  public List<Double> getPercent() {
+  private List<Double> getPercent() {
     return BudgetDatabase.getInstance(getApplication()).getExpenseDao()
         .getPercent();
+  }
+
+  public void setIncome(LiveData<List<Income>> income) {
+  }
+
+  public void addIncome(final Income income) {
+    new Thread(() -> {
+      BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
+      db.getIncomeDao().insert(income);
+    }).start();
   }
 
   public void addExpense(final Expense expense) {
@@ -103,15 +102,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     }).start();
   }
 
-  public void updateCategory(final Category category) {
+  private void updateCategory(final Category category) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
       db.getCategoryDao().update(category);
     }).start();
   }
 
-
-  public void categoryPercentAll() {
+  private void categoryPercentAll() {
     new Thread(() -> {
       List<Double> percent = getPercent();
       for (int i = 0; i < percent.size(); i++) {

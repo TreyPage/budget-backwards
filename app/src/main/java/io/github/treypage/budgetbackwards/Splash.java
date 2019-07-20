@@ -19,7 +19,7 @@
 //    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //    SOFTWARE.
-package io.github.treypage.budgetbackwards.splash;
+package io.github.treypage.budgetbackwards;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +31,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import io.github.treypage.budgetbackwards.R;
+import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
 import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
 

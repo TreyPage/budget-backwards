@@ -58,8 +58,7 @@ public class CategoryChartFragment extends Fragment {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     viewModel.getOneIncome().observe(this, viewModel::incomeMath);
-    MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    mainViewModel.getCategory().observe(this, this::generateData);
+    viewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);
     chart.setOnValueTouchListener(new ValueTouchListener());
     return rootView;

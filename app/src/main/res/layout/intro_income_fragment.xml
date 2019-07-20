@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--MIT License-->
+<!--  Copyright (c) 2019 Terrell Page-->
+<!--    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:-->
+<!--  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.-->
+<!--  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/income_fragment"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:fontFamily="@font/cutive"
+  android:orientation="vertical"
+  tools:context=".fragment.IncomeFragment"
+  tools:ignore="MergeRootFrame">
+
+  <Button
+    android:id="@+id/submit_income"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/submit"
+    android:fontFamily="@font/cutive"
+    android:textSize="15sp"
+    app:layout_constraintBottom_toTopOf="@id/list_all_income"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/date_input"/>
+
+  <EditText
+    android:id="@+id/date_input"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="@string/date_of_income"
+    android:imeActionId="6"
+    android:fontFamily="@font/cutive"
+    android:imeOptions="actionUnspecified"
+    android:importantForAutofill="no"
+    android:inputType="date"
+    android:maxLines="1"
+    android:textSize="15sp"
+    android:singleLine="true"
+    app:layout_constraintTop_toBottomOf="@id/user_income"
+    app:layout_constraintBottom_toTopOf="@id/submit_income"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+  <EditText
+    android:id="@+id/user_income"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="@string/user_income"
+    android:imeActionId="6"
+    android:imeOptions="actionUnspecified"
+    android:inputType="numberDecimal"
+    android:maxLines="1"
+    android:singleLine="true"
+    android:fontFamily="@font/cutive"
+    app:layout_constraintBottom_toTopOf="@id/date_input"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/income_instructions"/>
+
+  <TextView
+    android:id="@+id/sw_quote"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:textAlignment="center"
+    android:fontFamily="@font/cutive"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toTopOf="@id/income_instructions"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:id="@+id/income_instructions"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15sp"
+    android:fontFamily="@font/cutive"
+    android:textColor="@color/black"
+    android:text="@string/income_input_instruct"
+    android:textAlignment="center"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toTopOf="@id/user_income"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/sw_quote"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
