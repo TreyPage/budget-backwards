@@ -105,8 +105,10 @@ public class IncomeFragment extends Fragment {
       Fragment fragment = IncomeListFragment.newInstance();
       FragmentTransaction transaction1 = getActivity().getSupportFragmentManager()
           .beginTransaction();
-      transaction1.replace(R.id.frame_layout, fragment);
-      transaction1.commit();
+      transaction1.add(R.id.frame_layout, fragment);
+      transaction1.show(fragment);
+      transaction1.hide(IncomeFragment.this);
+      transaction1.commitNow();
     });
   }
 

@@ -36,7 +36,6 @@ import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
-import java.util.Objects;
 
 public class CategoryListFragment extends Fragment {
 
@@ -87,10 +86,12 @@ public class CategoryListFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putInt("category_id", position);
         Fragment fragment = CategoryFragment.newInstance();
-        FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
+        FragmentTransaction transaction1 = getActivity()
             .getSupportFragmentManager().beginTransaction();
         fragment.setArguments(bundle);
-        transaction1.replace(R.id.frame_layout, fragment);
+        transaction1.add(R.id.frame_layout, fragment);
+        transaction1.hide(CategoryListFragment.this);
+        transaction1.show(fragment);
         transaction1.commit();
 
       });

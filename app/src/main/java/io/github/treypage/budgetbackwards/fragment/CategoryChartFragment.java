@@ -48,6 +48,10 @@ public class CategoryChartFragment extends Fragment {
 
   private PieChartView chart;
 
+  /***
+   * This method simply creates an instance of the CategoryChartFragment.
+   * @return
+   */
   public static CategoryChartFragment newInstance() {
     return new CategoryChartFragment();
   }
@@ -129,8 +133,11 @@ public class CategoryChartFragment extends Fragment {
           FragmentTransaction transaction1 = getActivity()
               .getSupportFragmentManager().beginTransaction();
           fragment.setArguments(bundle);
-          transaction1.replace(R.id.frame_layout, fragment);
+          transaction1.add(R.id.frame_layout, fragment);
+          transaction1.hide(CategoryChartFragment.this);
+          transaction1.show(fragment);
           transaction1.commit();
+
         } catch (NullPointerException w) {
           //DO NOTHING
         }
