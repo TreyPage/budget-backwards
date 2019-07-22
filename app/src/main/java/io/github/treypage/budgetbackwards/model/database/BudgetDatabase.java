@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import io.github.treypage.budgetbackwards.model.dao.CategoryDao;
 import io.github.treypage.budgetbackwards.model.dao.ExpenseDao;
@@ -42,12 +43,53 @@ public abstract class BudgetDatabase extends RoomDatabase {
 
   private static BudgetDatabase INSTANCE;
 
+  private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_3_4 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_4_5 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_5_6 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_6_7 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+  private static final Migration MIGRATION_7_8 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+
+
   /**
    * When the BudgetDatabase is initially called and the instance = null the database is populated.
    * The for loop in the method populates the database with every Category title in the Enum inside
    * of the Category entity.
-   * @param context
-   * @return
    */
   public static BudgetDatabase getInstance(Context context) {
     if (INSTANCE == null) {
@@ -69,6 +111,8 @@ public abstract class BudgetDatabase extends RoomDatabase {
                   }
                 }
               })
+          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6,
+              MIGRATION_6_7, MIGRATION_7_8)
           .build();
     }
     return INSTANCE;
