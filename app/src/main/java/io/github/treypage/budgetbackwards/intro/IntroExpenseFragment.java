@@ -22,9 +22,7 @@
 package io.github.treypage.budgetbackwards.intro;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +32,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -42,7 +39,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
-import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
@@ -61,6 +57,16 @@ public class IntroExpenseFragment extends Fragment {
     this.context = context;
   }
 
+  /***
+   * IntroExpenseFragment lives inside of the frame layout of the SplashIntro. It is almost
+   * identical to the expense fragment that is available to the user inside the full app, with two
+   * major differences. Every time a user inputs an expense a snackbar will ask the user if they are
+   * done adding expenses, if they select yes, the user will be sent to the IntroIncomeFragment.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

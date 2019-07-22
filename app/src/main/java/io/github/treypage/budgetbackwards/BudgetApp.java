@@ -28,6 +28,12 @@ import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
 
 public class BudgetApp extends Application {
 
+  /**
+   * When the app is launched Stetho is initialized for the database, Google signin is given a
+   * context of the application, and the database is immediately queried by deleting nothing so
+   * that the database is populated and available for the app to begin calculations in the
+   * background.
+   */
   @Override
   public void onCreate() {
     super.onCreate();

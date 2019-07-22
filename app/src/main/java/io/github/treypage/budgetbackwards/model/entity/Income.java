@@ -58,6 +58,11 @@ public class Income {
     this.amount = amount;
   }
 
+  /**
+   * toString is being overridden here in order to provide the user the correct information in the
+   * IncomeFragment.
+   * @return
+   */
   @NonNull
   @Override
   public String toString() {

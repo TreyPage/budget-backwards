@@ -41,11 +41,21 @@ import java.util.Calendar;
 
 public class IncomeFragment extends Fragment {
 
-
   public static IncomeFragment newInstance() {
     return new IncomeFragment();
   }
 
+  /***
+   * This fragment has a random Star Wars quote showing at the top that is refreshed every time
+   * the user opens this fragment. This is done by the NewQuote class via an asyncTask. There are
+   * two text fields available to a user to input a number for income and a date for that income.
+   * The date field is pre-populated with date and time. The user can either submit that income or
+   * view a list of all income.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

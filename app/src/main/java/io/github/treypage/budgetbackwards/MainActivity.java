@@ -36,6 +36,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+  /***
+   * This method adds the layout of activity_main and adds all 5 applicable fragments to the fragment
+   * manager. It the calls the show fragment method to show the information fragment as the first shown.
+   * it then listens to the bottom navigation bar for changes and shows the appropriate fragment
+   * related to that button.
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

@@ -16,7 +16,7 @@
     android:id="@+id/new_expense_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="20dp"
     android:fontFamily="@font/cutive"
     android:textSize="15sp"
     android:text="Add Expense"

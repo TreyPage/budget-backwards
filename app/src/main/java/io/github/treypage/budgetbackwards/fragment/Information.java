@@ -29,8 +29,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import io.github.treypage.budgetbackwards.R;
-import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
 import io.github.treypage.budgetbackwards.Splash;
+import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;
 
 
 public class Information extends Fragment {
@@ -41,6 +41,15 @@ public class Information extends Fragment {
     return new Information();
   }
 
+  /***
+   * The information class filled with a png file inside of the xml information. This png gives
+   * user information about how the app was intended to be used. It is also home to the sign out
+   * button which will send the user back to the sign in/information screen.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

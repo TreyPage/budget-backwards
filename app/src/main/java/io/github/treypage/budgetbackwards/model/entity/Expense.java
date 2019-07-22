@@ -74,7 +74,11 @@ public class Expense implements Serializable {
     this.title = title;
   }
 
-
+  /**
+   * toString is being overridden here in order to display the proper information to the user in
+   * the expense list inside the ExpenseFragment.
+   * @return
+   */
   @NonNull
   @Override
   public String toString() {

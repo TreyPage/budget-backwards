@@ -40,9 +40,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
+import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
-import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 
 public class ExpenseFragment extends Fragment {
@@ -59,6 +59,18 @@ public class ExpenseFragment extends Fragment {
     this.context = context;
   }
 
+  /***
+   * ExpenseFragment lives inside of the frame layout of the MainActivity. This fragment provides a
+   * list of all expenses the user has put in and listens to touch by the user on those expenses, if
+   * a user touches an expense it will ask the user if they would like to delete it. Below this list
+   * is an expense name, expense amount, and a spinner filled with all available categories.
+   * Once the user clicks submit these three pieces of information are attached to the expense and
+   * added to the list as well as the database.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -101,28 +113,32 @@ public class ExpenseFragment extends Fragment {
           android.R.layout.simple_list_item_1, expenses);
       incomeListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
         Expense thisExpense = expenses.get(position);
-        Snackbar snackbar = Snackbar.make(getView(), thisExpense.toString(), Snackbar.LENGTH_LONG);
-        snackbar.setAction("Delete", v -> {
-          viewModel.deleteExpense(thisExpense);
-          checkExpense();
-        });
-        snackbar.show();
+        if (adapter.getCount() > 1) {
+          Snackbar snackbar = Snackbar
+              .make(getView(), thisExpense.toString(), Snackbar.LENGTH_LONG);
+          snackbar.setAction("Delete", v -> {
+            viewModel.deleteExpense(thisExpense);
+            checkExpense();
+          });
+          snackbar.show();
+        }
       });
       incomeListView.setAdapter(adapter);
     });
   }
 
   private void checkExpense() {
-    final long[] expenses = {0};
     try {
       MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-      viewModel.getSumExpenses().observe(this, ex -> expenses[0] = ex);
+      viewModel.getSumExpenses().observe(this, ex -> {
+        if (ex == 0) {
+          startActivity(new Intent(getContext(), SplashIntro.class)
+              .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+      });
     } catch (Exception e) {
       //Do Nothing
     }
-    if (expenses[0] == 0) {
-      startActivity(new Intent(getContext(), SplashIntro.class)
-          .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-    }
+
   }
 }

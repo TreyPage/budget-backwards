@@ -52,6 +52,15 @@ public class CategoryListFragment extends Fragment {
     this.context = context;
   }
 
+  /***
+   * Category list is a list of every single category available to the user. This list is populated
+   * via the Enums in the Category entity. This list is clickable and when a user clicks on a
+   * category, a new fragment replaces this one with all the information about that category.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

@@ -21,7 +21,6 @@
 //    SOFTWARE.
 package io.github.treypage.budgetbackwards.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +28,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
@@ -42,18 +40,28 @@ public class CategoryFragment extends Fragment {
     return new CategoryFragment();
   }
 
+  /***
+   * This entire Class' purpose is to show the the user information about a selected Category.
+   * When created a bundle should be received from which ever method populated this fragment.
+   * That bundle is extracted to get a category. This category is then used to populate all of the
+   * fields with the information about that category.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
-  public void onAttach(@NonNull Context context) {
-    super.onAttach(context);
-  }
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     setHasOptionsMenu(true);
     Bundle bundle = getArguments();
     int catId = bundle.getInt("category_id");
     Title thisCategory = Category.Title.values()[catId];
+    return generateText(inflater, container, catId, thisCategory);
+  }
+
+  private View generateText(LayoutInflater inflater, ViewGroup container, int catId,
+      Title thisCategory) {
     final View view = inflater.inflate(R.layout.category_fragment, container, false);
     TextView catTitleView = view.findViewById(R.id.cat_frag_text);
     TextView catInfoView = view.findViewById(R.id.category_info);

@@ -77,6 +77,11 @@ public class Category {
     this.percent = percent;
   }
 
+  /**
+   * toString is being overridden here to provide the user the important information necessary for
+   * the CategoryFragment.
+   * @return
+   */
   @NonNull
   @Override
   public String toString() {
@@ -85,6 +90,9 @@ public class Category {
     return String.format("%s%s%s", catPercent, name, catPayout);
   }
 
+  /**
+   * This Enum is every category available to the user.
+   */
   @TypeConverters(TitleConverter.class)
   public enum Title {
     HOUSING, PHONE, UTILITIES, FOOD, TRANSPORTATION, OTHER, SAVINGS, GROCERIES, DEBT, INSURANCE, CHILDCARE, PETS, TUITION;

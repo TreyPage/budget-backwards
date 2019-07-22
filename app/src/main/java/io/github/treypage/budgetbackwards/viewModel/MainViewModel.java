@@ -126,6 +126,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     }).start();
   }
 
+  /**
+   * incomeMath is called when new income or expenses are submitted. This method does the math on
+   * that income and sets the category information appropriately.
+   * @param newIncome
+   */
   public void incomeMath(double newIncome) {
     new Thread(() -> {
       List<Double> list = getPercent();

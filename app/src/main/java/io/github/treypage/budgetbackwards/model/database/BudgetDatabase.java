@@ -42,6 +42,13 @@ public abstract class BudgetDatabase extends RoomDatabase {
 
   private static BudgetDatabase INSTANCE;
 
+  /**
+   * When the BudgetDatabase is initially called and the instance = null the database is populated.
+   * The for loop in the method populates the database with every Category title in the Enum inside
+   * of the Category entity.
+   * @param context
+   * @return
+   */
   public static BudgetDatabase getInstance(Context context) {
     if (INSTANCE == null) {
       INSTANCE = Room

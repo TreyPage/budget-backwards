@@ -28,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
@@ -43,12 +42,13 @@ public class IncomeListFragment extends Fragment {
     return new IncomeListFragment();
   }
 
-  @Override
-  public void onAttach(@NonNull Context context) {
-    super.onAttach(context);
-    this.context = context;
-  }
-
+  /***
+   * This class and method does nothing more than displaying a list of all user income.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

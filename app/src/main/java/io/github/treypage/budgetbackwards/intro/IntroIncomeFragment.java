@@ -32,11 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.MainActivity;
 import io.github.treypage.budgetbackwards.R;
-import io.github.treypage.budgetbackwards.fragment.IncomeListFragment;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.model.service.QuotesService.NewQuote;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
@@ -44,11 +42,20 @@ import java.util.Calendar;
 
 public class IntroIncomeFragment extends Fragment {
 
-
-  public static IntroIncomeFragment newInstance() {
+  private static IntroIncomeFragment newInstance() {
     return new IntroIncomeFragment();
   }
 
+  /***
+   * IntroIncomeFragment lives inside of the frame layout of the SplashIntro. It is almost
+   * identical to the income fragment that is available to the user inside the full app. The two
+   * major differences are when a user submits income they are taken to the main activity and there
+   * is no button to see the full list on incomes since there are none yet.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

@@ -33,6 +33,12 @@ import io.github.treypage.budgetbackwards.R;
 
 public class SplashIntro extends AppCompatActivity {
 
+  /**
+   * onCreate will check if the user has ever seen this activity before. If they have they bypass it.
+   * If they have not then the layout is populated with the IntroExpenseFragment and a
+   * sharedPreference is edited to make it so the user will not see the activity again.
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

@@ -52,6 +52,17 @@ public class CategoryChartFragment extends Fragment {
     return new CategoryChartFragment();
   }
 
+  /***
+   * onCreateView is doing all of the heavy lifting here. It sets the layout to the category_chart
+   * which sits inside the frame layout of the main activity. It is observing changes to incomeMath
+   * in the MainViewModel for percentages. These percentages are out of 100% for each Category.
+   * This information is used to populate the Pie Chart via generateData. It is then listing to touch
+   * by the user on the pie chart.
+   * @param inflater
+   * @param container
+   * @param savedInstanceState
+   * @return
+   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -99,6 +110,13 @@ public class CategoryChartFragment extends Fragment {
 
   private class ValueTouchListener implements PieChartOnValueSelectListener {
 
+    /***
+     * When a slice of the pie chart is selected onValueSelected is called with the arcIndex and
+     * value to determine the category that was selected. Based on which slice was selected a new
+     * fragment will replace the user's view with a snapshot of that selected Category information.
+     * @param arcIndex
+     * @param value
+     */
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
       MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()))
@@ -120,6 +138,10 @@ public class CategoryChartFragment extends Fragment {
       });
     }
 
+    /***
+     * onValueDeselected is ignored here because it is impossible for a user to accomplish. When
+     * a slice is selected the fragment is replaced never allowing a user to deselect.
+     */
     @Override
     public void onValueDeselected() {
       // Ignore
