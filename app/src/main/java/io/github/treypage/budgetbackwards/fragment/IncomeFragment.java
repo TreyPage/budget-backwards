@@ -28,14 +28,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-import io.github.treypage.budgetbackwards.model.service.QuotesService.NewQuote;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 import java.util.Calendar;
 
@@ -60,11 +58,6 @@ public class IncomeFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.income_fragment, container, false);
-
-    TextView swQuote = view.findViewById(R.id.sw_quote);
-    new NewQuote()
-        .setOnSuccessListener((quote) -> swQuote.setText(quote.getSwQuote()))
-        .execute();
 
     listedIncome(view);
     submitNewIncome(view);
