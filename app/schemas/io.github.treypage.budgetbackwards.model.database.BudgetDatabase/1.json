@@ -122,7 +122,7 @@
             "columnNames": [
               "category_id"
             ],
-            "createSql": "CREATE  INDEX `index_Expense_category_id` ON `${TABLE_NAME}` (`category_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Expense_category_id` ON `${TABLE_NAME}` (`category_id`)"
           }
         ],
         "foreignKeys": [

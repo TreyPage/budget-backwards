@@ -76,7 +76,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getPercent();
   }
 
-  public void setIncome(LiveData<List<Income>> income) {
+  public void setIncome() {
   }
 
   public void addIncome(final Income income) {

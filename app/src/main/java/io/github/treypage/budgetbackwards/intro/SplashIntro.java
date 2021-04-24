@@ -46,9 +46,6 @@ public class SplashIntro extends AppCompatActivity {
     boolean previouslyStarted = prefs
         .getBoolean(getString(R.string.pref_previously_started), false);
     if (!previouslyStarted) {
-      SharedPreferences.Editor edit = prefs.edit();
-      edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
-      edit.apply();
       setContentView(R.layout.splash_intro);
       IntroExpenseFragment introExpenseFragment = new IntroExpenseFragment();
       FragmentManager manager = getSupportFragmentManager();
@@ -60,8 +57,12 @@ public class SplashIntro extends AppCompatActivity {
       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(intent);
     }
-
   }
-
-
+//
+//  public void finishedIntro() {
+//    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//    SharedPreferences.Editor edit = prefs.edit();
+//    edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
+//    edit.apply();
+//  }
 }

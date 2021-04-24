@@ -83,6 +83,7 @@ public class CategoryChartFragment extends Fragment {
     List<SliceValue> values = new ArrayList<>();
     for (Category category : categories) {
       double percent = category.getPercent();
+      if (0 == percent) continue;
       SliceValue sliceValue = new SliceValue((float) percent,
           ChartUtils.nextColor());
       sliceValue.setLabel(category.getName());
