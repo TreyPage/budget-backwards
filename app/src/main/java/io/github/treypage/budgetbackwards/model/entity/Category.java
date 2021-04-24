@@ -80,6 +80,7 @@ public class Category {
   /**
    * toString is being overridden here to provide the user the important information necessary for
    * the CategoryFragment.
+   *
    * @return
    */
   @NonNull

@@ -27,7 +27,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import io.github.treypage.budgetbackwards.model.entity.Category;
-
 import java.util.List;
 
 @Dao

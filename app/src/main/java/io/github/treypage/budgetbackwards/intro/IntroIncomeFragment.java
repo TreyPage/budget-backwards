@@ -37,7 +37,6 @@ import io.github.treypage.budgetbackwards.MainActivity;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
-
 import java.util.Calendar;
 
 public class IntroIncomeFragment extends Fragment {
@@ -58,7 +57,7 @@ public class IntroIncomeFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.intro_income_fragment, container, false);
 
         submitNewIncome(view);
@@ -84,15 +83,18 @@ public class IntroIncomeFragment extends Fragment {
                     viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
                     newIncomeAmount.setText("");
                     Toast toast = Toast
-                            .makeText(getContext(), "Input created. \n\n Happy Budgeting!", Toast.LENGTH_SHORT);
+                            .makeText(getContext(), "Input created. \n\n Happy Budgeting!",
+                                    Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } catch (NumberFormatException noNumber) {
                     Toast toast = Toast
-                            .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+                            .makeText(getContext(), "Please input a valid amount.",
+                                    Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }
@@ -101,7 +103,9 @@ public class IntroIncomeFragment extends Fragment {
     }
 
     private void nextSnackbar(View view) {
-        Snackbar snackbar = Snackbar.make(view, "There was a blank field are you done with Income?", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar
+                .make(view, "There was a blank field are you done with Income?",
+                        Snackbar.LENGTH_LONG);
         snackbar.setAction("Yes", v -> {
             Intent intent = new Intent(getContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

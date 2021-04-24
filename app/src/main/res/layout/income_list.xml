@@ -8,9 +8,9 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/income_list_fragment"
   android:layout_width="match_parent"
-  android:orientation="vertical"
   android:layout_height="match_parent"
-  android:fontFamily="@font/cutive">
+  android:fontFamily="@font/cutive"
+  android:orientation="vertical">
 
   <ListView
     android:id="@+id/income_list"

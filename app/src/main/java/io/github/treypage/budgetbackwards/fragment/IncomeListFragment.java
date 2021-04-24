@@ -37,53 +37,53 @@ import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
-
 import java.util.Objects;
 
 public class IncomeListFragment extends Fragment {
 
-    private Context context;
+  private Context context;
 
-    public static IncomeListFragment newInstance() {
-        return new IncomeListFragment();
-    }
+  public static IncomeListFragment newInstance() {
+    return new IncomeListFragment();
+  }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        this.context = context;
-    }
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    this.context = context;
+  }
 
-    /***
-     * This class and method does nothing more than displaying a list of all user income.
-     */
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        final View view = inflater.inflate(R.layout.income_list, container, false);
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        viewModel.getIncome().observe(this, incomes -> {
-            ArrayAdapter<Income> adapter = new ArrayAdapter<>(context,
-                    android.R.layout.simple_list_item_1, incomes);
-            ListView incomeListView = view.findViewById(R.id.income_list);
-            incomeListView.setDividerHeight(20);
-            incomeListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
-                Income income = incomes.get(position);
-                if (adapter.getCount() > 1) {
-                    Snackbar snackbar = Snackbar
-                            .make(Objects.requireNonNull(getView()), income.toString(), Snackbar.LENGTH_LONG);
-                    snackbar.setAction("Delete", v -> viewModel.deleteIncome(income));
-                    snackbar.show();
-                } else {
-                    Toast toast = Toast
-                            .makeText(getContext(), "At least 1 Income is required, dividing by 0 hurts.", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }
-            });
-            incomeListView.setAdapter(adapter);
-        });
-        return view;
-    }
+  /***
+   * This class and method does nothing more than displaying a list of all user income.
+   */
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    setHasOptionsMenu(true);
+    final View view = inflater.inflate(R.layout.income_list, container, false);
+    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel.getIncome().observe(this, incomes -> {
+      ArrayAdapter<Income> adapter = new ArrayAdapter<>(context,
+          android.R.layout.simple_list_item_1, incomes);
+      ListView incomeListView = view.findViewById(R.id.income_list);
+      incomeListView.setDividerHeight(20);
+      incomeListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
+        Income income = incomes.get(position);
+        if (adapter.getCount() > 1) {
+          Snackbar snackbar = Snackbar
+              .make(Objects.requireNonNull(getView()), income.toString(), Snackbar.LENGTH_LONG);
+          snackbar.setAction("Delete", v -> viewModel.deleteIncome(income));
+          snackbar.show();
+        } else {
+          Toast toast = Toast
+              .makeText(getContext(), "At least 1 Income is required, dividing by 0 hurts.",
+                  Toast.LENGTH_SHORT);
+          toast.setGravity(Gravity.CENTER, 0, 0);
+          toast.show();
+        }
+      });
+      incomeListView.setAdapter(adapter);
+    });
+    return view;
+  }
 }

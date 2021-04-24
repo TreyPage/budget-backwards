@@ -10,15 +10,15 @@
 
   <item
     android:id="@+id/navigation_list"
-    android:icon="@drawable/navigation_list"
     android:fontFamily="@font/cutive"
+    android:icon="@drawable/navigation_list"
     android:title="@string/list"
     />
 
   <item
     android:id="@+id/navigation_chart"
-    android:icon="@drawable/navigation_chart"
     android:fontFamily="@font/cutive"
+    android:icon="@drawable/navigation_chart"
     android:title="@string/chart"
     />
 
@@ -31,8 +31,8 @@
 
   <item
     android:id="@+id/money_sign"
-    android:icon="@drawable/money_sign"
     android:fontFamily="@font/cutive"
+    android:icon="@drawable/money_sign"
     android:title="@string/income"
     />
 

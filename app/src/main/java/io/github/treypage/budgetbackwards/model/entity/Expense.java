@@ -26,7 +26,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 
 @Entity(foreignKeys = {
@@ -76,8 +75,9 @@ public class Expense implements Serializable {
   }
 
   /**
-   * toString is being overridden here in order to display the proper information to the user in
-   * the expense list inside the ExpenseFragment.
+   * toString is being overridden here in order to display the proper information to the user in the
+   * expense list inside the ExpenseFragment.
+   *
    * @return
    */
   @NonNull

@@ -30,8 +30,8 @@ public class Income {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-    private double amount = 0;
-    private String date;
+  private double amount = 0;
+  private String date;
 
 
   public String getDate() {
@@ -61,6 +61,7 @@ public class Income {
   /**
    * toString is being overridden here in order to provide the user the correct information in the
    * IncomeFragment.
+   *
    * @return
    */
   @NonNull

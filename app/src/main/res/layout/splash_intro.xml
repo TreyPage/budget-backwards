@@ -5,21 +5,20 @@
 <!--  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.-->
 <!--  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.-->
 <androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:id="@+id/splash_intro"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/splash_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
   <FrameLayout
-    android:id="@+id/intro_frame"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fontFamily="@font/cutive"
-    android:animateLayoutChanges="true"
-    />
+          android:id="@+id/intro_frame"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:animateLayoutChanges="true"
+          android:fontFamily="@font/cutive"
+          />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

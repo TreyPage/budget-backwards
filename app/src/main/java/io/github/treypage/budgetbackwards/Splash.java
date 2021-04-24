@@ -30,7 +30,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.intro.SplashIntro;
 import io.github.treypage.budgetbackwards.model.database.BudgetDatabase;
 import io.github.treypage.budgetbackwards.model.service.GoogleSignInService;

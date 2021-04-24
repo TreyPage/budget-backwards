@@ -32,7 +32,7 @@ public class GoogleSignInService {
   private static Application context;
 
   private GoogleSignInAccount account;
-  private GoogleSignInClient client;
+  private final GoogleSignInClient client;
 
   private GoogleSignInService() {
     GoogleSignInOptions options = new GoogleSignInOptions.Builder()

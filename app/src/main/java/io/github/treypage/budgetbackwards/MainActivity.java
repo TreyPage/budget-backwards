@@ -29,8 +29,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import io.github.treypage.budgetbackwards.fragment.*;
-
+import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
+import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
+import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
+import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
+import io.github.treypage.budgetbackwards.fragment.Information;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

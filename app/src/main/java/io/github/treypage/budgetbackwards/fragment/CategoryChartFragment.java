@@ -34,15 +34,14 @@ import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class CategoryChartFragment extends Fragment {
 
@@ -69,7 +68,7 @@ public class CategoryChartFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.category_chart, container, false);
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getOneIncome().observe(this, viewModel::incomeMath);
@@ -107,10 +106,12 @@ public class CategoryChartFragment extends Fragment {
         data.setCenterText1Typeface(newFont);
         data.setCenterText2Typeface(newFont);
 
-        data.setCenterText1FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
-                (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
-        data.setCenterText2FontSize(ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
-                (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
+        data.setCenterText1FontSize(
+                ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
+                        (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
+        data.setCenterText2FontSize(
+                ChartUtils.px2sp(getResources().getDisplayMetrics().scaledDensity,
+                        (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
         chart.setPieChartData(data);
 

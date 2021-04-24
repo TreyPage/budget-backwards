@@ -34,85 +34,84 @@ import io.github.treypage.budgetbackwards.model.dao.IncomeDao;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
-
 import java.util.concurrent.Executors;
 
 @Database(entities = {Income.class, Category.class,
-        Expense.class}, version = 1)
+    Expense.class}, version = 1)
 public abstract class BudgetDatabase extends RoomDatabase {
 
-    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_3_4 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_4_5 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_5_6 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_6_7 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static final Migration MIGRATION_7_8 = new Migration(2, 3) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-        }
-    };
-    private static BudgetDatabase INSTANCE;
-
-    /**
-     * When the BudgetDatabase is initially called and the instance = null the database is populated.
-     * The for loop in the method populates the database with every Category title in the Enum inside
-     * of the Category entity.
-     */
-    public static BudgetDatabase getInstance(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = Room
-                    .databaseBuilder(context.getApplicationContext(), BudgetDatabase.class, "income_room")
-                    .addCallback(
-                            new Callback() {
-                                @Override
-                                public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                                    super.onCreate(db);
-                                    for (Category.Title title : Category.Title.values()) {
-                                        Category category = new Category();
-                                        category.setId(title.ordinal());
-                                        category.setName(title.abbreviation());
-                                        Executors.newSingleThreadScheduledExecutor().execute(
-                                                () -> getInstance(context).getCategoryDao().insert(category));
-
-                                        //TODO Auto populating categories may not be a good idea. more info needed
-                                    }
-                                }
-                            })
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6,
-                            MIGRATION_6_7, MIGRATION_7_8)
-                    .build();
-        }
-        return INSTANCE;
+  private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
     }
+  };
+  private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static final Migration MIGRATION_3_4 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static final Migration MIGRATION_4_5 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static final Migration MIGRATION_5_6 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static final Migration MIGRATION_6_7 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static final Migration MIGRATION_7_8 = new Migration(2, 3) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+    }
+  };
+  private static BudgetDatabase INSTANCE;
 
-    public abstract CategoryDao getCategoryDao();
+  /**
+   * When the BudgetDatabase is initially called and the instance = null the database is populated.
+   * The for loop in the method populates the database with every Category title in the Enum inside
+   * of the Category entity.
+   */
+  public static BudgetDatabase getInstance(Context context) {
+    if (INSTANCE == null) {
+      INSTANCE = Room
+          .databaseBuilder(context.getApplicationContext(), BudgetDatabase.class, "income_room")
+          .addCallback(
+              new Callback() {
+                @Override
+                public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                  super.onCreate(db);
+                  for (Category.Title title : Category.Title.values()) {
+                    Category category = new Category();
+                    category.setId(title.ordinal());
+                    category.setName(title.abbreviation());
+                    Executors.newSingleThreadScheduledExecutor().execute(
+                        () -> getInstance(context).getCategoryDao().insert(category));
 
-    public abstract IncomeDao getIncomeDao();
+                    //TODO Auto populating categories may not be a good idea. more info needed
+                  }
+                }
+              })
+          .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6,
+              MIGRATION_6_7, MIGRATION_7_8)
+          .build();
+    }
+    return INSTANCE;
+  }
 
-    public abstract ExpenseDao getExpenseDao();
+  public abstract CategoryDao getCategoryDao();
+
+  public abstract IncomeDao getIncomeDao();
+
+  public abstract ExpenseDao getExpenseDao();
 }

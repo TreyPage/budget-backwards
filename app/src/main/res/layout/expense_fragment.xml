@@ -7,10 +7,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/expense_fragment"
-  android:fontFamily="@font/cutive"
-  android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:fontFamily="@font/cutive"
+  android:orientation="vertical">
 
   <Button
     android:id="@+id/new_expense_button"
@@ -18,8 +18,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="60dp"
     android:fontFamily="@font/cutive"
-    android:textSize="15sp"
     android:text="Add Expense"
+    android:textSize="15sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
@@ -30,12 +30,12 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="30sp"
     android:fontFamily="@font/cutive"
-    android:textSize="15sp"
     android:hint="Expense Name"
+    android:textSize="15sp"
     app:layout_constraintBottom_toTopOf="@+id/category_spinner"
     app:layout_constraintRight_toLeftOf="@+id/new_expense_value"
-    app:layout_constraintTop_toBottomOf="@id/expense_list"
-    app:layout_constraintStart_toStartOf="parent"/>
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/expense_list"/>
 
   <EditText
     android:id="@+id/new_expense_value"
@@ -43,11 +43,11 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="30sp"
     android:fontFamily="@font/cutive"
-    android:textSize="15sp"
     android:hint="Expense Amount"
+    android:textSize="15sp"
     app:layout_constraintBottom_toTopOf="@+id/category_spinner"
-    app:layout_constraintLeft_toRightOf="@+id/new_expense_name"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintLeft_toRightOf="@+id/new_expense_name"
     app:layout_constraintTop_toBottomOf="@id/expense_list"/>
 
   <ListView
@@ -60,28 +60,28 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
 
-  <TextView
-    android:id="@+id/delete"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@id/expense_list"
-    app:layout_constraintBottom_toTopOf="@id/new_expense_name"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"/>
-
   <Spinner
     android:id="@+id/category_spinner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:fontFamily="@font/cutive"
     android:layout_marginBottom="16dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
+    android:fontFamily="@font/cutive"
     app:layout_constraintBottom_toTopOf="@id/new_expense_button"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-   />
+    />
+
+  <TextView
+    android:id="@+id/delete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toTopOf="@id/new_expense_name"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/expense_list"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

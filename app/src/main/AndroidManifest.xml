@@ -8,7 +8,6 @@
   package="io.github.treypage.budgetbackwards"
   android:theme="@style/Theme.AppCompat.NoActionBar"
   >
-  <uses-permission android:name="android.permission.INTERNET"/>
 
   <application
     android:allowBackup="true"
@@ -37,4 +36,6 @@
     </activity>
     <activity android:name=".intro.SplashIntro"/>
   </application>
+
+  <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
