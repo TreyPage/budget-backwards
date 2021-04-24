@@ -38,6 +38,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
@@ -90,12 +91,28 @@ public class ExpenseFragment extends Fragment {
     final EditText newExpenseName = view.findViewById(R.id.new_expense_name);
     Expense newExpense = new Expense();
     newExpense.setCategoryId(((Category.Title) categorySpinner.getSelectedItem()).ordinal());
-    newExpense.setTitle(newExpenseName.getText().toString());
+    try {
+      newExpense.setTitle(newExpenseName.getText().toString());
+    } catch (StringIndexOutOfBoundsException titleOutOfBounds) {
+      Toast toast = Toast
+          .makeText(getContext(), "Please give it a title.", Toast.LENGTH_SHORT);
+      toast.setGravity(Gravity.CENTER, 0, 0);
+      toast.show();
+    }
     try {
       newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
       viewModel.addExpense(newExpense);
       newExpenseAmount.setText("");
       newExpenseName.setText("");
+
+      Fragment fragment = ExpenseFragment.newInstance();
+      FragmentTransaction transaction1 = getActivity()
+          .getSupportFragmentManager().beginTransaction();
+      transaction1.add(R.id.frame_layout, fragment);
+      transaction1.hide(this);
+      transaction1.show(fragment);
+      transaction1.commit();
+
     } catch (NumberFormatException noNumber) {
       Toast toast = Toast
           .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);

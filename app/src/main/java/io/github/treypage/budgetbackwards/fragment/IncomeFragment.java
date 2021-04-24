@@ -83,6 +83,15 @@ public class IncomeFragment extends Fragment {
             .makeText(getContext(), "Input created. \n\n Happy Budgeting!", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+
+        Fragment fragment = IncomeFragment.newInstance();
+        FragmentTransaction transaction1 = getActivity()
+            .getSupportFragmentManager().beginTransaction();
+        transaction1.add(R.id.frame_layout, fragment);
+        transaction1.hide(this);
+        transaction1.show(fragment);
+        transaction1.commit();
+
       } catch (NumberFormatException noNumber) {
         Toast toast = Toast
             .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);

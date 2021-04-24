@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     navigation.setSelectedItemId(R.id.menu_info);
   }
 
-  private void showFragment(Fragment expectedFragment) {
+  public void showFragment(Fragment expectedFragment) {
     FragmentManager manager = getSupportFragmentManager();
     List<Fragment> fragments = manager.getFragments();
     FragmentTransaction transaction = manager.beginTransaction();
