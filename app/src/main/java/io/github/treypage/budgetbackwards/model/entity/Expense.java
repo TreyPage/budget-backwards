@@ -27,6 +27,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
+import java.util.Locale;
 
 @Entity(foreignKeys = {
     @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")})
@@ -36,7 +37,7 @@ public class Expense implements Serializable {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-  private long amount = 0;
+  private long amount;
   private String title;
   @ColumnInfo(name = "category_id", index = true)
   private long categoryId;
@@ -71,7 +72,10 @@ public class Expense implements Serializable {
   }
 
   public void setTitle(String title) {
-    this.title = title;
+    String first = String.valueOf(title.charAt(0));
+    first = first.toUpperCase(Locale.ROOT);
+    title = title.substring(1);
+    this.title = first + title;
   }
 
   /**

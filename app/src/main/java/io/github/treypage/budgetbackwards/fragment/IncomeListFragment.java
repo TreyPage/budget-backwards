@@ -76,7 +76,7 @@ public class IncomeListFragment extends Fragment {
           snackbar.show();
         } else {
           Toast toast = Toast
-              .makeText(getContext(), "At least 1 Income is required, dividing by 0 hurts.",
+              .makeText(getContext(), "At least 1 Income is required.\nDividing by 0 hurts.",
                   Toast.LENGTH_SHORT);
           toast.setGravity(Gravity.CENTER, 0, 0);
           toast.show();

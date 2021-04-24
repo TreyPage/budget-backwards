@@ -30,7 +30,7 @@ public class Income {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-  private double amount = 0;
+  private double amount;
   private String date;
 
 

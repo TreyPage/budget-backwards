@@ -55,6 +55,7 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:fontFamily="@font/cutive"
+    android:textAlignment="center"
     app:layout_constraintBottom_toTopOf="@+id/delete"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

@@ -92,15 +92,15 @@ public class MainActivity extends AppCompatActivity {
     navigation.setSelectedItemId(R.id.menu_info);
   }
 
-  private void showFragment(Fragment fragment) {
+  private void showFragment(Fragment expectedFragment) {
     FragmentManager manager = getSupportFragmentManager();
     List<Fragment> fragments = manager.getFragments();
     FragmentTransaction transaction = manager.beginTransaction();
-    for (Fragment frag : fragments) {
-      if (frag == fragment) {
-        transaction.show(frag);
+    for (Fragment cyclingFragment : fragments) {
+      if (cyclingFragment == expectedFragment) {
+        transaction.show(cyclingFragment);
       } else {
-        transaction.hide(frag);
+        transaction.hide(cyclingFragment);
       }
     }
     transaction.commit();
