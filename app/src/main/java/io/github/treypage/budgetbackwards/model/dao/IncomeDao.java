@@ -23,21 +23,28 @@ package io.github.treypage.budgetbackwards.model.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import io.github.treypage.budgetbackwards.model.entity.Income;
+
 import java.util.List;
 
 @Dao
 public interface IncomeDao {
 
-  @Insert
-  long insert(Income income);
+    @Insert
+    long insert(Income income);
 
-  @Query("SELECT * FROM income")
-  LiveData<List<Income>> getAll();
+    @Query("SELECT * FROM income")
+    LiveData<List<Income>> getAll();
 
-  @Query("SELECT amount FROM income ORDER BY id DESC")
-  LiveData<Double> getOneIncome();
+    @Query("SELECT amount FROM income ORDER BY id DESC")
+    LiveData<Double> getOneIncome();
 
+    @Delete
+    int delete(Income income);
+
+    @Delete
+    int delete(Income... incomes);
 }

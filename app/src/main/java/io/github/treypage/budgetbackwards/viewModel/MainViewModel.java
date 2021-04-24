@@ -103,6 +103,14 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         }).start();
     }
 
+    public void deleteIncome(final Income income) {
+        new Thread(() -> {
+            BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
+            db.getIncomeDao().delete(income);
+            categoryPercentAll();
+        }).start();
+    }
+
     private void updateCategory(final Category category) {
         new Thread(() -> {
             BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
