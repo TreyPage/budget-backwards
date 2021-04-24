@@ -27,6 +27,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import io.github.treypage.budgetbackwards.model.entity.Category;
+
 import java.util.List;
 
 @Dao
@@ -40,5 +41,8 @@ public interface CategoryDao {
 
   @Query("SELECT * FROM category")
   LiveData<List<Category>> getAll();
+
+  @Query("SELECT * FROM category WHERE percent = :per")
+  LiveData<Category> getCategoryFromPercent(float per);
 
 }

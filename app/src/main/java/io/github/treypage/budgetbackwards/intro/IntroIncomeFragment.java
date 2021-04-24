@@ -73,31 +73,29 @@ public class IntroIncomeFragment extends Fragment {
         newIncomeDate.setText(rightNow.getTime().toString());
         Button newIncomeButton = view.findViewById(R.id.submit_income);
         newIncomeButton.setOnClickListener(v -> {
-            if (newIncomeAmount.getText().toString().equals("") || newIncomeDate.getText().toString().equals("")) {
+            if (newIncomeAmount.getText().toString().equals("")) {
                 nextSnackbar(view);
             } else {
-                newIncomeButton.setOnClickListener(x -> {
-                    Income newIncome = new Income();
-                    newIncome.setDate((newIncomeDate.getText().toString()));
-                    try {
-                        newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
-                        viewModel.addIncome(newIncome);
-                        viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
-                        newIncomeAmount.setText("");
-                        Toast toast = Toast
-                                .makeText(getContext(), "Input created. \n\n Happy Budgeting!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    } catch (NumberFormatException noNumber) {
-                        Toast toast = Toast
-                                .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
-                });
+                Income newIncome = new Income();
+                newIncome.setDate((newIncomeDate.getText().toString()));
+                try {
+                    newIncome.setAmount(Long.parseLong(newIncomeAmount.getText().toString()));
+                    viewModel.addIncome(newIncome);
+                    viewModel.incomeMath(Long.parseLong(newIncomeAmount.getText().toString()));
+                    newIncomeAmount.setText("");
+                    Toast toast = Toast
+                            .makeText(getContext(), "Input created. \n\n Happy Budgeting!", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (NumberFormatException noNumber) {
+                    Toast toast = Toast
+                            .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
             }
         });
     }

@@ -55,20 +55,23 @@ public class CategoryFragment extends Fragment {
       Bundle savedInstanceState) {
     setHasOptionsMenu(true);
     Bundle bundle = getArguments();
+    String categoryName = bundle.getString("category_name");
     int catId = bundle.getInt("category_id");
-    Title thisCategory = Category.Title.values()[catId];
-    return generateText(inflater, container, catId, thisCategory);
+    if (categoryName == null || categoryName.isEmpty()) {
+      categoryName = Category.Title.values()[catId].abbreviation();
+    }
+    Title thisCategory = Category.Title.valueOf(categoryName.toUpperCase());
+    return generateText(inflater, container, thisCategory);
   }
 
-  private View generateText(LayoutInflater inflater, ViewGroup container, int catId,
-      Title thisCategory) {
+  private View generateText(LayoutInflater inflater, ViewGroup container, Title thisCategory) {
     final View view = inflater.inflate(R.layout.category_fragment, container, false);
     TextView catTitleView = view.findViewById(R.id.cat_frag_text);
     TextView catInfoView = view.findViewById(R.id.category_info);
     catTitleView.setText(thisCategory.toString());
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     viewModel.getCategory().observe(this, categories -> {
-      catInfoView.setText(categories.get(catId).toString());
+      catInfoView.setText(categories.get(thisCategory.ordinal()).toString());
     });
     return view;
   }

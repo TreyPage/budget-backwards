@@ -26,6 +26,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 @Entity(foreignKeys = {
@@ -36,7 +37,7 @@ public class Expense implements Serializable {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-  private long amount;
+  private long amount = 0;
   private String title;
   @ColumnInfo(name = "category_id", index = true)
   private long categoryId;

@@ -81,22 +81,20 @@ public class IntroExpenseFragment extends Fragment {
             if (newExpenseAmount.getText().toString().equals("") || newExpenseName.getText().toString().equals("")) {
                 nextSnackbar(view);
             } else {
-                newExpenseButton.setOnClickListener(v -> {
-                    Expense newExpense = new Expense();
-                    newExpense.setCategoryId(((Category.Title) categorySpinner.getSelectedItem()).ordinal());
-                    newExpense.setTitle(newExpenseName.getText().toString());
-                    try {
-                        newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
-                        viewModel.addExpense(newExpense);
-                        newExpenseAmount.setText("");
-                        newExpenseName.setText("");
-                    } catch (NumberFormatException noNumber) {
-                        Toast toast = Toast
-                                .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
-                });
+                Expense newExpense = new Expense();
+                newExpense.setCategoryId(((Category.Title) categorySpinner.getSelectedItem()).ordinal());
+                newExpense.setTitle(newExpenseName.getText().toString());
+                try {
+                    newExpense.setAmount(Long.parseLong(newExpenseAmount.getText().toString()));
+                    viewModel.addExpense(newExpense);
+                    newExpenseAmount.setText("");
+                    newExpenseName.setText("");
+                } catch (NumberFormatException noNumber) {
+                    Toast toast = Toast
+                            .makeText(getContext(), "Please input a valid amount.", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
             }
         });
         return view;

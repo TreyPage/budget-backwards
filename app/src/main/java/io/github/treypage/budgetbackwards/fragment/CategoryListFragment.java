@@ -79,6 +79,7 @@ public class CategoryListFragment extends Fragment {
     ListView categoryListView = view.findViewById(R.id.category_list);
     categoryListView.setDividerHeight(20);
     categoryListView.setClickable(true);
+    categoryListView.scrollListBy(1);
     categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
       MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
       viewModel.getCategory().observe(this, categories -> {
@@ -87,7 +88,7 @@ public class CategoryListFragment extends Fragment {
         bundle.putInt("category_id", position);
         Fragment fragment = CategoryFragment.newInstance();
         FragmentTransaction transaction1 = getActivity()
-            .getSupportFragmentManager().beginTransaction();
+                .getSupportFragmentManager().beginTransaction();
         fragment.setArguments(bundle);
         transaction1.add(R.id.frame_layout, fragment);
         transaction1.hide(CategoryListFragment.this);

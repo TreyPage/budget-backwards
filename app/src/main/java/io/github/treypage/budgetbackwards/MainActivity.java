@@ -21,17 +21,16 @@
 //    SOFTWARE.
 package io.github.treypage.budgetbackwards;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
-import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
-import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
-import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
-import io.github.treypage.budgetbackwards.fragment.Information;
+import io.github.treypage.budgetbackwards.fragment.*;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,14 +52,20 @@ public class MainActivity extends AppCompatActivity {
     ExpenseFragment expenseFragment = new ExpenseFragment();
     Information information = new Information();
     getSupportFragmentManager().beginTransaction()
-        .add(R.id.frame_layout, categoryChartFragment)
-        .add(R.id.frame_layout, incomeFragment)
-        .add(R.id.frame_layout, categoryListFragment)
-        .add(R.id.frame_layout, expenseFragment)
-        .add(R.id.frame_layout, information)
-        .commitNow();
+            .add(R.id.frame_layout, categoryChartFragment)
+            .add(R.id.frame_layout, incomeFragment)
+            .add(R.id.frame_layout, categoryListFragment)
+            .add(R.id.frame_layout, expenseFragment)
+            .add(R.id.frame_layout, information)
+            .commitNow();
     showFragment(information);
     BottomNavigationView navigation = findViewById(R.id.navigation);
+
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
+    edit.apply();
+
     navigation.setOnNavigationItemSelectedListener(item -> {
       switch (item.getItemId()) {
         case R.id.navigation_list:

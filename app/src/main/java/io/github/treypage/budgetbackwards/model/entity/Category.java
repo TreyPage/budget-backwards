@@ -134,7 +134,6 @@ public class Category {
     public String toString() {
       return abbreviation();
     }
-
   }
 
   public static class TitleConverter {

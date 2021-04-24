@@ -30,8 +30,8 @@ public class Income {
 
   @PrimaryKey(autoGenerate = true)
   private long id;
-  private double amount;
-  private String date;
+    private double amount = 0;
+    private String date;
 
 
   public String getDate() {
