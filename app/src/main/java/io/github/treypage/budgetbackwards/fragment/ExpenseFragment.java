@@ -104,7 +104,7 @@ public class ExpenseFragment extends Fragment {
       viewModel.addExpense(newExpense);
       newExpenseAmount.setText("");
       newExpenseName.setText("");
-
+      viewModel.getOneIncome().observe(this, viewModel::incomeMath);
       Fragment fragment = ExpenseFragment.newInstance();
       FragmentTransaction transaction1 = getActivity()
           .getSupportFragmentManager().beginTransaction();
