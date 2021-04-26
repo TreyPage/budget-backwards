@@ -14,17 +14,6 @@
   android:orientation="vertical"
   >
 
-  <ImageButton
-    android:id="@+id/next_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:padding="12sp"
-    android:adjustViewBounds="false"
-    android:cropToPadding="false"
-    android:src="@drawable/arrow_forward"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintRight_toRightOf="parent"/>
   <ImageView
     android:id="@+id/imageView"
     android:layout_width="match_parent"
@@ -36,6 +25,17 @@
     android:src="@drawable/splash_instructions"
     tools:layout_editor_absoluteX="121dp"
     tools:layout_editor_absoluteY="-116dp"/>
+  <ImageButton
+    android:id="@+id/next_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:padding="12sp"
+    android:adjustViewBounds="false"
+    android:cropToPadding="false"
+    android:src="@drawable/arrow_forward"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="parent"/>
   <TextView
     android:id="@+id/textView"
     android:layout_width="wrap_content"

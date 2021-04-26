@@ -33,8 +33,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
+import io.github.treypage.budgetbackwards.model.entity.Category.Title;
+import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
@@ -80,7 +83,7 @@ public class CategoryChartFragment extends Fragment {
   }
 
   private void generateData(List<Category> categories) {
-//    funMoney(categories);
+    funMoney(categories);
     List<SliceValue> values = new ArrayList<>();
     for (Category category : categories) {
       double percent = category.getPercent();
@@ -118,29 +121,27 @@ public class CategoryChartFragment extends Fragment {
     chart.setPieChartData(data);
   }
 
-//  private void funMoney(List<Category> allCategories) {
-//    for (Category oneCategory : allCategories) {
-//      if (oneCategory.getName().equals(Title.EXTRA.abbreviation())) {
-//        continue;
-//      }
-//      viewModel.getExpenses(oneCategory.getId()).observe(this, allExpenses -> {
-//        double total = 0;
-//        for (Expense oneExpense : allExpenses) {
-//          total += oneExpense.getAmount();
-//        }
-//        if (oneCategory.getPayout() > total) {
-//          Category category = new Category();
-//          category.setName(Title.EXTRA.toString());
-//          category.setId(Title.EXTRA.ordinal());
-//          category.setPayout(oneCategory.getPayout() - total);
-//          oneCategory.setPayout(total);
-//          viewModel.updateCategory(Arrays.asList(category, oneCategory));
-//
-//          viewModel.categoryPercentAll();
-//        }
-//      });
-//    }
-//  }
+  private void funMoney(List<Category> allCategories) {
+    for (Category oneCategory : allCategories) {
+      if (oneCategory.getName().equals(Title.EXTRA.abbreviation())) {
+        continue;
+      }
+      viewModel.getExpenses(oneCategory.getId()).observe(this, allExpenses -> {
+        double total = 0;
+        for (Expense oneExpense : allExpenses) {
+          total += oneExpense.getAmount();
+        }
+        if (oneCategory.getPayout() > total) {
+          Category category = new Category();
+          category.setName(Title.EXTRA.toString());
+          category.setId(Title.EXTRA.ordinal());
+          category.setPayout(oneCategory.getPayout() - total);
+          oneCategory.setPayout(total);
+          viewModel.updateCategory(Arrays.asList(category, oneCategory));
+        }
+      });
+    }
+  }
 
   private class ValueTouchListener implements PieChartOnValueSelectListener {
 
