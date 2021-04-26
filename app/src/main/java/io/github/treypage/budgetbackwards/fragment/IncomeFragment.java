@@ -36,6 +36,7 @@ import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class IncomeFragment extends Fragment {
 
@@ -85,7 +86,7 @@ public class IncomeFragment extends Fragment {
         toast.show();
 
         Fragment fragment = IncomeFragment.newInstance();
-        FragmentTransaction transaction1 = getActivity()
+        FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
             .getSupportFragmentManager().beginTransaction();
         transaction1.add(R.id.frame_layout, fragment);
         transaction1.hide(this);

@@ -36,10 +36,13 @@ import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
+import java.util.List;
+import java.util.Objects;
 
 public class CategoryListFragment extends Fragment {
 
   private Context context;
+  private MainViewModel viewModel;
 
   public static CategoryListFragment newInstance() {
     return new CategoryListFragment();
@@ -65,11 +68,10 @@ public class CategoryListFragment extends Fragment {
       Bundle savedInstanceState) {
     setHasOptionsMenu(true);
     final View view = inflater.inflate(R.layout.category_list, container, false);
-    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     viewModel.getOneIncome().observe(this, viewModel::incomeMath);
     final ArrayAdapter<Title> adapter = new ArrayAdapter<>(context,
         android.R.layout.simple_list_item_1, Category.Title.values());
-
     ListView categoryListView = generateListView(view);
     categoryListView.setAdapter(adapter);
     return view;
@@ -81,20 +83,18 @@ public class CategoryListFragment extends Fragment {
     categoryListView.setClickable(true);
     categoryListView.scrollListBy(1);
     categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
-      MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
       viewModel.getCategory().observe(this, categories -> {
-
+        List<Category> what = categories;
         Bundle bundle = new Bundle();
         bundle.putInt("category_id", position);
         Fragment fragment = CategoryFragment.newInstance();
-        FragmentTransaction transaction1 = getActivity()
-                .getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
+            .getSupportFragmentManager().beginTransaction();
         fragment.setArguments(bundle);
         transaction1.add(R.id.frame_layout, fragment);
         transaction1.hide(CategoryListFragment.this);
         transaction1.show(fragment);
         transaction1.commit();
-
       });
     });
     return categoryListView;

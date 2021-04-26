@@ -19,7 +19,7 @@ android {
             }
         }
         applicationId "io.github.treypage.budgetbackwards"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionName '8'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

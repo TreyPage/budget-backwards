@@ -36,12 +36,8 @@ public interface CategoryDao {
   long insert(Category category);
 
   @Update
-  void update(Category category);
+  void updateAll(List<Category> categories);
 
   @Query("SELECT * FROM category")
   LiveData<List<Category>> getAll();
-
-  @Query("SELECT * FROM category WHERE percent = :per")
-  LiveData<Category> getCategoryFromPercent(float per);
-
 }

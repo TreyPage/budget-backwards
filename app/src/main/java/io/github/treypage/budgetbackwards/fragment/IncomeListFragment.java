@@ -37,7 +37,6 @@ import com.google.android.material.snackbar.Snackbar;
 import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
-import java.util.Objects;
 
 public class IncomeListFragment extends Fragment {
 
@@ -71,7 +70,7 @@ public class IncomeListFragment extends Fragment {
         Income income = incomes.get(position);
         if (adapter.getCount() > 1) {
           Snackbar snackbar = Snackbar
-              .make(Objects.requireNonNull(getView()), income.toString(), Snackbar.LENGTH_LONG);
+              .make(requireView(), income.toString(), Snackbar.LENGTH_LONG);
           snackbar.setAction("Delete", v -> viewModel.deleteIncome(income));
           snackbar.show();
         } else {

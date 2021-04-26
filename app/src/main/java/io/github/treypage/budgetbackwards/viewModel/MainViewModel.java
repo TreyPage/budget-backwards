@@ -33,6 +33,7 @@ import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.model.entity.Income;
 import io.reactivex.disposables.CompositeDisposable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
@@ -53,11 +54,6 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         .getCategoryDao().getAll();
   }
 
-  public LiveData<Long> getSumExpenses() {
-    return BudgetDatabase.getInstance(getApplication())
-        .getExpenseDao().getSumExpenses();
-  }
-
   public LiveData<Double> getOneIncome() {
     return BudgetDatabase.getInstance(getApplication())
         .getIncomeDao().getOneIncome();
@@ -65,6 +61,11 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
 
   public LiveData<List<Expense>> getExpenses() {
     return BudgetDatabase.getInstance(getApplication()).getExpenseDao().getAll();
+  }
+
+  public LiveData<List<Expense>> getExpenses(long categoryId) {
+    return BudgetDatabase.getInstance(getApplication()).getExpenseDao()
+        .getExpensesForCategory(categoryId);
   }
 
   public LiveData<List<Income>> getIncome() {
@@ -110,16 +111,17 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     }).start();
   }
 
-  private void updateCategory(final Category category) {
+  public void updateCategory(final List<Category> categories) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
-      db.getCategoryDao().update(category);
+      db.getCategoryDao().updateAll(categories);
     }).start();
   }
 
-  private void categoryPercentAll() {
+  public void categoryPercentAll() {
     new Thread(() -> {
       List<Double> percent = getPercent();
+      List<Category> categories = new ArrayList<>();
       for (int i = 0; i < percent.size(); i++) {
         Category category = new Category();
         category.setId(i);
@@ -129,8 +131,9 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         } else {
           category.setPercent(percent.get(i));
         }
-        updateCategory(category);
+        categories.add(category);
       }
+      updateCategory(categories);
     }).start();
   }
 
@@ -143,6 +146,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
   public void incomeMath(double newIncome) {
     new Thread(() -> {
       List<Double> list = getPercent();
+      List<Category> categories = new ArrayList<>();
       for (int i = 0; i < list.size(); i++) {
         Category category = new Category();
         double percent = getPercent().get(i);
@@ -151,8 +155,9 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         category.setPayout(payout);
         category.setName(Category.Title.values()[i].toString());
         category.setId(i);
-        updateCategory(category);
+        categories.add(category);
       }
+      updateCategory(categories);
     }).start();
   }
 }

@@ -70,9 +70,8 @@ public class CategoryFragment extends Fragment {
     TextView catInfoView = view.findViewById(R.id.category_info);
     catTitleView.setText(thisCategory.toString());
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    viewModel.getCategory().observe(this, categories -> {
-      catInfoView.setText(categories.get(thisCategory.ordinal()).toString());
-    });
+    viewModel.getCategory().observe(this,
+        categories -> catInfoView.setText(categories.get(thisCategory.ordinal()).toString()));
     return view;
   }
 

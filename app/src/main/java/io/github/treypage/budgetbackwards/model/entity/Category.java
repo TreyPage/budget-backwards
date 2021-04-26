@@ -96,7 +96,7 @@ public class Category {
    */
   @TypeConverters(TitleConverter.class)
   public enum Title {
-    HOUSING, PHONE, UTILITIES, FOOD, TRANSPORTATION, OTHER, SAVINGS, GROCERIES, DEBT, INSURANCE, CHILDCARE, PETS, TUITION;
+    HOUSING, PHONE, UTILITIES, FOOD, TRANSPORTATION, OTHER, SAVINGS, GROCERIES, DEBT, INSURANCE, CHILDCARE, PETS, TUITION, EXTRA;
 
     public String abbreviation() {
       switch (this) {
@@ -126,6 +126,8 @@ public class Category {
           return "Savings";
         case TUITION:
           return "Tuition";
+        case EXTRA:
+          return "Extra";
       }
       return null;
     }

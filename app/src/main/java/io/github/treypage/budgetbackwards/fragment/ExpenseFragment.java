@@ -46,7 +46,7 @@ import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Expense;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
 import java.util.Comparator;
-import java.util.Objects;
+import java.util.List;
 
 public class ExpenseFragment extends Fragment {
 
@@ -81,6 +81,7 @@ public class ExpenseFragment extends Fragment {
     final Spinner categorySpinner = view.findViewById(R.id.category_spinner);
     SpinnerAdapter spinnerAdapter = new ArrayAdapter<>(context,
         android.R.layout.simple_spinner_item, Category.Title.values());
+    categorySpinner.setGravity(View.TEXT_ALIGNMENT_CENTER);
     categorySpinner.setAdapter(spinnerAdapter);
     newExpenseButton.setOnClickListener(v -> submitExpense(viewModel, view, categorySpinner));
     return view;
@@ -106,10 +107,14 @@ public class ExpenseFragment extends Fragment {
       newExpenseName.setText("");
       viewModel.getOneIncome().observe(this, viewModel::incomeMath);
       Fragment fragment = ExpenseFragment.newInstance();
-      FragmentTransaction transaction1 = getActivity()
+      FragmentTransaction transaction1 = requireActivity()
           .getSupportFragmentManager().beginTransaction();
+      List<Fragment> allFragments = requireActivity()
+          .getSupportFragmentManager().getFragments();
+      for (Fragment oneFragment : allFragments) {
+        transaction1.hide(oneFragment);
+      }
       transaction1.add(R.id.frame_layout, fragment);
-      transaction1.hide(this);
       transaction1.show(fragment);
       transaction1.commit();
 
@@ -133,7 +138,7 @@ public class ExpenseFragment extends Fragment {
         Expense thisExpense = expenses.get(position);
         if (adapter.getCount() > 1) {
           Snackbar snackbar = Snackbar
-              .make(Objects.requireNonNull(getView()), thisExpense.toString(),
+              .make(requireView(), thisExpense.toString(),
                   Snackbar.LENGTH_LONG);
           snackbar.setAction("Delete", v -> viewModel.deleteExpense(thisExpense));
           snackbar.show();

@@ -30,10 +30,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.github.treypage.budgetbackwards.fragment.CategoryChartFragment;
+import io.github.treypage.budgetbackwards.fragment.CategoryFragment;
 import io.github.treypage.budgetbackwards.fragment.CategoryListFragment;
 import io.github.treypage.budgetbackwards.fragment.ExpenseFragment;
 import io.github.treypage.budgetbackwards.fragment.IncomeFragment;
 import io.github.treypage.budgetbackwards.fragment.Information;
+import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,13 +56,21 @@ public class MainActivity extends AppCompatActivity {
     IncomeFragment incomeFragment = new IncomeFragment();
     ExpenseFragment expenseFragment = new ExpenseFragment();
     Information information = new Information();
+
+    Bundle bundle = new Bundle();
+    //This category doesn't matter
+    bundle.putString("category_name", Title.OTHER.toString());
+    Fragment categoryFragment = CategoryFragment.newInstance();
+    categoryFragment.setArguments(bundle);
+
     getSupportFragmentManager().beginTransaction()
-            .add(R.id.frame_layout, categoryChartFragment)
-            .add(R.id.frame_layout, incomeFragment)
-            .add(R.id.frame_layout, categoryListFragment)
-            .add(R.id.frame_layout, expenseFragment)
-            .add(R.id.frame_layout, information)
-            .commitNow();
+        .add(R.id.frame_layout, categoryChartFragment)
+        .add(R.id.frame_layout, incomeFragment)
+        .add(R.id.frame_layout, categoryListFragment)
+        .add(R.id.frame_layout, expenseFragment)
+        .add(R.id.frame_layout, information)
+        .add(R.id.frame_layout, categoryFragment)
+        .commitNow();
     showFragment(information);
     BottomNavigationView navigation = findViewById(R.id.navigation);
 

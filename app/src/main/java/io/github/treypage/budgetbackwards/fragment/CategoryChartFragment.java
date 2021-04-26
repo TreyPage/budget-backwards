@@ -46,6 +46,7 @@ import lecho.lib.hellocharts.view.PieChartView;
 public class CategoryChartFragment extends Fragment {
 
   private PieChartView chart;
+  private MainViewModel viewModel;
 
   /***
    * This method simply creates an instance of the CategoryChartFragment.
@@ -70,7 +71,7 @@ public class CategoryChartFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.category_chart, container, false);
-    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     viewModel.getOneIncome().observe(this, viewModel::incomeMath);
     viewModel.getCategory().observe(this, this::generateData);
     chart = rootView.findViewById(R.id.pie_chart);
@@ -79,6 +80,7 @@ public class CategoryChartFragment extends Fragment {
   }
 
   private void generateData(List<Category> categories) {
+//    funMoney(categories);
     List<SliceValue> values = new ArrayList<>();
     for (Category category : categories) {
       double percent = category.getPercent();
@@ -99,7 +101,7 @@ public class CategoryChartFragment extends Fragment {
     data.setHasCenterCircle(true);
     data.setSlicesSpacing(10);
 
-    Typeface newFont = ResourcesCompat.getFont(getContext(), R.font.cutive);
+    Typeface newFont = ResourcesCompat.getFont(Objects.requireNonNull(getContext()), R.font.cutive);
     data.setCenterText1("Pie Chart of");
     data.setCenterText2("Categories");
 
@@ -114,8 +116,31 @@ public class CategoryChartFragment extends Fragment {
             (int) getResources().getDimension(R.dimen.pie_chart_text1_size)));
 
     chart.setPieChartData(data);
-
   }
+
+//  private void funMoney(List<Category> allCategories) {
+//    for (Category oneCategory : allCategories) {
+//      if (oneCategory.getName().equals(Title.EXTRA.abbreviation())) {
+//        continue;
+//      }
+//      viewModel.getExpenses(oneCategory.getId()).observe(this, allExpenses -> {
+//        double total = 0;
+//        for (Expense oneExpense : allExpenses) {
+//          total += oneExpense.getAmount();
+//        }
+//        if (oneCategory.getPayout() > total) {
+//          Category category = new Category();
+//          category.setName(Title.EXTRA.toString());
+//          category.setId(Title.EXTRA.ordinal());
+//          category.setPayout(oneCategory.getPayout() - total);
+//          oneCategory.setPayout(total);
+//          viewModel.updateCategory(Arrays.asList(category, oneCategory));
+//
+//          viewModel.categoryPercentAll();
+//        }
+//      });
+//    }
+//  }
 
   private class ValueTouchListener implements PieChartOnValueSelectListener {
 
@@ -128,11 +153,8 @@ public class CategoryChartFragment extends Fragment {
      */
     @Override
     public void onValueSelected(int arcIndex, SliceValue value) {
-      MainViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()))
-          .get(MainViewModel.class);
-
       String category = String.valueOf(value.getLabelAsChars());
-      viewModel.getCategory().observe(getActivity(), categories -> {
+      viewModel.getCategory().observe(Objects.requireNonNull(getActivity()), categories -> {
         Bundle bundle = new Bundle();
         bundle.putString("category_name", category);
         try {
