@@ -111,7 +111,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
     }).start();
   }
 
-  public void updateCategory(final List<Category> categories) {
+  public void updateCategories(final List<Category> categories) {
     new Thread(() -> {
       BudgetDatabase db = BudgetDatabase.getInstance(getApplication());
       db.getCategoryDao().updateAll(categories);
@@ -133,7 +133,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         }
         categories.add(category);
       }
-      updateCategory(categories);
+      updateCategories(categories);
     }).start();
   }
 
@@ -157,7 +157,7 @@ public class MainViewModel extends AndroidViewModel implements LifecycleObserver
         category.setId(i);
         categories.add(category);
       }
-      updateCategory(categories);
+      updateCategories(categories);
     }).start();
   }
 }
