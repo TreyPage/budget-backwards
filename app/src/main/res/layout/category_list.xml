@@ -10,22 +10,18 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:fontFamily="@font/cutive"
-  android:orientation="vertical"
-
-  >
+  android:orientation="vertical">
 
   <ListView
     android:id="@+id/category_list"
     android:layout_width="0dp"
     android:layout_height="0dp"
-    android:contextClickable="true"
-    android:fontFamily="@font/cutive"
-    android:textAlignment="center"
+    android:paddingBottom="50dp"
+    android:dividerHeight="2dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/category_list_title"/>
-
   <TextView
     android:id="@+id/category_list_title"
     android:layout_width="wrap_content"

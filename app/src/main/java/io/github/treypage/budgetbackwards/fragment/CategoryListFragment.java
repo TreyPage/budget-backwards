@@ -36,7 +36,6 @@ import io.github.treypage.budgetbackwards.R;
 import io.github.treypage.budgetbackwards.model.entity.Category;
 import io.github.treypage.budgetbackwards.model.entity.Category.Title;
 import io.github.treypage.budgetbackwards.viewModel.MainViewModel;
-import java.util.List;
 import java.util.Objects;
 
 public class CategoryListFragment extends Fragment {
@@ -66,48 +65,35 @@ public class CategoryListFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    setHasOptionsMenu(true);
     final View view = inflater.inflate(R.layout.category_list, container, false);
     viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-    viewModel.getOneIncome().observe(this, viewModel::incomeMath);
     final ArrayAdapter<Title> adapter = new ArrayAdapter<>(context,
         android.R.layout.simple_list_item_1, Category.Title.values());
-    ListView categoryListView = generateListView(view);
-    categoryListView.setAdapter(adapter);
+    generateListView(view, adapter);
     return view;
   }
 
-  private ListView generateListView(View view) {
-    ListView categoryListView = view.findViewById(R.id.category_list);
-    categoryListView.setDividerHeight(20);
-    categoryListView.setClickable(true);
-    categoryListView.scrollListBy(1);
-    categoryListView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
-      viewModel.getCategory().observe(this, categories -> {
-        List<Category> what = categories;
-        Bundle bundle = new Bundle();
-        bundle.putInt("category_id", position);
-        Fragment fragment = CategoryFragment.newInstance();
-        FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
-            .getSupportFragmentManager().beginTransaction();
-        fragment.setArguments(bundle);
-        transaction1.add(R.id.frame_layout, fragment);
-        transaction1.hide(CategoryListFragment.this);
-        transaction1.show(fragment);
-        transaction1.commit();
-      });
-    });
-    return categoryListView;
+  private void generateListView(View view,
+      ArrayAdapter<Title> adapter) {
+    final ListView categoryListView = view.findViewById(R.id.category_list);
+    categoryListView.setAdapter(adapter);
+    categoryListView.setOnItemClickListener(
+        (arg0, arg1, position, arg3) -> viewModel.getCategory().observe(this, categories -> {
+          final Bundle bundle = new Bundle();
+          bundle.putInt("category_id", position);
+          final Fragment fragment = CategoryFragment.newInstance();
+          final FragmentTransaction transaction1 = Objects.requireNonNull(getActivity())
+              .getSupportFragmentManager().beginTransaction();
+          fragment.setArguments(bundle);
+          transaction1.add(R.id.frame_layout, fragment);
+          transaction1.hide(CategoryListFragment.this);
+          transaction1.show(fragment);
+          transaction1.commit();
+        }));
   }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
-
-  @Override
-  public String toString() {
-    return super.toString();
-  }
-
 }

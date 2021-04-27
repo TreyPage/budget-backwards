@@ -137,7 +137,7 @@ public class CategoryChartFragment extends Fragment {
           category.setId(Title.EXTRA.ordinal());
           category.setPayout(oneCategory.getPayout() - total);
           oneCategory.setPayout(total);
-          viewModel.updateCategory(Arrays.asList(category, oneCategory));
+          viewModel.updateCategories(Arrays.asList(category, oneCategory));
         }
       });
     }
